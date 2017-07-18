@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双向数据绑定</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- angularjs中应用ng-model -->
+		<input type="text" v-model="message"/>
+		<br/>
+		<!-- {{message}} -->
+		<!-- 支持三元运算符 -->
+		{{message?message:'hello'}}
+		<br/>
+		<!-- 渲染html标签 -->
+		<!-- angular  中$sce.trustAs -->
+		<!-- vue 2.0 已经废弃了 三大括号 的插值了，需要使用 v-html
+		{{{message}}} -->
+		<div v-html="message"></div> 
+		
+	</div>
+	
+	<script type="text/javascript">
+	/*
+	*  vm -----> $scope MVVM  model view viewModel
+	*  el -----> 选取数据所作用的范围  -----》querySelector
+	*/
+		var vm = new Vue({
+			el :"#app",
+			data :{message:"<h1>Hello World</h1>"}
+		});
+	</script>	
+</body>
+</html>
