@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象---初识对象</title>
+	<script type="text/javascript">
+	/*
+	 *表达一个人的完整信息
+	 */
+	 /*第一种,三个变量之间没有必然的联系----->这个变量属于谁？
+	 var name="张三";
+	 var age = 18;
+	 var marry=true;
+	 alert("姓名:"+name+":年龄"+age+":"+marry);	
+	 */	
+
+	 /*第二种：创建对象的方式
+	 function Person(){	
+	 }
+	 var p1 = new Person();
+	 p1.name="张三";
+	 p1.age = 18;
+	 p1.marry= true;
+	 var p2 = new Person();
+	 alert(p2.name);
+	 alert(p1.name+":"+p1.age+":"+p1.marry);
+	 */
+	 /*
+	 1：类的定义
+		语法:(建议首字母大小)
+		function Person(){
+			}
+		在js中，没有类的定义语句(class),只有function,每一个function,我们可以认为它是同名的构造函数
+		function Person---------->它是Person类的构造函数
+		》》也可以叫做构造器。
+	 */
+	 /*
+	 2:声明对象(类的实例化)
+	 var 对象 = new 类名(参数1,参数2...);--------->java中 类名 对象名 = new 类名();
+	 var p1   = new Person();  ------------------->Person  p1 = new Person();
+	  new------->开辟相应内存空间？？？？？？？
+		
+		细节一:
+		function  Person(){
+			alert("Hello world");--------------->实例化时，它将被执行。
+		}
+		var p1 = new Person();------------>在实例化时，直接执行了Person构造函数。
+	 */
+	 /*三:对象属性的使用
+		语法：
+		   对象.属性
+
+		   对象['属性']
+		在js中，对象属性是动态添加的。--------------》java中属性是在类内部定义好的。
+		对象的属性可以是任何数据类型，例：string number object;
+	 */
+
+	 /*js中，一切皆对象。       ?_?           java中，万物皆对象。
+
+		数据类型是string,但实例化了String.
+		name 也是一个对象。
+		var name="张三";
+
+	   重要:三个常用的关键字
+	     1:constructor:返回的是对象的构造器。
+	     2:typeof: 返回数据类型。
+	     3:instanceof:判断对象是否是某个类的实例。
+	     例:
+	      function  Person(){
+			alert("Hello world");
+		 }
+			 var p1 = new Person();  
+			 console.log(p1.constructor);    
+			 console.log(typeof(p1));
+			 console.log(p1 instanceof Person);	
+		 */
+
+		/*四 js:对象在内存中的存在形式
+			栈：小  运算速度快。(相对于计算机而言)  对象的地址。
+			堆：大  运算速度慢。                    具体的对象（属性，函数等）。
+
+			》》》》普通的数据类型的值是存储在栈中（string,number等）。
+
+			//储存的是对象的【地址】。
+			function Person(){	
+			}
+				 var p1 = new Person();
+				 p1.name="张三";
+				 p1.age = 18;
+				 p1.marry= true;
+				 var p2 = p1;      p1把对象的地址赋值给了p2,指向同一个堆内存中的对象
+				 p2.name="李四";
+				 console.log(p1.name);
+
+				 表示释放p2所占的栈空间,不会影响到p1---->它只是在栈中操作，没有影响到堆。
+				 p2=null;    
+				 alert(p1.name);
+		*/
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

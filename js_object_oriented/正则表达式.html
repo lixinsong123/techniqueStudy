@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式</title>
+	<script type="text/javascript">
+	/*------正则表达式本身就是一种语言，在编程语言里是通用的.
+	 *一 概念:
+	 正则表达式(regular expression)描述了一种字符串匹配的'模式',可以用来检查一个串是否含有某种子串，将匹配的子串做‘替换’或者从某个串中取出符合‘某个条件’的子串等。
+	  str.indexOf('abc'); 精确匹配------》只能查找初abc
+	  正则表达式        : 模糊匹配
+	  《类似》
+	  select*from 表 where name="张三";      //精确匹配  找出张三所属的信息。
+	  select*from 表 where name like '张%';	 //模糊匹配  找出以张开头的所属信息。
+	 二：正则对象
+	 要使用正则表达式，必须要在程序中创建正则对象
+		 1：如何创建正则对象(需要得到一个RegExp类的实例)
+		   第一种:隐式创建(好理解)
+		   var 对象 = /匹配模式/匹配标志;
+		   第二种:显示创建
+		   var 对象 = new RegExp(匹配模式,匹配标志);
+		   两种方法的区别:
+		   var reg=/\d/gi;
+		   如果使用直接实例化，那么像'\d'这样的字符，需要转义'\\d';
+		   var reg=new RegExp('\\d','gi');
+		  《《如何使用这个对象?????
+		   var arr="Hello World";
+			var reg=new RegExp('/e/','gi');
+			 console.log(typeof(reg));
+			 console.log(reg.constructor);
+		 2:匹配标志:
+		 g:全局匹配
+		 i:忽略大小写
+	 三:使用正则对象
+	  在js中，使用正则对象主要有两种用法：
+	   1：RegExp类
+	   	test(str): 匹配指定的模式是否出现在字符串中.
+	   	exec(str): 返回匹配模式的字符串.
+	   2:String类
+	    search   :匹配符合匹配模式的字符串出现的位置.
+	    match    :返回匹配模式的字符串(以数组形式),没有匹配到则为null.
+	    replace  :使用指定的内容替换匹配模式的字符串 
+		    str.replace(reg,'content');
+		    reg:正则对象
+		    content:替换的内容
+	    split:使用匹配模式的字符串做为分割符，对字符进行分割,返回数组.
+		不同情况下使用不同的方法:
+		如:
+			邮箱格式，手机格式，IP格式合不合法,用text。
+			抓取网页中所有的手机号，使用exec或match。
+			替换掉网页中敏感词汇,用replace。
+	 四:几个重要的概念
+	 	子表达式:在正则匹配模式中，使用一对括号包裹起来的内容是一个子表达式.
+	 	捕获:在正则匹配模式中，子表达式匹配到的内容会被系统捕获至系统的缓冲区中。
+	 	反向引用:捕获之后，可以在匹配模式中，使用\n(n:数字)来引用系统的第n号缓冲区的内容。
+	 	例子:
+	 			匹配3个数字前面的字符和后面的字符相同。
+	 	var str = 'kkkkjava123javabasafjavascript456javascriptafafpha789php';
+		var reg = /(\w+)\d\d\d\1/gi;
+		var result = str.match(reg);
+		alert(result);
+			查找连续的四个数字
+		var str = 'asfsafsafsa1234afasfsaf5668afsafsaf78';
+		var reg = /\d\d\d\d/gi;
+		var result=str.match(reg);
+		alert(result);
+			//查找四个连续相同的数字
+		var str='1111asadsad5555114228';
+		var reg= /(\d)\1\1\1/gi;
+		var result=str.match(reg);
+		alert(result);
+			//查找数字 1221 3443
+		var str='122155444443443666554557';
+		var reg= /(\d)(\d)\2\1/gi;
+		var result=str.match(reg);
+		alert(result);
+			//查找四个连续相同的数字或者字符
+		var str='aaaa1111afsAAsafasAAafas5555';
+		var reg= /(\w)\1\1\1/gi;
+		var result=str.match(reg);
+		alert(result);
+			//匹配字符 AABB
+		var str='AABBCCDDasfsafaabb';
+		var reg= /([A-Z])\1([A-Z])\2/gi;
+		var result=str.match(reg);
+		alert(result);
+		一般情况下，后面的内容要求与前面的一致，就会用到子表达式，捕获，反向引用。
+		var str = 'adad<div>商品</div>asdsa<span>sasad</span>fff<p></p>';
+		//特殊符号需要转义  /----->\/   .------>除了/n之外的任意字符
+		var reg =/<(\w+)>.*<\/\1>/gi;
+		var result =str.match(reg);
+		alert(result);
+		五.正则语法细节
+		 正则表达式是由普通字符(例如字符a到z)以及特殊字符(称为元字符)组成的文字模式。正则表达式作为一个模板，将某个字符模式与所搜索的字符进行匹配.
+		 1)：普通字符:a,b,1,2...
+		 2): 特效字符(元字符):\d\D\w...
+		 在写正则表达式之前，我们需要确定这样几件事。
+		 1）要‘查’什么. 
+		 2) 要‘从那开始’查.
+		 3) 要查‘多少’.
+	   ---1:限定符
+	    限定符可以指定正则表达式的一个给定组件必须要出现多少次才能满足匹配。
+	     *  	匹配前面的子表达式零次或多次. {0,}
+	     +  	匹配前面的子表达式一次或多次. {1,}
+	     ？     匹配前面的子表达式零次或一次. {0,1}
+	    {n} 	匹配确定的n次
+	    {n,} 	至少匹配n次
+	    {n,m}   最少匹配n次且最多匹配m次
+	    注意:既可以匹配到n个,又可以匹配到m个时，正则表达式会自动匹配到多的那一种，这在正则中叫做贪婪匹配原则。
+	    	var str ="sasadsa123456789";
+			var reg =/\d{3,5}/gi;
+			var result = str.match(reg);
+			alert(result);
+		但如果在表达式的后面使用'?'，表示非贪婪匹配原则，就会尽可能匹配少的。
+			var str ="sasadsa123456789";
+			var reg =/\d{3,5}?/gi;
+			var result = str.match(reg);
+			alert(result);
+	 ---2元字符---》(字符匹配符)
+	  	字符匹配符用于匹配某个或某些字符
+	  	字符簇:
+	  	[a-z]:表示a-z之间的任意一个字符
+	  	[A-Z]:表示A-Z之间的任意一个字符
+	  	[0-9]:表示0-9之间的任意一个数字
+	  	[0-9a-z]:。。。
+	  	[0-9a-zA-Z]:。。
+	  	[abcd]:。。
+	  	[^a-z]:取反，表示除了a-z之间任意一个字符
+	  	[^0-9]:。。。
+	  	[^abcd]:。。。
+	  	\d:匹配一个数字字符  [0-9]
+	  	\D:匹配一非数字字符  [^0-9]
+		\w:匹配包括下划线，大小写字母，数字。[a-zA-Z0-9]
+		\W:匹配任何非下划线，大小写字母，数字[^a-zA-Z0-9]
+		\s:匹配任何空白字符.
+		\S:匹配任何非空白字符.
+		.:匹配初'\n'之外的任何单个字符.[^\n]
+	----3：元字符-----》(定位符)【重要】
+		可以将一个正则表达式固定在一行的开始或结束。也可以创建只在单词内或只在单词开始或结尾出现的正则表达式.
+		^ 	:匹配输入字符串的‘开始位置’.
+		$ 	:匹配输入字符串的‘结束位置’.
+		\b 	:匹配一个单词边界
+		\B  :匹配非单词边界
+		var str ='hello javascript java php mysql';
+		var reg =/^hello/gi;
+		var result=str.match(reg);
+		alert(result);  //匹配到了-----》hello
+
+		var str ='javascript java php mysql hello';
+		var reg =/^hello/gi;
+		var result=str.match(reg);
+		alert(result);  //没有匹配到-----》null
+	----4：元字符------》(转义符)
+		\:用于匹配某些特殊字符
+	----5：元字符------》(选择匹配符)
+		|:可以匹配对个规则
+	----6：关于正则表达式的几种特殊用法
+		 1):(?=) 正向预查
+				var str ='hello,javassshello,javascriptffffhello,php';
+				//只想匹配后面为,javascript的hello
+				var reg =/hello(?=,javascript)/gi;
+				var result=str.match(reg);
+				alert(result);
+		2):(?!) 反向预查
+				var str ='hello,javassshello,javascriptffffhello,php';
+				//匹配除了后面为,javascript的hello
+				var reg =/hello(?!,javascript)/gi;
+				var result=str.match(reg);
+				alert(result);
+		3):(?:) 匹配内容，但结果不会捕获
+				var str ='hello,javassshello,javascriptffffhello,php';
+				//()---->在正则中是子表达式的意思，会被捕获。
+				var reg =/hello(?:,javascript|,php)/gi;
+				while(result =reg.exec(str)){
+					alert(result);
+				}	
+		六:正则学习工具:页面实例
+		*/	
+			
+	</script>
+	<script type="text/javascript">
+	
+		function $(id){
+			return document.getElementById(id);
+		}
+		var  result ='';
+		window.onload =function(){
+		  var contentObj =$('content');
+		  var regObj     =$('reg');
+		  var resultObj  =$('result');
+			$('test').onclick =function(){
+				var str=contentObj.value;
+				var regt=regObj.value;
+				var reg=eval('/'+regt+'/gi');
+				 if(reg==undefined){
+				 	resultObj.value='你输入的正则条件不合法!';
+				 	return;
+				 }
+				var result =reg.test(str);
+				resultObj.value=result;
+			}
+				
+			$('exec').onclick =function(){
+				var str=contentObj.value;
+				var regt=regObj.value;
+				var reg=eval('/'+regt+'/gi');
+				 if(reg==undefined){
+				 	resultObj.value='你输入的正则条件不合法!';
+				 	return;
+				 }
+				var arr=[];
+				while(result =reg.exec(str)){
+					arr.push(result);
+				}
+				resultObj.value=arr;
+			}
+			$('search').onclick =function(){
+				var str=contentObj.value;
+				var regt=regObj.value;
+				var reg=eval('/'+regt+'/gi');
+				 if(reg==undefined){
+				 	resultObj.value='你输入的正则条件不合法!';
+				 	return;
+				 }
+				var result = str.search(reg);
+				resultObj.value=result;
+			}
+			$('match').onclick =function(){
+				var str=contentObj.value;
+				var regt=regObj.value;
+				var reg=eval('/'+regt+'/gi');
+				 if(reg==undefined){
+				 	resultObj.value='你输入的正则条件不合法!';
+				 	return;
+				 }
+				var result = str.match(reg);
+				resultObj.value=result;
+			}
+			$('replace').onclick =function(){
+				var str=contentObj.value;
+				var regt=regObj.value;
+				var reg=eval('/'+regt+'/gi');
+				 if(reg==undefined){
+				 	resultObj.value='你输入的正则条件不合法!';
+				 	return;
+				 }
+				var result = str.replace(reg,'帅哥');
+				resultObj.value=result;
+			}
+			$('split').onclick =function(){
+				var str=contentObj.value;
+				var regt=regObj.value;
+				var reg=eval('/'+regt+'/gi');
+				 if(reg==undefined){
+				 	resultObj.value='你输入的正则条件不合法!';
+				 	return;
+				 }
+				var result = str.split(reg);
+				resultObj.value=result;
+			}
+		}
+	</script>
+		
+</head>
+<body>
+	内容: <input type="text" id="content" size=60/><br><br>
+	正则: <input type="text" id="reg"/ size=60><br><br>
+	结果: <textarea id="result" cols='50' rows='10'></textarea><br><br>
+	<input type="button" id="test" value="test"/>
+	<input type="button" id="exec" value="exec"/>
+	<input type="button" id="search" value="search"/>
+	<input type="button" id="match" value="match"/>
+	<input type="button" id="replace" value="replace"/>
+	<input type="button" id="split" value="split"/>
+</body>
+</html>

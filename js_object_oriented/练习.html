@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习一</title>
+	<script type="text/javascript">
+		//结巴语句
+	 	var str='我我我......我...是是....一一一....一个个个......帅帅帅帅帅帅帅帅哥!';
+	 	var reg=/\.*(.)\1*\.*\1*/gi;
+	 	//alert(str.match(reg));
+	 	var result=str.replace(reg,'$1');
+	 	//alert(result);
+	 	/*
+	 	class Person{
+	 		public String name;
+	 		public int    age;
+	 		Person(name,age){
+	 			this.name = name;
+	 			this.age  = age ;
+	 		}
+
+	 	}*/
+	 	class Person{
+	 		constructor(name,age){
+	 			this.name=name;
+	 			this.age = age;
+	 			return this;
+	 		}
+	 		print(){
+	 			alert(this.name+':'+this.age);
+	 		}
+	 	}
+	 	var p = new Person('张三',18);
+	 	console.log(p);
+
+	 
+	 	
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
