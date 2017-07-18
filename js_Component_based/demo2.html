@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹窗--组件化开发</title>
+	<style type="text/css">
+			.login{
+				border: 2px solid black;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				background: white;
+			}
+			.login .title{
+				width: 100%;
+				height: 30px;
+				background: gray;
+				color: white;
+			}
+			.close{
+				float: right;
+				cursor: pointer;
+			}
+			.mark{
+				position:absolute;
+				left: 0;
+				top: 0;
+				background: black;
+				opacity: 0.7;
+				z-index: 1;
+				fitler:alpha(opacity=70);
+			}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var btn  =  document.getElementsByTagName("input");
+				btn[0].onclick=function(){
+					var b1 =  new Dialog();
+					b1.init({
+						title :"登录",
+						iNow:1
+					});//配置参数
+				}
+
+				btn[1].onclick=function(){
+					var b2 =  new Dialog();
+					b2.init({
+						w:400,
+						h:300,
+						place :"right",
+						title :"广告",
+						iNow:2
+					});//配置参数
+				}
+				btn[2].onclick=function(){
+					var b3 =  new Dialog();
+					b3.init({
+						w:400,
+						h:400,
+						place :"center",
+						title :"遮罩",
+						mark  :true,
+						iNow:3
+					});//配置参数
+				}
+			   
+		}
+		function Dialog(){
+			this.mark=null;
+			this.obj = null;
+			this.settings={//默认参数
+					w : 300,
+					h :300,
+					place :"center",
+					title :"",
+					mark  :false
+			};		
+		}
+		Dialog.prototype.json={};
+		Dialog.prototype.init=function(options){
+			fn_extends(this.settings,options);
+			if(this.json[options.iNow]==undefined){
+				this.json[options.iNow]=true;
+			}
+			if(this.json[options.iNow]){
+				this.create();
+				this.fn_close(options);
+				this.json[options.iNow]=false;
+			}
+				
+		}
+		Dialog.prototype.create=function(){
+			this.obj = document.createElement("div");
+			this.obj.className="login";
+			this.obj.innerHTML='\
+			<div class="title">\
+				<span>'+this.settings.title+'</span>\
+				<span class="close">X</span>\
+			</div>\
+			<div class="content">\
+			</div>'
+			document.body.appendChild(this.obj);
+			this.setData();
+			if(this.settings.mark){
+				this.fn_createMark();
+			}		
+		}
+		Dialog.prototype.setData=function(){
+			this.obj.style.width = this.settings.w+"px";
+			this.obj.style.height= this.settings.h+"px";
+			if(this.settings.place=="center"){
+				this.obj.style.left=(fn_viewWidth()-this.obj.offsetWidth)/2+"px";
+				this.obj.style.top=(fn_viewHeight()-this.obj.offsetHeight)/2+"px";
+			}else if(this.settings.place=="right"){
+				this.obj.style.left=(fn_viewWidth()-this.obj.offsetWidth)+"px";
+				this.obj.style.top=(fn_viewHeight()-this.obj.offsetHeight)+"px";
+			}
+		}
+		Dialog.prototype.fn_close=function(options){
+			var oClose = this.obj.getElementsByTagName("span")[1];
+			var This  =this;
+			oClose.onclick=function(){
+				document.body.removeChild(This.obj);
+				if(This.settings.mark){document.body.removeChild(This.mark);}
+				This.json[options.iNow]=true;
+				
+			}
+		}
+		Dialog.prototype.fn_createMark=function(){
+			this.mark = document.createElement("div");
+			this.mark.className="mark";
+			this.mark.style.width=fn_viewWidth()+"px";
+			this.mark.style.height=fn_viewHeight()+"px";
+			document.body.appendChild(this.mark);
+		}
+		//从父级获取到属性及值，动态追加到子级。
+		function fn_extends(son,parent){
+			for(var arr in parent){
+				son[arr]  =parent[arr];
+			}
+		}
+		function fn_viewWidth(){
+			return document.documentElement.clientWidth;
+		}
+		function fn_viewHeight(){
+			return document.documentElement.clientHeight;
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="1"/>
+	<input type="button" value="2"/>
+	<input type="button" value="3"/>
+<!-- 	<div class="login">
+		<div class="title">
+			<span>标题</span>
+			<span class="close">X</span>
+		</div>
+		<div class="content"></div>
+	</div> -->
+	<!-- <div id="mark"></div> -->
+</body>
+</html>
