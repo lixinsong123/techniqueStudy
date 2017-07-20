@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>列表渲染---forIn</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 在angular中使用ng-repeat =======>v-for -->
+		<!-- $index and $key 移除
+		已经移除了 $index 和 $key 这两个隐式声明变量，以便在 v-for 中显式定义。这可以使没有太多 Vue 开发经验的开发者更好地阅读代码，并且在处理嵌套循环时也能产生更清晰的行为。 -->
+		<template v-for="(item,index) in message">
+			{{index}}:{{item}}
+		</template>
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el :"#app",
+			data :{message:{
+					name:"张三",
+					age:18
+				}
+			}
+		});
+	</script>	
+</body>
+</html>

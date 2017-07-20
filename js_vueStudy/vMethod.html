@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>监听数据变化--->$watch</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="message"/>
+		{{message}}
+	</div>
+
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el :"#app",
+			//可以绑定对象，字符串，函数  
+			data :{message:"hello"}
+		});
+
+		//$watch(参数一，参数二)；
+		 /* 参数一：监听的数据名字;
+		    参数二: 函数();
+		  */
+
+		vm.$watch("message",function(newVal,oldVal){
+			console.log(newVal+":"+oldVal);
+		});
+		
+	</script>	
+</body>
+</html>

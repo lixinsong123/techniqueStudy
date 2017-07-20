@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>computed-Get-Set</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+
+		<input type="text" v-model="count"/>
+		{{sum}}
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el :"#app",
+			data :{
+				price:20,
+				count:2
+			},
+			computed:{
+				sum:{
+					get(){
+						return this.price*this.count;
+					},
+					set(val){
+						//在设置方法去更改别的数据
+						this.price=val;
+					}
+				}
+			}
+		});
+		vm.sum=100;
+	</script>	
+</body>
+</html>

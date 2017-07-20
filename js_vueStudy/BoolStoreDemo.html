@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图书管理案例</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var vm  = new Vue({
+				el:"#app",
+				data:{
+					books:[
+						{name:"vue.js",price:40,count:1},
+						{name:"angular.js",price:30,count:1},
+						{name:"react.js",price:50,count:1},
+						{name:"jquert.js",price:20,count:1},						
+					],
+					list:{
+						name:"",
+						price:"",
+						count:""
+					}
+				},
+			  methods:{
+			  	remove(index){
+			  	
+			  	//第一种，获取对象，删除对象
+			  	// this.books=this.books.filter((item)=>{return item!=book})
+			  	// }
+			  	//this.items.find(t => t.goods_id === 5)
+			  	//vue 给我们提供了一个splice的方法，在数组中删除
+			  	//第二种
+		// splice(index,num,item1,item2,...,itemX) 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+		// 注：index--规定添加/删除项目的位置
+  		//     num--要删除的项目数量
+ 		//     item--向数组添加的新项目
+ 		//     splice() 方法可删除从 index 处开始的零个或多个元素，并且用参数列表中声明的一个或多个值来替换那些被删除的元素。
+  		//      如果从 arrayObject 中删除了元素，则返回的是含有被删除的元素的数组。
+			  	this.books.splice(index,1);
+			  	},
+			  	add(){
+			  		if(this.list.name==""||this.list.price==""||this.list.count==""){
+			  			alert("输入不合法");
+			  			return;
+			  		}else{
+				  		this.books.push(this.list);
+				  		this.list={
+							name:"",
+							price:"",
+							count:""
+						};
+					}
+			  	}
+			  },
+			  computed:{
+			  	total(){
+			  		var sum = 0;
+			  		this.books.forEach(item=>{sum+=item.price*item.count});
+			  		return sum;			  	
+			  	}
+			  },
+			});
+		}
+	</script>
+</head>
+<body>
+	<div id="app">
+		<table class="table table-bordered">
+			<tr>
+				<th>书名</th>
+				<th>价格(￥元)</th>
+				<th>数量</th>
+				<th>小计</th>
+				<th>操作</th>
+			</tr>
+			<tr v-for="(book,index) in books">
+				<td>{{book.name}}</td>
+				<td>{{book.price}}</td>
+				<td>
+					<button @click=book.count++>+</button>
+					<input type="text" v-model="book.count"/>
+					<button @click=book.count==0?book.count:book.count-->-</button>
+				</td>
+				<td>{{book.count*book.price}}</td>
+				<td><button class="btn btn-danger" @click="remove(index)">删除</button></td>
+			</tr>
+			<tr>
+				<td colspan="5">
+					总价{{total}}	
+				</td>
+			</tr>
+		</table>
+		<div class="form-group">
+			<label for="bookname" class="control-label">书名</label>
+			<input id="bookname" type="text" v-model="list.name" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label for="bookprice" class="control-label">价格</label>
+			<input id="bookprice" type="text" v-model="list.price" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label for="bookcount" class="control-label">数量</label>
+			<input id="bookcount" type="text" v-model="list.count" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary" @click="add">添加</button>
+		</div>
+	</div>
+</body>
+</html>

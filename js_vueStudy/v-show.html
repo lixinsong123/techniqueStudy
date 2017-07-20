@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>条件判断</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<style type="text/css">
+			[v-cloak]{
+				display:none;
+			}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<template v-if="true">
+				<div> Hello World</div>
+		</template>
+		<!-- else要跟在if后面或者在show后面 -->
+		<div v-else>
+				OK
+		</div>
+		<div v-show="false">
+				{{message}}
+		</div>
+		<!-- v-show不支持template的语法标签 -->
+		<template v-show="true">
+				123
+		</template>
+	</div>
+	<script type="text/javascript">
+			// v-show/v-if 区别
+			// v-show=>ng-show 操作的是样式
+			// v-if  =>ng-if   操作的是DOM
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello"
+				}
+			});
+	</script>
+</body>
+</html>

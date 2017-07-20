@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板的用法</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<!-- 二:使用x-template可以把结构提取出来 -->
+		<script type="x-template" id="temp">
+			<div>
+				<h1>Hello Vue</h1>
+				<span>Hello World</span>
+			</div>
+		</script>
+	
+	<script type="text/javascript">
+		window.onload=function(){
+			var em = new Vue({
+				el:"#app",
+				template:temp
+			});
+		}
+		/*一:使用ecma6的超级字符串拼接，可以换行
+		var temp = `<div>
+					<h1>Hello Vue</h1>
+					<span>Hello World</span>
+				</div>`;
+		*/
+	</script>
+</head>
+<body>
+	<div id="app">
+		
+	</div>
+</body>
+</html>

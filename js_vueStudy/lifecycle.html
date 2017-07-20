@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>生命周期</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			data :{message:"hello world"},
+			beforeCreate(){
+				alert("创建之前");
+			},
+			created(){
+				alert("创建");
+			},
+			beforeMount(){
+				alert("编译前");
+			},
+			mounted(){
+				alert("编译完成");
+			},
+			beforeUpdate(){
+				alert("更新之前");
+			},
+			updated(){
+				alert("更新");
+			},
+			beforeDestroy(){
+				alert("销毁前")
+			},
+			destroyed(){
+				alert("销毁")
+			}
+		});
+		//手动挂载，指定el元素
+		vm.$mount("#app");
+		//销毁调用
+		vm.$destroy();
+
+	</script>	
+</body>
+</html>

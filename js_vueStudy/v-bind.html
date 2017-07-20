@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello vue.js</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 绑定动态属性 -->
+		<img v-bind:src="src"/>
+			<!-- v-bind:简写形式======>: -->
+		<a :href="href">百度一下</a>
+		<!-- 绑定在标签中的自定义属性 -->
+		<div :comid="id"></div>
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el :"#app",
+			data :{
+			src:"http://f.hiphotos.baidu.com/zhidao/pic/item/8b82b9014a90f60326b707453b12b31bb051eda9.jpg",
+			href:"http://www.baidu.com",
+			id:123
+			}
+		});
+	</script>	
+</body>
+</html>

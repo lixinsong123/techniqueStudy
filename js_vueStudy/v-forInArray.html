@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>遍历数组</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 第一种遍历方式 -->
+		<ul>
+			<template v-for="(item,index) in message">
+				<li>{{index}}:{{item.name}}{{item.price}}</li>
+			</template>
+		</ul>
+		<!-- 第二种遍历方式 -->
+		<ul>
+			<li  v-for="(item,index) in message">{{index}}:{{item.name}}{{item.price}}</li>
+		</ul>
+		<ul>
+			<li v-for="itme in ceshi" >{{itme}}</li>
+		</ul>
+		<!-- 嵌套遍历 -->
+		<div v-for="(item,index) in ceshi1">
+			<div v-for="(son,index1) in item.type">
+				{{item.name}}:{{index}}:{{index1}}:{{son}}
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var vm = new Vue({
+			el :"#app",
+			data :{message:[
+					{name:"华为",price:2500},
+					{name:"苹果",price:4999},
+					{name:"小米",price:2000}
+				],
+				ceshi:["苹果","苹果","苹果","苹果"],
+				ceshi1:[
+					{name:"开心",age:18,type:["white","orange"]},
+					{name:"高兴",age:20,type:["green","blue"]},
+					{name:"失落",age:32,type:["black","pink"]}
+				]
+			}
+		});
+	</script>	
+</body>
+</html>

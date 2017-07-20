@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>解决闪烁问题</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<style type="text/css">
+			[v-cloak]{
+				display:none;
+			}
+	</style>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+		<!--ng-bing可以解决单个标签内的闪烁问题-->
+		<div v-text="message"></div>
+		<!--ng-cloak可以解决多级数据闪烁问题-->
+		<div v-cloak>
+			{{message}}
+		</div>
+	</div>
+	<script type="text/javascript">
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello"
+				}
+			});
+	</script>
+</body>
+</html>
