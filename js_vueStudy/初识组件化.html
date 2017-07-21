@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>初识vue组件化</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">	
+		<h2>自定义下拉框</h2>
+		<!--父组件向子组件传入数据 btn-value-->
+		<custom-select btn-value="查询"></custom-select>
+		<h2>自定义下拉框</h2>
+		<custom-select btn-value="搜索"></custom-select>
+	</div>
+	<script>
+		//注册组件
+		Vue.component("custom-select",{
+			// 使用props声明属性必须使用驼峰式命名
+			props:["btnValue"],
+			template:`<section class="warp">
+		<div class="searchIpt clearFix">
+			<div class="clearFix">
+				<input type="text" class="keyWord" value="" />
+				// 属性需动态绑定 v-bind:
+				<input type="button" v-bind:value="btnValue">
+				<span></span>
+			</div>
+			<ul class="list">
+				<li>html+css</li>
+				<li>html5+css3</li>
+				<li>javascript</li>
+				<li>angular</li>
+				<li>react</li>
+				<li>vue</li>
+				<li>jquery</li>
+				<li>nodejs</li>
+			</ul>
+		</div>
+	</section>
+`
+		});
+		new Vue({
+			el:"#app",
+		});
+	</script>
+</body>
+</html>

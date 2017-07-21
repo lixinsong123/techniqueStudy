@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件之间的通信(绑定数据)</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">	
+		<div style="float:left">
+			<h2>自定义下拉框</h2>
+			<!--父组件向子组件传入数据 btn-value-->	
+			<custom-select btn-value="查询" v-bind:list="list1"></custom-select>
+		</div>
+		<div style="float:left">
+			<h2>自定义下拉框</h2>
+			<custom-select btn-value="搜索" v-bind:list="list2"></custom-select>
+		</div>
+	</div>
+	<script>
+		//注册组件
+		Vue.component("custom-select",{
+			//data最好使用函数的方式--->return出来，每个模块私有的属性。
+			//不建议直接使用对象的方式，会造成所有模块共用一个属性，一个改变，影响全部。
+			data:function(){
+				return {
+					selectShow:false,
+					val:""
+				}
+			},
+			// 父组件向子组件传入数据,必须使用props属性来接收
+			// 使用props声明属性必须使用驼峰式命名
+			props:["btnValue","list"],
+			template:`<section class="warp">
+		<div class="searchIpt clearFix">
+			<div class="clearFix">
+				<input type="text" class="keyWord" :value="val" @click="selectShow=!selectShow"/>
+				<!--属性需动态绑定 v-bind:-->
+				<input type="button" v-bind:value="btnValue">
+				<span></span>
+			</div>
+			<custom-list
+			 v-show="selectShow" 
+			:list="list"
+			@receive="changeValueHandel"
+			></custom-list>
+		</div>
+	</section>
+			`,
+		methods:{
+			//根据子组件传过来的数据，触发事件处理函数
+			changeValueHandel:function(value){
+				this.val=value;
+			}
+		},
+		});
+		Vue.component("custom-list",{
+			props:["list"],
+			template:`<ul class="list" >
+				<li v-for="item in list" @click="selectValueHandle(item)">{{item}}</li>
+				</ul>`,
+			methods:{
+				selectValueHandle:function(item){
+					//子组件的数据传向父组件
+					//告知附件，改变val的值,需要触发一个自定义事件
+					this.$emit("receive",item);
+				}
+			},
+		});
+		var data ={
+			list1:["北京","上海","杭州"],
+			list2:["17-02-17","17-02-18","17-02-19"]
+		};
+		new Vue({
+			el:"#app",
+			data:data
+		});
+	</script>
+</body>
+</html>
