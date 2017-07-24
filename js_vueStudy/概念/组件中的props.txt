@@ -1,0 +1,19 @@
+					单向数据流
+什么是单向数据流
+	数据从父组件流向(传递)给子组件,只能单向绑定。
+	在子组件内部不应该修改父组件传递过来的数据。
+	改变prop的情况:
+			1:作为data中局部数据的初始值使用。
+			2:作为子组件中的computed树属性
+			        Props验证
+	组件可以为props指定验证要求。如果未指定验证要求，Vue会发出警告。
+	props:{
+		propA:Number,//指定类型
+		propB:[String,Number],//多种类型
+		propC:{type:String,required:true},//必传，且为字符串
+		propD:{type:Number,default:100},//字符串类型，默认值为100
+		propE:{type:Numver,default:function(){return 1000}}
+		//自定义验证规则
+		propF:{validator:function(value){return value>10}}
+	}
+验证类型为原生构造器:String,Number,FunctionObject,Boolean,Array

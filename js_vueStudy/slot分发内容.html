@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>props验证</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h2>自定义组件</h2>
+		<!--当写在自定义标签之间的内容 要混合子组件中的模板-->
+		<custom></custom>
+	</div>
+
+	<script type="text/javascript">
+		//定制模板 
+		Vue.component("custom",{
+			template:`
+				<div>
+					<p>这是第1个提醒</p>
+					<p>这是第2个提醒</p>
+					<p>这是第3个提醒</p>
+				</div>
+			`,
+		})
+		new Vue({
+			el:"#app"
+		});
+
+	</script>	
+</body>
+</html>

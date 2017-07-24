@@ -27,9 +27,9 @@
                 }}
                 个任务未完成</li>
             <li class="action">
-                <a class="active" href="#all">所有任务</a>
-                <a href="#unfinlished">未完成的任务</a>
-                <a href="#finlished">完成的任务</a>
+                <a  href="#all" :class="{active:visibility==='all'}">所有任务</a>
+                <a href="#unfinlished" :class="{active:visibility==='unfinlished'}">未完成的任务</a>
+                <a href="#finlished" :class="{active:visibility==='finlished'}">完成的任务</a>
             </li>
         </ul>
         <h3 class="big-title">任务列表：</h3>

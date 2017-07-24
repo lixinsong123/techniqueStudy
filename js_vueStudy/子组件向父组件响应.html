@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子组件向父组件传输数据</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{count}}</p>
+		<custom-component :count="count" @include-click="handler" ></custom-component>
+	</div>
+
+	<script type="text/javascript">
+		Vue.component("custom-component",{
+			props:["count"],
+			data(){
+				return {
+					//作为局部这个组件的data的初始值
+					incrementCount:this.count 
+				};
+			},
+			template:`<div>
+						<h2>我是一个自定义的组件</h2>
+						<input type='button' value='改变count的值' @click='changeCount'/>
+						{{incrementCount}}
+					  </div>`,
+			methods:{
+				changeCount(){
+					this.incrementCount++;
+					this.$emit("include-click");//核心
+				}
+			},
+		});
+		var vm = new Vue({
+			el :"#app",
+			data :{count:0},
+			methods:{
+				handler(){
+					this.count++;
+				}
+			}
+		});
+	</script>	
+</body>
+</html>

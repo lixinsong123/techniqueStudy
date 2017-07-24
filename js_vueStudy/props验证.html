@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>props验证</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{count}}</p>
+		<custom-component :count="count" @include-click="handler" ></custom-component>
+	</div>
+
+	<script type="text/javascript">
+		//全局组件
+		
+		Vue.component("custom-component",{
+			props:{
+				count:{
+					//count传入的类型为Number
+					//type:Number,
+					//可以传入多种数据类型
+					// type:[Number,String],
+					//默认值
+					//default:10
+					//这个参数必须要传入
+					//required:true,
+					//自定义验证
+					validator:function(value){
+						return true;
+					}
+				}
+			},
+			data(){
+				return {
+					//作为局部这个组件的data的初始值
+					incrementCount:this.count 
+				};
+			},
+			template:`<div>
+						<h2>我是一个自定义的组件</h2>
+						<input type='button' value='改变count的值' @click='changeCount'/>
+						{{incrementCount}}
+					  </div>`,
+			methods:{
+				changeCount(){
+					this.incrementCount++;
+					this.$emit("include-click");//核心
+				}
+			},
+		});
+		var vm = new Vue({
+			el :"#app",
+			data :{count:5},
+			methods:{
+				handler(){
+					this.count++;
+				}
+			}
+		});
+	</script>	
+</body>
+</html>
