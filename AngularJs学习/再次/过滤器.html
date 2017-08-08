@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+	<div ng-controller="myCtrl">
+		<!-- currency  货币 -->
+		<P>{{price}}</P>
+		<p>{{price | currency}}</p>
+		<p>{{price | currency : '￥'}}</p>
+
+		<!-- data 日期 -->
+		<p>{{nowDate | date : 'yy-MM-dd'}}</p>
+		<!-- uppercase/lowercase 大小写转换 -->
+		<p>{{name | uppercase }}</p>
+		<!-- orderBy 筛选/排序 -->
+		<ul>
+			<li ng-repeat="item in list | orderBy : 'age'">
+				{{item.name+" "+item.age+" "+item.soruce}}
+			</li>
+		</ul>
+
+		<!-- limitTo 限定显示的数量 -->
+		<ol>
+			<li ng-repeat = "item in array | limitTo : '3' ">
+				{{item}}
+			</li>
+		</ol>
+	</div>
+<body>
+	<script>
+		var md = angular.module("myApp",['ng']);
+		md.controller("myCtrl",function($scope){
+			$scope.price = 20;
+			$scope.nowDate = new Date();
+			$scope.name='Michael';
+			$scope.list = [
+					{
+						'name':'apple',
+						'age' :18,
+						soruce:200
+					},
+					{
+						'name':'balance',
+						'age' :20,
+						soruce:150
+					},
+					{
+						'name':'lucy',
+						'age' :30,
+						soruce:300
+					}
+			];
+
+			$scope.array = [10,30,90,100];
+		})
+
+	</script>
+</body>
+</html>

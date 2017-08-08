@@ -1,0 +1,203 @@
+body,li,ul,h1,h2,h3,p{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-size: 14px;
+	font-family: "微软雅黑";
+	background: #ffffff;
+	min-width: 1200px;
+}
+a{
+	text-decoration: none;
+	color: #000000;
+}
+b{
+	font-weight: normal;
+}
+li{
+	list-style: none;
+}
+/*public*/
+.fl{float: left;}
+.rt{float: right;}
+.fl1{float: left;}
+.rt2{float: right;}
+.clear:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.clear{*zoom:1;}
+.center{width: 1200px;margin: 0 auto}
+.aboutAs_top .body a:hover{text-decoration:underline;}
+.aboutAs_buttom{padding-top: 37px}
+h2{
+	color: #ffffff;
+	text-align: center;
+	font-size: 1px;
+}
+/*private*/
+.a_block,
+.nav_ul>li>a,
+.body a{
+	display:block;
+	width: 100%;
+	height: 100%
+}
+.logo{
+	padding-left: 19px;
+	padding-right: 61px
+}
+.logo>h1{
+	position: absolute;
+	top: -99999px;
+}
+.nav_ul{
+	width: 1058px;
+}
+.nav_ul>li{
+	float: left;
+	width: 98px;
+	padding: 15px 62px 15px 0;
+	text-align: center;
+	line-height: 32px}
+.nav_ul .active{
+	color: #fd5a7d;
+	border: 1px solid #fd5a7d
+}
+.nav_ul>li>a:hover{
+	color: #fd5a7d;
+	border: 1px solid #fd5a7d
+}
+.nav_ul .p_none{
+	padding-right:0;
+}
+/*关于我们*/
+.aboutAs_top{
+	height: 145px;
+	padding: 0 165px;
+	position: relative;
+}
+.aboutAs_top .content{
+	width: 870px;
+	height: 252px;
+	position: absolute;
+	top: -107px;
+}
+.aboutAs_top .content>div{
+	width: 290px;
+	background: #fd5a7d;
+	height: 100%;
+	float: left;
+}
+.aboutAs_top .content .active{
+	background: #d23859;
+}
+.content h3{
+	background: url(../images/about/about_top.png) no-repeat;
+	padding: 100px  197px  0  22px;
+	color: #ffffff;
+	font-size: 16px;
+}
+.aboutAs_top .body{
+	padding: 13px 17px 16px 19px;
+}
+.aboutAs_top .body a{
+	color: #ffffff;
+}
+.aboutAs_top  .more{
+	color: #ffffff;
+	float: right;
+	margin-right: 17px;
+}
+.content  div:nth-of-type(2) h3{
+	background-position: -291px 0;
+}
+.content  div:nth-of-type(3) h3{
+	background-position: -581px 0;
+}
+.aboutAs_buttom .core{
+	padding-top: 19px;
+}
+.aboutAs_buttom .core>div{
+	height: 474px;
+}
+.aboutAs_buttom .core .fl{
+	padding-left: 38px;
+	background: url(../images/about/core_fl.png) no-repeat;
+	width: 476px;
+	height: 100%;
+}
+.h3_font{font-size: 23px;color: #000000;padding-bottom: 10px}
+.XHX{background: #ff6700;width: 100px;height: 2px;display: block;}
+.X_link{padding-top: 13px;}
+.X_sg{color:#fd5a7d;}
+.pd_bt{padding-bottom:25px;}
+.view_more{
+	color: #ffffff;
+	background: #fd5a7d;
+	height: 40px;
+	width: 120px;
+	border-radius: 4px;
+	display: block;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+.aboutAs_buttom .rt{
+	border: 2px solid #fd5a7d;
+	width: 398px;
+	position: relative;
+}
+.aboutAs_buttom .rt .title{
+	position:absolute;
+	width: 20px;
+	padding: 10px 10px;
+	height: 82px;
+	background: #fd5a7d;
+	font-size: 16px;
+	display: block;
+	left: -40px;
+	top: -2px;
+	text-align: center;
+	color: #ffffff;
+	border-radius: 4px 0 0 4px;
+}
+.aboutAs_buttom .rt .lunbo{
+	height: 168px;
+	padding: 21px 17px 6px 17px;
+	position: relative;
+	
+}
+.lunbo_bg{
+	display:block;
+	width: 100%;
+	height: 100%;
+	background: url(../images/about/lunbo_1.jpg) no-repeat;
+	background-size: cover;
+}
+.controller_1{
+	position: absolute;
+	bottom: 24px;
+	right: 19px;
+}
+.controller_1>li{
+	width: 10px;
+	height: 10px;
+	float: left;
+	border: 1px solid #ff6700;
+	border-radius: 50%;
+	margin-right: 9px;
+	cursor: pointer;
+}
+.controller_1 .active{
+	background: #ff6700;
+}
+.rt .content{
+	padding: 0 17px 0 17px;
+}
+.rt .content>p{
+	line-height: 34px;
+}

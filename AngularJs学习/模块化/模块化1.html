@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<script>
+			//创建模块
+		  var md1=angular.module("myApp1",[]);
+			//define([''].fn);
+			//通过模块对象下的value方法创建了一个模块变量，名称是username,值是ketty
+			md1.value('username','ketty');
+			md1.run(()=>{
+				console.log("md1模块被启动了");
+			});
+			//启动应用，模块
+			//angular.bootstrap(document,['myApp1']);
+			//创建一个依赖myApp1模块的myApp2模块
+			//依赖注入
+			var md2 = angular.module("myApp2",['myApp1']);
+
+			md2.run(function(username){
+					console.log(username);
+			});	
+
+			angular.bootstrap(document,['myApp2']);
+	</script>
+</body>
+</html>

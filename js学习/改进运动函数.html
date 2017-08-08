@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>改进函数</title>
+	<style type="text/css">
+		#div1{
+			background: pink;
+			width: 300px;
+			height: 200px;
+			opacity: 1;
+			position: absolute;
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var div = document.getElementById("div1");
+		doMove(div,{'left':'50px','top':'50px'},10);
+		function doMove ( obj, json, dir,endFn ){
+		 var setTime=null;
+		 
+		 setTime=setInterval(function(){
+		 	var flag = true;
+		 	for(att in json){
+
+		 		if(att=='opacity'){
+		 			if(getStyle(obj,att)==json[att]){
+		 				dir=0;
+		 			}else{
+				 		dir=getStyle(obj,att)>json[att]?-0.01:0.01;
+					}
+					 speed=parseFloat(getStyle(obj,att))+dir;
+					 obj.style.opacity=speed;
+
+				}
+				var a =getStyle(obj,att);
+				if(parseFloat(a)==json[att]){
+					dir=0;
+				}else{
+					dir=parseInt(getStyle(obj,att))>json[att]?-1:1;
+				}
+				speed=parseInt(getStyle(obj,att))+dir;
+				obj.style[att]=speed+"px";
+				if(getStyle(obj,att)!=json[att]){
+					flag=false;
+					//console.log(getStyle(obj,att)+":"+json[att]);	
+				}
+			}
+			if(flag){
+				clearInterval(setTime);
+				endFn&&endFn();
+			}
+		 },10);
+			
+			/* 代码冗余
+			var arr=[];
+			var myTime=null;
+			for(data  in json){
+				arr.push({
+					name : data,
+					value: json[data]
+				});
+			}   
+			console.log(arr);
+			
+			var width_arr =[];
+			var height_arr=[];
+			var opacity_arr=[];
+			var width_text=null;
+			var height_text=null;
+			var opacity_text=null;
+			var dir=0;
+			var dir1=0;
+			var dir2=0;
+			for(var i=0;i<arr.length;i++){
+				//var nowtext =parseInt(getStyle(obj,arr[i].name));
+				//var newtext =arr[i].value;
+				if(arr[i].name=='width'){
+					 width_arr.push(arr[i].name,arr[i].value);
+					 width_text= parseInt(getStyle(obj,arr[i].name));
+					 new_width = arr[i].value;
+					 dir = width_text>new_width?-1:1;
+				}else if(arr[i].name=='height'){
+					height_arr.push(arr[i].name,arr[i].value);
+					height_text= parseInt(getStyle(obj,arr[i].name));
+					new_height=arr[i].value;
+					dir1 = width_text>new_width?-1:1;
+				}else if(arr[i].name=='opacity'){
+					opacity_arr.push(arr[i].name,arr[i].value);
+					//0-100
+					opacity_text=(parseInt(getStyle(obj,arr[i].name)))*100;
+					new_opacity=(arr[i].value)*100;
+					dir2 = opacity_text>new_opacity?-0.5:0.5;
+				}
+			}
+				myTime = setInterval(function(){
+					if(width_text){
+						if(width_text==new_width){
+						}else{
+							width_text=width_text+dir;
+							
+							obj.style.width=width_text+"px";
+						}
+					}
+					if(height_text){
+						if(height_text==new_height){
+						}else{
+							height_text=height_text+dir1;
+							
+							obj.style.height=height_text+"px";
+						}
+					 }
+					 if(opacity_text){
+						if(opacity_text==new_opacity){
+						}else{
+							opacity_text=opacity_text+dir2;
+							
+							obj.style.opacity=(opacity_text)/100;
+						}
+					 }
+					 if(width_text==new_width&&height_text==new_height&&opacity_text==new_opacity){
+					 	clearInterval(myTime);
+					 	console.log("ok");
+					 }	
+				},1);
+				*/
+			}
+
+			
+		     
+
+	}
+	//获取样式的值
+function getStyle ( obj, attr ) 
+{ 
+	return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; 
+}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

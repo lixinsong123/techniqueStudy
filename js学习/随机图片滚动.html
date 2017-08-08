@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机图片滚动</title>
+	<!--可成功执行，布局有点混乱...懒得改了。需要一个js文件，在上一文章中有-->
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			width: 830px;
+			height: 900px;
+			border:3px solid #C1C1C1;
+			margin-top: 50px;
+		}
+		#parent>ul>li{
+			float: left;
+			width: 400px;
+			height: 225px;
+			
+		}
+		#parent>ul>li ul{
+			
+			width: 380px;
+			height: 200px;
+			position: relative;
+
+		}
+		#parent>ul>li li{
+			width: 380px;
+			height: 200px;
+			position: relative;
+		}
+		img{
+			
+		}
+	</style>
+	<script src="miaov.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			  var setTime=null;
+			  setTime=setInterval(function(){
+			  	//bianhuan(7);
+			  	//返回一个X-Y之间的随机数
+				var num =stochastic(0,7);
+				bianhuan(num);
+			},500);
+		}
+		function bianhuan(a){
+					//var obj=getID('son');
+					//让层上下左右移动 ，参数   标签对象，上/下/左/右,终点距离,回调函数 
+					 
+					var Oli=document.getElementsByName("fail");
+					var Oul=Oli[a].getElementsByTagName("ul")[0];
+					var Tli=Oul.getElementsByTagName("li");
+					doMove ( Oul, 'top', 15, -200,function(){
+						Oul.style.top='0px';
+						Oul.insertBefore(Tli[0],Tli[Tli.length]);
+					});
+		}
+		function getID(obj){
+			return document.getElementById(obj);
+		}
+
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul id="son">
+			<li name="fail">
+				<div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_1.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_2.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_3.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail" ><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_4.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_5.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_6.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail"><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_7.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_8.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_9.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail"><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_10.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_11.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_12.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail"><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_13.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_14.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_15.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail"><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_16.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_17.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_18.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail"><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_19.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_20.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_21.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+			<li name="fail"><div style="margin: 20px;
+			width: 380px;
+			height: 200px;
+			overflow: hidden;">
+					<ul>
+						<li><img src="images/scenery_22.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_23.jpg" width=380 height=200/></li>
+						<li><img src="images/scenery_24.jpg" width=380 height=200/></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

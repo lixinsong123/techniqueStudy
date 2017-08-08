@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>算法和数据结构</title>
+	<script type="text/javascript">
+	  function Arithmetic(){
+	  
+	  }
+	  Arithmetic.selection=function(a){
+	  		var min =0;
+	  		var max =0;
+	  		for(var i=0;i<a.length;i++){
+	  			min=i;//标记最小
+	  			for(var j=i;j<a.length-1;j++){
+	  					if(a[min]>a[j+1]){
+	  						min=j+1;
+	  					}//找出最小并标记		
+	  			}
+	  					max=a[i];
+	  					a[i]=a[min];//交换
+	  					a[min]=max;
+
+	  		}
+	  		console.log(a);
+	  	}
+	  var arr =[8,4,2,7,1,42,20,5,1,0,2,7];
+	  Arithmetic.selection(arr);
+	
+	</script>
+</head>
+<body>
+</body>
+</html>

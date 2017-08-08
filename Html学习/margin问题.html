@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+	}
+		.box{
+			background: red;
+			overflow: hidden;
+			zoom:1;
+		}
+		.item{
+			height: 50px;
+			margin-top:50px;
+			background: green;
+		}
+		.tp{
+			margin-top: 100px
+		}
+		.two_z{
+			width: 200px;
+			height: 200px;
+			background: pink;
+			margin-left: 50px;
+			float: left;
+			*display: inline;
+		}
+		.two_box{
+			width: 750px;
+			overflow: hidden;
+			border: 1px solid red;
+
+		}
+		.three{padding: 0;margin: 0}
+		.ttem {*vertical-align: top;list-style: none;height: 30px;width: 200px;border: 1px solid red}
+		.left{float: left;}
+		.right{float: right;}
+		.four{width: 400px;height: 30px}
+		.f_left{float: left;}
+		.f_right{float: right;width: 400px}
+		.five{*position: relative;overflow: hidden;width: 200px;height: 200px;background: black;border: 10px solid red}
+		.e_son{position: relative;width: 400px;height: 400px;background: pink;}
+		.six{margin-top:2px;position: absolute;width: 307px;height: 307px;background: red}
+		.s_son{right: 0;bottom:0;position: absolute;width: 100px;height: 100px;background: black}
+		.seeon{position: relative;border: 1px solid red;width: 400px;height: 400px}
+		.seeon div{background: blue;*display: inline;margin-left: 50px;float: left;width:350px;height: 350px}
+		.seeon span{background: green;height: 50px;width: 50px;position: absolute;top: -10px;right: -10px}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="item"></div>
+		<div class="item tp"></div>
+	</div>
+	<div class="two_box">
+		<div class="two_z"></div>
+		<div class="two_z"></div>
+		<div class="two_z"></div>
+	</div>
+	<ul class="three">
+			<li class="ttem">
+				<a href="" class="left">左边</a>
+				<span class="right">右边</span>
+			</li>
+			<li class="ttem">
+				<a href="" class="left">左边</a>
+				<span class="right">右边</span>
+			</li>
+			<li class="ttem">
+				<a href="" class="left">左边</a>
+				<span class="right">右边</span>
+			</li>
+			<li class="ttem">
+				<a href="" class="left">左边</a>
+				<span class="right">右边</span>
+			</li>
+	</ul>
+	<div class="four">
+		<div class="f_left"></div>
+		<span></span><!--IE6下文字溢出bug-->
+		<div class="f_right">&darr;这是多出来的一只猪</div> 
+	</div>
+	<div class="five">
+		<div class="e_son"></div>
+	</div>
+	<div class="six">
+		<div class="s_son"></div>
+	</div>
+	<div class="seeon">
+		<div></div>
+		<p>
+			<span></span>
+		</p>
+	</div>
+</body>
+</html>

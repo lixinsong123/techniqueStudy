@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟</title>
+	<style type="text/css">
+		#wrap{
+			width: 307px;
+			height: 300px;
+			margin: 200px auto;
+			position: relative;
+		}
+		#wrap ul{
+			border: 4px solid black;
+			border-radius: 50%;
+			height: 300px;
+			position: relative;	
+			list-style: none;
+		}
+		#wrap ul li{
+			width: 2px;
+			height: 10px;
+			position: absolute;
+			top:0px;
+			left: 148px;
+			background: black;
+			-webkit-transform-origin:center 150px;
+		}
+	/*	#wrap ul li:nth-of-type(1){
+			-webkit-transform:rotate(0);
+		}
+		#wrap ul li:nth-of-type(2){
+			-webkit-transform:rotate(6deg);
+		}
+		#wrap ul li:nth-of-type(3){
+			-webkit-transform:rotate(12deg);
+		}
+		#wrap ul li:nth-of-type(4){
+			-webkit-transform:rotate(18deg);
+		}
+		#wrap ul li:nth-of-type(5){
+			-webkit-transform:rotate(24deg);
+		}
+		#wrap ul li:nth-of-type(6){
+			-webkit-transform:rotate(30deg);
+		}*/
+		.miao{
+			width: 2px;
+			height: 150px;
+			background: red;
+			position: absolute;
+			top: 35px;
+			left: 50%;
+			-webkit-transform-origin:0 120px;
+			/*-webkit-transition:60s;*/
+		}
+		/*#wrap:hover .miao{
+			-webkit-transform:rotate(360deg);
+		}*/
+		.minute{
+			width: 3px;
+			height: 75px;
+			background: blue;
+			position: absolute;
+			top: 83px;
+			left: 154px;
+			-webkit-transform-origin:1.5px 75px;
+			-webkit-transform:rotate(60deg);
+		}
+		.hour{
+			width: 5px;
+			height: 60px;
+			background: green;
+			position: absolute;
+			top: 99px;
+			left: 153px;
+			-webkit-transform-origin:2.5px 60px;
+			-webkit-transform:rotate(240deg);
+		}
+		.ico{
+			width: 20px;
+			height: 20px;
+			background: black;
+			border-radius: 50%;
+			position: absolute;
+			top: 148px;
+			left: 144px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var ceshi  = document.getElementById("ceshi");
+			var oLi    =ceshi.getElementsByTagName("li");
+			var du =0;
+			for(var i=0;i<oLi.length;i++){
+				oLi[i].style.transform="rotate("+du+"deg)";
+				du+=6;
+				if(i%5==0){
+					oLi[i].style.height=20+"px";
+					oLi[i].style.width=4+"px";		
+				}
+			}
+			var hour = document.getElementById("hour");
+			var minute = document.getElementById("minute");
+			var miao = document.getElementById("miao");
+			toTime();
+			function toTime(){
+				var time = new Date();
+				var iSec = time.getSeconds();
+				var iMin = time.getMinutes()+iSec/60;
+				var iHour = time.getHours()+iMin/60;
+				hour.style.transform="rotate("+iHour*30+"deg)";
+				minute.style.transform="rotate("+iMin*6+"deg)";
+				miao.style.transform="rotate("+iSec*6+"deg)";	
+			}
+			setInterval(toTime,1000)
+		}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="ceshi">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div id="hour" class="hour"></div>
+		<div id="minute" class="minute"></div>
+		<div id="miao"  class="miao"></div>
+		<div  class="ico"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<select ng-model="test2">
+		<option>水仙花</option>
+		<option>郁金香</option>
+	</select>
+	<img ng-src="{{test_src}}">
+		<br/>	<br/>
+	是否同意协议
+	<input ng-model='test1'  type="checkbox" value=""  />
+		<br/>	<br/>
+	<input ng-disabled='!test1' type="button" value="注册"></input>
+	
+	<script>
+		var md = angular.module("myApp",['ng']);
+	  		md.controller('myCtrl',function($scope){
+	  				$scope.test2='水仙花';
+	  				$scope.test_src='images/PX_1.jpg';
+	  				$scope.$watch('test2',function(){
+						if($scope.test2=="水仙花"){
+							$scope.test_src="images/PX_1.jpg";
+						}else if($scope.test2=="郁金香"){
+							$scope.test_src="images/PX_2.jpg";
+						}
+					});
+	  		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<!--
+	 	块元素的特征：(block)
+	 	含义：能够设置元素尺寸，隔离其他元素。
+	 	   1：在没有设置宽度的时候，默认为父级的宽度。
+	 	   2：块元素默认独占一行。
+	 	   3：支持所有css指令。
+	 	内联元素的特征：(lnline)
+	 	含义：不能够设置元素尺寸，它能自适应内容， 无法隔离其他元素。其他元素会紧跟其后。
+	 	   1：宽高由内容撑开。
+	 	   2：不支持宽高(width,height)属性
+	 	   3：同排可以跟上同类的标签。
+	 	   4：不支持上下的margin。
+	 	   5：代码中的换行要被解析。
+	 	内联块:(Inline-block)
+	 	含义：可以设置元素尺寸，但无法隔离其他的元素。
+	 		1：块在一行显示。
+			2：行内属性标签支持宽高。
+			3：没有宽度的时候内容撑开高度
+			4: 标签之间的换行间隙会被解析
+			5：ie6,ie7不支持块属性标签的inline-block
+			练习一：
+
+		float/文档流（让块元素在同一行显示）
+		float: left|right|none|inherit
+		left:左浮动
+		right:右浮动
+		inherit:继承父级的浮动属性
+		none:不浮动
+		文档流是文本当中可显示对象在排列时所占用的位置。
+		浮动的定义:
+			使元素脱离文档流，按照指定方向发生移动，遇到父级边界或者相邻的浮动元素停下来。
+		clear: left|right|both|none|inherit   ：清楚某个方向上的移动。
+		Float的特征:
+			1：块在一排显示。
+			2：内联支持宽高。
+			3：默认内容撑开宽度。
+			4：“脱离文档流”。
+			5：提示层级半层。
+		清浮动方法：
+		    1：加高度
+		    问题：扩展性不好。
+		    2：父级浮动
+		    问题：页面所有元素都需要加浮动，margin左右自动失效。
+		    3：inline-block 。
+		    问题：margin左右auto失效
+		    4：空标签清浮动。
+		    问题：不符合工作中：结构，样式，行为，三者分离的要求
+		    5：after伪类清浮动方法。（父级）
+		    看实例:
+		    :after{} IE6,7不兼容
+		    zoom；ff不支持。触发IE下haslayout,使元素根据自身内容计算宽高
+
+	-->
+	<style type="text/css">
+	    #parent a{
+	    	width: 17px;
+	    	height: 20px;
+	    	font: 12px '宋体';
+	    	border:1px solid #e0e1e2;
+	    	display:inline-block;
+	    	text-decoration: none;
+	    	text-align: center;
+	    	line-height: 20px
+	    }
+	    #parent .page{
+	    	width: 64px;
+	    }
+	    a:hover,.active{
+	    	background: #1f3a87;
+	    	color: #fff;
+	    }
+	</style>
+</head>
+<body>
+	<div id="parent">
+		<a class='page' href='#'>上一页</a>
+		<a href='#'>1</a>
+		<a href='#'>2</a>
+		<a href='#' class='active'>3</a>
+		<a href='#'>4</a>
+		<a href='#'>5</a>
+		<a href='#'>6</a>
+		<a href='#'>7</a>
+		<a href='#'>8</a>
+		<a href='#'>9</a>
+		<a class='page' href='#'>下一页</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		
+		function check(){
+			var duixiang1=document.getElementById("f1");
+			var filename=duixiang1.value;
+			var post1=filename.lastIndexOf(".");
+			var text = filename.substr(post1,filename.length);
+			if(text==".png"||text==".gif"||text=='.jpg'){
+				alert("正确通过");
+			}else{
+				alert("错误格式");
+			}
+		}
+		function heyu(a){
+			for(var i=a;i>0;i--){
+				for(var j=1;j<=i;j++){
+					document.write(i);
+				}
+				document.write("<hr/>");
+			}
+		}
+		var d1=new Date();
+		function fd(age){
+			var max=30*365;
+			var last=max-age*365;
+			return last;
+		}
+		var a = fd(22);
+		
+		function fz(a){
+			var temp=0;
+			var i=0;
+				for(var j=a.length-1;j>a.length/2;j--){	
+					  temp=a[i];
+					  a[i]=a[j];
+					  a[j]=temp;
+					  i++;
+				}
+		
+		}
+		var ac = [1,2,3,4,5,6,7];
+		fz(ac);
+		alert(ac);
+	</script>
+</head>
+<body>
+	<form>
+		<input type="file" id="f1"/>
+		<input type="button" value="检测" onclick="check();"/>
+	</form>
+</body>
+</html>

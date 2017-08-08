@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>静态属性,函数闭包,call/apply,继承</title>
+	<script type="text/javascript">	
+		/* 一：静态属性
+		在一些面向对象语言里，可以使用static关键字来显示的定义属性和方法。这一点javascript可以模拟。但实际在javascript没有这个概念。
+		*
+		java:
+		 所有实例对象公共的属性/方法可以使用静态。
+		通过 类.属性/方法 调用的叫做类变量/静态变量。非静态不能调用静态---->初始化问题。
+			class Person{
+				public static String name;
+				public static int    age;
+				public static void eat(){
+					system.out.print(name+"正在吃饭");
+				}
+			}
+		js语法:
+			类名.属性
+			类名.属性=function(){};
+			function Person(){
+		 		 Person.count++;  //静态属性
+			
+			}
+				Person.count=0;
+				Person.getCount=function(){
+
+					alert("共有:"+Person.count+"人"); //静态方法
+				}
+				var p1  = new Person();
+				var p2  = new Person();
+				var p3  = new Person();
+				Person.getCount();
+				alert(p1.count);
+		二:函数闭包
+
+		 概念:所谓"闭包"，指的是一个拥有许多变量和绑定了这些变量的环境表达式（通常是一个函数），因而这些变量也是该表达式的一部分。
+
+		 功能:
+		 	1):访问局部变量。
+		 	2):使变量所占的内存不被释放。
+		function fn1(){
+				var i=10;
+			function fn2(){
+				alert(i++);
+			}
+				return fn2;
+			
+		}
+				var text = fn1();
+				text();
+				text();
+				text();
+				text();
+				text();
+		三:私有属性
+			java：用private关键字定义私有属性，只能通过方法来访问成员变量。
+			class Person{
+				private Stirng name;
+				private int    age;
+				public void setName(String name){
+					this.name = name;
+				}
+				public String getName(){
+					return  name;
+				}
+			}
+			js:对于有些敏感的，不想公开的成员可以定义为私有,在javascript中可以模拟这个功能(本身没有这个概念)
+				语法:
+			function Person(p_name){
+				var name = p_name;
+			}
+			//可以这样理解，类中。
+				var :私有;
+				this:公有;
+			function Person(p_name,p_age){
+				this.name = p_name;
+				var age;
+				
+			}
+
+			var p1 = new Person("张三");
+		//有问题，用var来表示私有成员属性，但Person构造函数执行完毕后，age会被回收，不能当做成员属性来使用。？？？？----->用函数闭包吗？
+		//通过  set get。
+		function Person(p_name){
+				this.name = p_name;
+				var age;
+				//可写操作
+				this .setAge = function(p_age){
+					age  = p_age; //这两个名字不能一样，会有问题。--->就变成了setAge中的一个局部变量了，不能影响到上一级的age，
+				 	它会被回收。
+				}
+				//可读操作
+				this.getAge = function(){
+					return age;  
+				}
+			//因为setAge和getAge两个方法是全局的且使用到了age属性，所以age属性不会被回收。
+			
+		}
+			var p1 = new Person("张三",18);
+			p1.setAge(20);
+			alert(p1.getAge());
+		四:call,apply的使用:
+			1:使用指定的对象调用当前函数
+				语法:
+				    call([thisObj[,arg1[,arg2[,argN]]]]);
+				     参数一：函数执行时，this指向谁.
+				     参数二:后面的参数，根据需要顺序指定.
+				    apply([thisObj[,argArray]]);
+				     参数一:函数执行时，this指向谁.
+				     参数二:数组，表示参数集合.
+			2:在js中,函数调用的几种方式!
+			 Person();------------this------------》Window对象
+			 var p1 = new Person()----this--------》p1对象
+			 per.person();-----------this-------------》per对象
+			 js中内部的this会随着程序的运行指向不同的对象，那么，我们能不能手动修改这个this的指向呢？------------->call(),apply();
+				
+			function Person(name,age){
+				this.name = name;
+				this.age  = age;
+			}
+			function speak(){
+				return this+name+":"+this.age;
+			}
+			var p1 = new person("张三",18);
+			//speak();--------->this是window.
+			//p1.speak();--------->p1---->原型对象---->Object-->没有speak()方法
+			//p1.say=speak;------>动态添加了一个方法，增加了对象的内存空间。
+			alert(speak.call(p1));
+			alert(speak.apply(p1));
+		call()和apply()在执行时做了两件事!（重点）
+			1:将函数内部this指向了第一个参数对象.
+			2:调用函数.
+		五：继承的实现;
+			java:用extends关键字，子类继承父类的属性和方法.(只能单继承)
+				class son extends parent{	
+				}
+
+			js:在javascript中可以模拟这个功能(本身没有这个概念);
+			1:扩展object方法.(不推荐)
+				语法:
+				Object.prototype.love=function(parObject){
+					//循环遍历父类对象所有属性
+					for(var i in parObject){
+						//为子类对象添加遍历到的属性.
+						//它的值是父类对象这个属性的属性值
+						this[i] =parObject[i];
+					}
+				}
+
+				Object.prototype.love=function(parObject){				
+					for(var i in parObject){
+						this[i] =parObject[i];
+					}
+				}
+				function Person(name,age){
+					this.name = name;
+					this.age  = age;
+					this.speak = function(){
+						return this.name +":"+this.age;
+					}
+				}	
+				function Student(id){
+					this.id = id;
+					this.stud= function(){
+						return this.id+this.name+this.age;
+					}
+				}
+				var son = new Student(101);
+				son.love(new Person("张三",18));
+				console.log(son);
+				console.log(son.stud());
+
+			2:使用call,apply方法.
+			 语法：
+			 	父类构造器.call(this,...);	
+
+				function Person(name,age){
+				this.name = name;
+				this.age  = age;
+				this.speak= function(){
+					return this.age+this.name;
+					}
+				}
+				function Student(id,name,age){
+					this.id = id;
+					Person.call(this,name,age);
+					this.stud = function(){
+						return this.name+this.age+this.id;
+					}
+				}
+				var s = new Student(101,"张三",18);
+				console.log(s.stud());
+			3:原型继承.(推荐使用)
+				function Person(name,age){
+				this.name = name;
+				this.age  = age;
+				this.speak= function(){
+					return this.age+this.name;
+					}
+				}
+				function Student(id){
+					this.id = id;
+					this.stud = function(){
+						return this.name+""+this.age+this.id;
+					}
+				}
+				Student.prototype = new Person("张三",18);
+				var s = new Student(101);
+				var s2 = new Student(102);
+				console.log(s.name);	
+
+		*/
+			
+		
+			
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

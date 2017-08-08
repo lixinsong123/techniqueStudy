@@ -1,0 +1,63 @@
+<script>
+			/*
+				函数的扩展
+			*/	
+			//1:函数参数的默认值
+			 function fn(a=10,b=20){
+			 	console.log(a+b);
+			 }
+			 fn();
+			 fn(0,10);
+			 //rest参数形式("...变量名"),用于获取函数的多余参数，这样就不需要使用arguments对象了
+			 //。rest参数搭配的变量是一个数组,该变量将多余的参数放入数组中。
+			 //可以在rest参数前声明变量，后面声明会报错
+			 function sum(a,...arr){
+			 	let res =a;
+			 	for(var i=0;i<arr.length;i++){
+			 		res+=arr[i];
+			 	}
+			 	console.log(res);
+			 }
+			 sum(10,1,2,3,4,5);
+			 //---------------------------
+			 //使用'箭头'(=>)定义函数
+			 //const fn = a=> a;
+
+			 const fn1=(a,b) => a+b;
+			 console.log(fn1(1,2));
+
+			 const fn2 =(a,b)=>{
+			 	a=a*2;
+			 	b=b*2;
+			 	return a+b;
+			 };
+			 console.log(fn2(1,2));
+
+			 //返回对象要用()包起来
+			 const fn3 = (a,b)=>({a,b});
+			 console.log(fn3(1,2));
+
+			 //例子
+			 let arr =[5,7,3,1,4];
+			// arr.sort(function(a,b){return a-b});
+			arr.sort((a,b)=> a-b)
+			 console.log(arr);
+
+			 //一:箭头函数体内没有自己的this对象，所以在使用的时候，其内部的this就是定义时所在环境的对象，而不是使用时所在环境的对象。
+			 	function fn4(){
+			 		setTimeout(function(){
+			 			console.log(this);//====>window
+			 		},1000);
+			 		setTimeout(()=>{
+			 			console.log(this);//====>obj
+			 		},1000)
+			 	}
+			 	var obj = {a:1};
+			 	fn4.call(obj);
+			 	//a.不能给箭头函数使用call apply bind 去改变其内部的this指向。
+			 //二:箭头函数体内没有arguments对象,如果要用，可以用Rest参数代替。
+
+			 //三：不可以当作构造函数，不可以使用new命令，否则会抛出一个错误。
+			 //四: 箭头函数不能用作Generator函数
+
+</script>

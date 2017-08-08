@@ -1,0 +1,12 @@
+@charset "utf-8";
+.bar_wrap{position: relative;height: 600px;overflow: hidden;}
+.controller{position: absolute;height: 20px;z-index: 2;bottom: 20px;left: 50%}
+.controller li{cursor: pointer;width: 54px;height: 4px;float: left;margin-right: 9px;background: #ffffff}
+.controller li.active{background: #00439e}
+
+.picList{width: 400%;position: absolute;top: 0px;left: 0px;}
+.picList>li{float: left;}
+.picList a{height: 600px;display: block;}
+.picList a>img{border: none;}
+
+.se{background-position: }

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>初识数组排序</title>
+	<!--调试成功-->
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			margin-top: 100px;
+			width: 68%;
+			height:750px;
+			border:2px solid #E5E5E5;
+			background:#EBEBEB;
+		}
+		#caozuo{
+			
+			height: 100px;
+		}
+		#caozuo ul{
+			padding-top: 40px;
+			padding-left: 500px;
+
+		}
+		#caozuo li{
+			float: left;
+			margin-left: 10px;
+			width: 100px;
+			height: 30px;
+			background: #008B8B;
+			color: white;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;	
+		}
+		#view ul{
+			margin: 0 40px;
+		}
+		#view li{
+			float: left;
+			background: white;
+			width: 297px;
+			height: 310px;
+			border-right: 3px solid 	#EEE9E9;
+		}
+		#view img{
+			margin: 8px 23px 0 25px ;
+			float: left;
+		}
+		#view b{
+			color: 	#4169E1;
+			background:#EBEBEB;
+			display:inline-block;
+			margin: 0px 23px 0 25px;
+			width:250px;
+			height: 41px;
+			text-align: center;
+			line-height: 41px;
+			font-size: 20px;
+			float: left;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		function shijian(a){
+			
+			var parent = document.getElementById("view");
+			var son =parent.getElementsByTagName("ul")[0];
+			var li = son.getElementsByTagName("li");
+			
+			if(a==1){
+				for(var i=0;i<li.length;i++){
+					son.insertBefore(li[stochastic(0,7)],li[stochastic(0,7)]);
+				}
+			}else{
+				for(var i=0;i<li.length;i++){
+					var kaiguan=false;
+					var index=0;
+					var num =parseInt(li[i].getElementsByTagName("em")[0].innerHTML);
+				  	for(var j=i+1;j<li.length;j++){	
+						var two =parseInt(li[j].getElementsByTagName("em")[0].innerHTML);
+						if(num>two){
+							num=two;
+							index=j;
+							kaiguan=true;
+						}
+					}
+					kaiguan&&son.insertBefore(li[index],li[i]);
+					//kaiguan&&insertAfter(li[index],li[i]); 
+				}
+			}
+		}
+		//返回一个X-Y之间的随机数
+		function stochastic(x,y){
+		//四舍五入和0-1之间的随机数
+		return Math.round(Math.random()*(y-x)+x);
+	}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<div id="caozuo">
+			<ul>
+				<li onclick="shijian(0)"><b>从大到小</b></li> 
+				<li onclick="shijian(1)"><b>打乱顺序</b></li>
+			</ul>
+		</div>
+		<div id="view">
+			<ul>
+				<li>
+					<img src="images/PX_1.jpg"/>
+					<b><em>1</em>:萤火之森--竹川蛍</b>
+				</li>
+				<li>
+					<img src="images/PX_2.jpg"/>
+					<b><em>2</em>:萤火之森--银</b>
+				</li>
+				<li><img src="images/PX_3.jpg"/>
+					<b><em>3</em>:银色的果实--树</b></li>
+				<li><img src="images/PX_4.jpg"/>
+					<b><em>4</em>:银色的果实--风</b></li>
+				<li><img src="images/PX_5.jpg"/>
+					<b><em>5</em>:进击的巨人--三笠</b></li>
+				<li><img src="images/PX_6.jpg"/>
+					<b><em>6</em>:樱花樱花--面码</b></li>
+				<li><img src="images/PX_7.jpg"/>
+					<b><em>7</em>:未知--粉桃</b></li>
+				<li><img src="images/PX_8.jpg"/>
+					<b><em>8</em>:未知--黑直</b></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

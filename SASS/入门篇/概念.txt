@@ -1,0 +1,163 @@
+											定义：
+
+CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的‘特性’，将 CSS 作为‘目标’生成文件，然后开发者就只要使用这种语言进行编码工作。
+
+通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器的‘兼容性’问题”
+
+	例如你可以在 CSS 中使用
+	变量、简单的逻辑程序、函数（如右侧代码编辑器中就使用了变量$color）
+	等等在编程语言中的一些基本特性，
+	可以让你的 CSS 更加‘简洁’、‘适应性更强’、‘可读性更佳’，更易于代码的‘维护’等诸多好处。
+									什么是SASS
+	Sass 是一门高于 CSS 的元语言，它能用来'清晰地'、结构化地描述文件样式，有着比普通 CSS 更加强大的功能。
+	Sass 能够提供更'简洁'、更'优雅'的语法，同时提供多种功能来创建可维护和管理的样式表。
+									Sass 和 SCSS 有什么区别？
+Sass 和 SCSS 其实是同一种东西，我们平时都称之为 Sass，两者之间不同之处有以下两点：
+
+1.文件扩展名不同，Sass 是以“.sass”后缀为扩展名，而 SCSS 是以“.scss”后缀为扩展名
+2.语法书写方式不同，Sass 是以严格的'缩进式'语法规则来书写，不带大括号({})和分号(;)，而 SCSS 的语法书写和我们的 CSS 语法书写方式非常类似
+										Sass 编译过程。Sass 的编译有多种方法：
+
+		命令编译
+		GUI工具编译
+		自动化编译
+		单文件编译：
+
+sass  <要编译的Sass文件路径>/style.scss : <要输出CSS文件路径>/style.css
+
+这是对一个单文件进行编译，如果想对整个项目所有 Sass 文件编译成 CSS 文件，可以这样操作：
+
+多文件编译：
+
+sass sass/ : css/
+上面的命令表示将项目中“sass”文件夹中所有“.scss”(“.sass”)文件编译成“.css”文件，并且将这些 CSS 文件都放在项目中“css”文件夹中。
+
+“watch”功能，这样只要你的代码进行任保修改，都能自动监测到代码的变化，并且给你直接编译出来：
+
+sass  --watch <要编译的Sass文件路径>/style.scss : <要输出CSS文件路径>/style.css
+
+						不同样式风格的输出方法
+							嵌套输出方式 nested
+							展开输出方式 expanded  
+							紧凑输出方式 compact 
+							压缩输出方式 compressed
+					1、嵌套输出方式 nested
+
+Sass 提供了一种嵌套显示 CSS 文件的方式。例如
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+在编译的时候带上参数“ --style nested”:
+
+sass --watch test.scss:test.css --style nested
+编译出来的 CSS 样式风格：
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+nav li {
+  display: inline-block; }
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none; }
+
+
+  	2、嵌套输出方式 'expanded'
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+在编译的时候带上参数“ --style expanded”:
+
+sass --watch test.scss:test.css --style expanded
+这个输出的 CSS 样式风格和 nested 类似，只是大括号在另起一行，同样上面的代码，编译出来：
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+						紧凑输出方式 compact
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+在编译的时候带上参数“ --style compact”:
+
+sass --watch test.scss:test.css --style compact
+该方式适合那些喜欢单行 CSS 样式格式的朋友，编译后的代码如下：
+
+nav ul { margin: 0; padding: 0; list-style: none; }
+nav li { display: inline-block; }
+nav a { display: block; padding: 6px 12px; text-decoration: none; }
+						压缩输出方式 compressed
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+在编译的时候带上参数“ --style compressed”:
+
+sass --watch test.scss:test.css --style compressed
+压缩输出方式会去掉标准的 Sass 和 CSS 注释及空格。也就是压缩好的 CSS 代码样式风格：
+
+nav ul{margin:0;padding:0;list-style:none}nav li{display:inline-block}nav a{display:block;padding:6px 12px;text-decoration:none}

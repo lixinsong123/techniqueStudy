@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+
+#search{
+	min-width:1263px;
+	width:100%;
+	height:600px;
+	background:url(../img/search.jpg) center no-repeat;
+	position:relative;
+}
+#search .search-center{
+	width:600px;
+	height:60px;
+
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-30px 0 0 -300px;
+	/*透明化*/
+	opacity:0.6;
+	/*边缘园角度*/
+	border-radius:10px;
+}
+#search .search{
+	width:446px;
+	height:54px;
+	background-color:#eee;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-27px 0 0 -298px;
+	color:#666;
+	border:1px solid #666;
+	border-radius:10px;
+	font-size:20px;
+	padding:0 10px;
+	outline:none;
+}
+#search .search-button{
+	width:120px;
+	height:54px;
+	background-color:#eee;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-27px 0 0 175px;
+	color:#666;
+	border:1px solid #666;
+	border-radius:10px;
+	font-size:24px;
+	outline:none;
+	/*鼠标显示为手型*/
+	cursor:pointer;
+	font-weight:70;
+}
+#tour{
+	width:1263px;
+	height:1150px;
+	margin:30px auto;
+	text-align:center;
+}
+#tour .center h2{
+	font-size:45px;
+	letter-spacing:2px;
+	color:#666;	
+	margin:10px 0;
+}
+#tour .center p{
+	color:#666;
+	margin:10px 0;	
+}
+#tour figure{
+	width:380px;
+	border:1px solid #ddd;
+	display:inline-block;
+	padding:4px;
+	border-radius:4px; 
+	margin:15px 12px;
+	text-align:left;
+	position:relative;
+}
+#tour figure img{
+	vertical-align:middle;	
+}
+#tour figure figcaption{
+	font-size:14px;
+	color:#777;
+	line-height:1.5;
+	letter-spacing:1px;
+	padding:7px 0 5px 0;
+}
+#tour .title{
+	color:#333;
+	font-weight:normal;	
+}
+#tour .sat{
+	float:right;
+	color:#999;
+	font-style:normal;
+	font-size:13px;
+	position:relative;
+	top:5px;
+	right:5px;
+}
+#tour .price{
+	color:#F90;
+	font-size:14px;
+}
+#tour .price strong{
+	font-size:20px;
+	letter-spacing:1px;
+}
+#tour .type{
+	color:#FFF;
+	background-color:#3C0;
+	width:90px;
+	height:25;
+	font-size:14px;
+	line-height:25px;
+	text-align:center;
+	position:absolute;
+	top:4px;
+	left:4px;
+}

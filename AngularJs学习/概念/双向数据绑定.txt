@@ -1,0 +1,14 @@
+						双向数据绑定
+	a.方向一的绑定(Model数据 绑定到View)
+		实现方法 : 
+				{{name}},
+				常用指令(ngRepeat/ngBind/ngIf...)
+
+	相比DOM操作: 先去查找元素，再去设置元素。
+		现在只需要把model数据绑定到视图上，数据改，视图就会更新。
+	b.方向二的绑定(将View数据绑定到Model数据)
+		实现方法 :
+			 只用一种方式 : ng-model
+		<input type="text" ng-model="myText"/>
+		$scope.$watch('模型变量名',function(){})
+		多行文本输入框，下拉菜单，单选框

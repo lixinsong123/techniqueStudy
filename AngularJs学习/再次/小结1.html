@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl">
+		<table>
+			<tr>
+				<td>
+					请选择
+				</td>
+				<td>
+					姓名
+				</td>
+				<td>
+					生日
+				</td>
+			</tr>
+			<tr ng-repeat="item in arr_json">
+				<td>
+					<input type="checkbox" ng-model="item.checked"/>
+				</td>
+				<td>
+					{{item.name}}
+				</td>
+				<td>
+					{{item.birsday}}
+				</td>
+			</tr>
+		</table>
+		<input type="checkbox" ng-model="checed_par"/>全选/取消全选
+		<br><br><br>
+		<button ng-click="check()">查看</button>
+	</div>
+	<script>
+		var md = angular.module("myApp",['ng']);
+			md.controller("myCtrl",function($scope){
+					$scope.arr_json = [
+							{
+								'checked' : false,
+								'name'    : "king",
+								'birsday' : "2016-05-01"
+							},
+							{
+								'checked' : false,
+								'name'    : "Golden",
+								'birsday' : "2016-06-04"
+							}
+					];
+					$scope.checed_par=false;
+				$scope.$watch('checed_par',function(){
+					for(let i=0;i<$scope.arr_json.length;i++){
+						$scope.arr_json[i].checked =$scope.checed_par;
+					}
+				});
+				$scope.$watch("arr_json",function(){
+					if($scope.arr_json[0].checked==$scope.arr_json[1].checked&&$scope.arr_json[0].checked==false){
+						$scope.checed_par=false;
+					}else if($scope.arr_json[0].checked==$scope.arr_json[1].checked&&$scope.arr_json[0].checked==true){
+						$scope.checed_par=true;
+					}
+					// console.log($scope.arr_json[0].checked);
+					// console.log($scope.arr_json[1].checked);
+				},true);
+				$scope.check=function(){
+					let str ="";
+				angular.forEach($scope.arr_json,function(value,key){
+							if(value.checked==true){
+								str+=value.name+"被选中 ";
+							}
+					});
+					if(str){
+						alert(str);
+					}else{
+						alert("什么都没选中");
+					}
+				}
+			});
+	</script>
+</body>
+</html>

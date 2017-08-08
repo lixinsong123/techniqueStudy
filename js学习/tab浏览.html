@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul,li{
+			padding: 0;
+			margin: 0;		
+		}
+		#he{
+			width: 500px;
+			height: 250px;
+			margin: 0 auto;
+			position: relative;
+			border: 1px solid red;
+		}
+		#he div{
+			position: absolute;
+			top: 27px;
+			height: 270px;	
+			width: 500px;
+			display: none;
+			
+		}
+		#he li{
+			list-style: none;
+			float: left;
+			border: 1px solid blue;
+			text-align: center;
+			width: 123px;
+		}
+	</style>
+	<script type="text/javascript">
+		function show(a){
+			var obj = document.getElementById("he");
+			var arrname=obj.getElementsByTagName("div");
+			var liname=obj.getElementsByTagName("li");
+			for(var i=0;i<liname.length;i++){
+				liname[i].style.border="1px solid blue";
+			}
+			liname[a-1].style.borderBottomWidth="0";
+			for(var i=0;i<arrname.length;i++){
+				arrname[i].style.display="none";
+			}
+			arrname[a-1].style.display="block";
+		}
+		
+
+	</script>
+</head>
+<body>
+	<div id="he">
+		<ul style="width:500px;height:27px">
+			<li onmouseover="show(1)" style="border-bottom-width:0">足球新闻</li>
+			<li onmouseover="show(2)">篮球新闻</li>
+			<li onmouseover="show(3)">排球新闻</li>
+			<li onmouseover="show(4)">乒乓球新闻</li>
+		</ul>
+		<div style="display:block">暗访撒司法所飞洒发沙发上</div>
+		<div>奥法萨芬撒发顺丰撒</div>
+		<div>暗示法萨芬撒飞洒发放</div>
+		<div>按时发发发发沙发</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js6----第一天学习</title>
+
+</head>
+<body>
+	<input type="button" value="1" />
+	<input type="button" value="2" />
+	<input type="button" value="3" />
+	<input type="button" value="4" />
+	<input type="button" value="5" />
+	<script type="text/javascript">
+		var button=document.getElementsByTagName("input");
+		/*第一种方式 ：用一个index属性
+		for(var i=0;i<button.length;i++){
+			button[i].index=i;
+			button[i].onclick=function(){
+				console.log(this.index);
+			}
+			
+		}*/
+		/*第二种方式：闭包？？？
+		for(var i=0;i<button.length;i++){
+			(function(i){
+				button[i].onclick=function(){
+					console.log(i);
+				}
+			})(i);
+		}*/
+
+		/*第三种:用 let属性
+		for(let i=0;i<button.length;i++){
+			button[i].onclick=function(){
+				console.log(i);
+			}
+		}*/
+
+		/*用Set----->数组去重  Set类似与数组，但是成员的值都是唯一的，没有重复的值且无序。
+			 var arr=[1,2,2,2,4,5,6,6,6,6];
+			 const b = new Set();
+
+			 for(var i=0;i<arr.length;i++){
+			 	b.add(arr[i]);
+			 }
+			 console.log(b);
+		 */
+		var arr='love';
+		var newarr = [...arr];
+		alert(newarr);
+	</script>
+</body>
+</html>

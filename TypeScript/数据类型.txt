@@ -1,0 +1,127 @@
+var myname: string = "hello";
+var alias: any = "xixi";
+var age: number = 13;
+var man: boolean = true;
+function test():void{
+
+}
+function test1(): string{
+    return "ceshi";
+}
+class Person{
+    name: string;
+    age: number;
+}
+var p1:Person = new Person();
+p1.age = 18;
+p1.name = "张三";
+							默认参数:
+function fn_test1(a:string,b:string,c:string="jojo") {
+    console.log(a);
+    console.log(b);
+    console.log(c);   
+}
+fn_test1("kkk", 'bbb', 'ccc');
+fn_test1('kkk', 'bbb');
+							可选参数:?
+function fn_test1(a:string,b:?string,c:string="jojo") {
+    console.log(a);
+    console.log(b);    console.log(c);   
+}
+必须声明在必须参数后面
+						Rest and Spread操作符
+						用来声明任意数量的方法参数
+function test(...args) {
+    args.forEach((arg) => {
+        console.log(arg);
+     });
+}
+test(1, 2, 3);
+test(4, 5);
+						generator函数
+	控制函数的执行过程，手工暂停和恢复代码执行
+function*test(){
+  console.log("start");
+  yield;
+  console.log("end");
+}
+var fun1 = test();
+fun1.next();
+						destructuring析构表达式
+	通过表达式将对象或数组拆解任意数量的变量
+function getStroct() {
+    return {
+        code: 'IBM',
+        price:100
+    }
+}
+
+var { code:codex, price } = getStroct();
+console.log(codex);
+console.log(price);
+					class的使用
+class Person{
+    constructor() {
+         super();
+     }
+     private name: string;
+     private age: string;
+     public setName(name:string): void{
+         this.name = name;
+     }
+     public getName():string{
+         return this.name;
+     }
+}
+ let p = new Person();
+ p.setName("张三");
+ console.log(p.getName());
+ 						泛型Array<Person> 
+let array: Array<Person> = [p, p1];
+						接口(Interface)
+	用来建立某种代码约定，使得其它开发者在调用某个方法
+	或创建新的类时必须遵循接口所定义的代码约定。
+						第一种用法
+//作为构造函数的参数检查(cofig:接口名)
+interface Iperson{
+    name: string;
+    age: number;
+}
+class Person{
+    constructor(public cofig:Iperson) {
+        
+    }
+}
+var p = new Person({
+    name: "张三",
+    age:18
+});
+						 第二种用法
+		实现接口
+	与C#或Java里接口的基本作用一样，TypeScript也能够用它来明确的强制一个类去符合某种契约。
+interface Animal{
+    eat();
+}
+class cat implements Animal{
+    eat() {
+        console.log("Cat eat");
+    }
+}
+class dog implements Animal{
+    eat() {
+        console.log("Dog eat");
+    }
+}
+						模块(Module)
+	模块可以帮助开发者将代码分割为可重用的单元。开发者可以
+	自己决定将模块中的那些资源(类，方法，变量)暴露出去供
+	外部使用，那些资源只在模块内使用。
+	export 导出
+	import 导入
+						注解(annotation)
+	注解为程序的元素(类，方法，变量)加上更直观更明了的说明，
+	这些说明信息与程序的业务逻辑无关，而是指定的工具或框架
+	使用的。
+
+						类型定义文件了(*.d.ts);
+	通过 npm install -g @types/库名 来安装类型定义文件了

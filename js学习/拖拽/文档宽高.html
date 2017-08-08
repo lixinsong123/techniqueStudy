@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文档宽高</title>
+	
+	<style type="text/css">
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+			float: left;
+			margin-right: 10px;
+			background: red;
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var ul= document.getElementsByTagName("ul")[0];
+			var li= document.getElementsByTagName("li");
+			
+			alert(li[0].offsetHeight+":"+li[0].offsetWidth);
+			alert(li[1].offsetHeight+":"+li[1].offsetWidth);
+		}
+	</script>
+</head>
+<body>
+	<ul style="height:200px">
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

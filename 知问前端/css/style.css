@@ -1,0 +1,64 @@
+h1,input,a{
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin: 40px 0 0 0;
+	padding: 0;
+	background:white;
+	font-size: 12px;
+	font-family: 宋体;
+}
+/*更改jquery ui的头部主题*/
+.ui-widget-header{
+	background:url(../imgs/ui_header_bg.png);
+}
+#header{
+	width: 100%;
+	height: 40px;
+	background-image: url(../imgs/header_bg.png);
+	position: absolute;
+	top: 0;
+}
+#header .header_main{
+	width: 800px;
+	height: 40px;
+	margin: 0 auto;
+}
+#header .header_main h1{
+	font-size: 20px;
+	color: #666;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	padding: 0 10px;
+}
+#header .header_main  .header_serach{
+	padding: 6px 0 0 0 ;
+	float: left;
+}
+#header .header_main  .header_serach .serach{
+	width: 300px;
+	height: 24px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	color: #666; 
+	font-size: 14px;
+	text-indent: 5px;
+}
+#header .header_button{
+	float: left;
+	
+	padding: 5px;
+	
+}
+#header .header_rember{
+	float: right;;
+	height: 40px;
+	line-height: 40px;
+}
+#header .header_rember a{
+	color: #555;
+	font-size: 14px;
+}

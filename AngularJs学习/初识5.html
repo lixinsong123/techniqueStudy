@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="phonecatApp">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJs初识</title>
+	<!--引入AngularJs的文件-->
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+	  var phonecatApp =	angular.module('phonecatApp', []);
+	  phonecatApp.controller('PhoneListCtrl',function($scope,$rootScope) {
+	  		$scope.name='Hello world';
+	  		$rootScope.age='18';
+	  		$scope.check=function(){
+	  			$scope.name='Hello';
+	  		}
+	  })
+	  /*
+	  	作用域:
+	  		$scope:局部
+	  		$rootScope：全局
+	  	双向数据绑定：mvvm
+	  		$timeout  用法类似setTimeout
+	  		但是$timeout会改变view中的值
+	  		ng-click   类似于onclick
+	  		ng-model 
+	  	监听器:(监听数据变化)
+	  		三个参数:
+	  		 监听的对象
+	  		 回调函数---->有两个参数(新的值，旧的值)
+	  		 true：是否深度监听   
+	  */
+	</script>
+</head>
+<body>
+	   <!-- m-影响->v -->
+	<div ng-controller='PhoneListCtrl' ng-click='check()'>
+		<!-- v-影响->m -->
+		<input type='text' ng-model='name'/>
+		<p>
+			{{name}} 
+		</p>
+	</div>
+	
+</body>
+</html>

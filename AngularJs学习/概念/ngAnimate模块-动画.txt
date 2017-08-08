@@ -1,0 +1,14 @@
+						其他模块
+	ngAniamte 支持js动画和css动画
+		a.script引入angular-animate.js到工程中
+		b.指定自定义的模块，依赖于ngAnimate
+		c.设置css,ngAnimate模块为ngView添加ng-leave和ng-leave-active,
+		  ng-enter和ng-enter-active。
+		  				表单
+	在ng中，专门针对表单和表单中的控件，提供了一些属性，用于验证
+	控件值的状态。
+	$pristine 未输入过
+	$dirty    已输入过
+	$valid    验证通过
+	$invalid  验证未通过
+	$error    验证时的错误信息

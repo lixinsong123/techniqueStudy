@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp"> 
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
+</head>
+<body ng-controller="parentCtrl">
+		<!-- 指定盛放代码片段的容器 -->
+		<div ng-view>
+			
+		</div> 
+	<script>
+			//创建模块的时，指定依赖于ng和ngRoute
+		   var md = angular.module("myApp",['ng','ngRoute']);
+		   	   md.controller("loginCtrl",['$scope','$location',function($scope,$location){
+		   	   		$scope.jump = function(){
+		   	   			$location.path("/main");
+		   	   		}
+		   	   }]);
+			   //配置路由词典
+			   md.config(function($routeProvider){
+			   		$routeProvider
+			   		.when('/login',{
+			   			templateUrl :'tpl/login.html',
+			   			// controller : 'loginCtrl'	
+					})
+					.when('/main',{
+						templateUrl : 'tpl/main.html'
+					})
+					.otherwise(
+						{redirectTo:'/login'}
+					);
+			   });
+			   md.controller('parentCtrl',['$scope','$location',
+			   	function($scope,$location){
+			   			$scope.jump = function(arg){
+			   				$location.path(arg);
+			   			}
+			   	}])	
+	</script>
+</body>
+</html>

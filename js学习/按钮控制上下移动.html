@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>按钮控制上下移动</title>
+	<style>
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			width: 300px;
+			height: 800px;
+			
+		}
+		#parent li{
+			width: 300px;
+			height: 50px;
+			background: #F8F8FF;
+			cursor: pointer;
+		}
+		#parent .one{
+			height: 500px;
+			overflow: hidden;
+			position: relative;
+		}
+		#parent .one img{
+			position: absolute;
+			top: 0%;
+		}
+	</style>
+	
+	<script type="text/javascript">
+	var b;
+	//onmousedown按住 onmouseup离开
+		window.onload=function(){
+			start();
+		}
+		var setTime=null;
+		var loadding=0;
+		function start(){
+			var obj=document.getElementById("parent");
+			var li = obj.getElementsByTagName("li");
+		}
+		function  down(a){
+			b=a;	
+			setTime=setInterval(pandun,20);
+		}
+		function pandun(){
+			var img = document.getElementsByTagName("img");
+				if(b==1){
+					loadding=loadding-0.5;
+					if(loadding<=-100){
+					clearInterval(setTime);
+					}
+					else{	
+						img[0].style.top=loadding+"%";
+					}
+				}else{
+					loadding=loadding+0.5;
+					if(loadding>=0){
+						clearInterval(setTime);
+					}
+					else{	
+						img[0].style.top=loadding+"%";
+					}
+				}
+		}
+		function  up(){
+			window.clearInterval(setTime);
+		}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul>
+			<li onmousedown="down(1)"  onmouseup="up()"></li>
+			<div class="one">
+				<img src="images/23119.jpg" width=300  height=1000></img>
+			</div>
+			<li onmousedown="down(2)" onmouseup="up()"></li>
+		</ul>
+	</div>
+</body>
+</html>

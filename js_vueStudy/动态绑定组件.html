@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello vue.js</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="切换到1组件" @click="changCustorm(1)" />
+		<input type="button" value="切换到2组件" @click="changCustorm(2)" />
+		<input type="button" value="切换到3组件" @click="changCustorm(3)" />
+		<keep-alive>
+			<component :is="current"></component>
+		</keep-alive>
+	</div>
+
+	<script type="text/javascript">
+		const custorm1= Vue.component("custorm1",{
+			template:`<div @click="changeDivbg">这是1组件</div>`,
+			methods:{
+					changeDivbg(ev){
+						ev.target.style.background="red"
+					}
+			}
+		});
+		const custorm2= Vue.component("custorm2",{
+			template:`<div>这是2组件</div>`,
+		});
+		const custorm3= Vue.component("custorm3",{
+			template:`<div>这是3组件</div>`,
+		});
+		var vm = new Vue({
+			el :"#app",
+			data :{current:custorm1},
+			methods:{
+				changCustorm(index){
+					if(index==1){
+						this.current=custorm1;
+					}else if(index==2){
+						this.current=custorm2;
+					}else if(index==3){
+						this.current=custorm3;
+					}
+				}
+			}
+		});
+	</script>	
+</body>
+</html>

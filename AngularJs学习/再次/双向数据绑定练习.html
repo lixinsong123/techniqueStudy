@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-controller="myCtr">
+	<!-- 多行文本菜单 -->
+	<textarea ng-model="test1">
+	</textarea>
+	<!-- 下拉菜单 -->
+	<select ng-model="test2">
+		<option>北京</option>
+		<option>上海</option>
+		<option>重庆</option>
+		<option>成都</option>
+	</select>
+	<br><br>
+	是否同意协议
+	<input ng-model="test3" type="checkbox" value=""  />
+	<script>
+		var md = angular.module("myApp",['ng']);
+		md.controller("myCtr",function($scope){
+			$scope.test1="";
+			$scope.$watch('test1',function(){
+				console.log($scope.test1+"test1变化了");
+			});
+
+			$scope.test2="";
+			$scope.$watch('test2',function(){
+				console.log($scope.test2+"test2变化了");
+			});
+
+			$scope.test3="";
+			$scope.$watch('test3',function(){
+				console.log($scope.test3+"test3变化了");
+			});
+		});
+
+	</script>
+</body>
+</html>

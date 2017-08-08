@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this+json</title>
+	<script type="text/javascript">
+
+
+	/* js:构造函数传参---------->能定义私有属性吗?类中怎么定义函数。有静态类吗？
+		function  Person(name,age){
+			this.name= name;
+			this.age = age;
+		}
+		var p1 = new Person("张三",18);
+		var p2 = new Person("李四",20);
+		在构造器中定义形参，实例化对象时，通过构造函数传递数据。
+		java:
+			class person{
+					private String name;
+					private int    age ;
+				   public Person(){
+				   }
+				   public Person(String name,int age){
+						this.name = name;
+						this.age  = age;
+				   }
+				   public String getName(){
+						return name;
+				   }
+				   public void   setName(String name){
+							this.name = name;
+				   }
+				   public String getAge(){
+						return age;
+				   }
+				   public void   setName(int age){
+							this.age = age;
+				   }
+			}
+		
+		在主函数中调用;
+		Person    p  = new Person("张三",18);
+		Person    2  = new Person("李四",18);
+
+	*/
+	/* this 的深入理解
+		》》》》js中函数都是由对象调用起来的。《《《《《
+
+		this,谁调用这个函数，this就指向谁。
+
+		js中所有函数都是面向对象的。普通函数是window对象在调用它。
+			function start(){
+				alert("Hello World");
+				return true;
+			}
+			 //结果是一样的。
+			 alert(start());    
+			 alert(this.start());
+			 alert(window.start());
+	*/
+	</script>
+	<script type="text/javascript">
+	/*
+	 *	json对象的使用。
+	 	一 : 什么是json,
+		 	对象是指属性的无序集合。
+		 	一个对象拥有若干个属性。
+		 	'集合'-->是 名/值 对的集合。
+		 	js中可以用{}来表示.
+	 	语法：(属性名建议用''/""-->安全性)
+	 		{'属性名1':属性值,'属性名2':属性值,...}
+	 		这样创建出来的对象叫做json对象。
+	 	二:创建json对象
+	 	var json ={'name':'张三','age':'28'};
+	 	alert(json.name);
+	 	三:使用json存储多个数据
+		 	function  Person(name,age){
+				this.name= name;
+				this.age = age;
+			}
+			var p1 = new Person("张三",18);
+			var p2 = new Person("李四",20);
+			//使用json储存多个对象
+			var json={
+				"p1":p1,
+				"p2":p2
+			};
+			console.log(json);
+			console.log(json.p1.name);
+			----------------遍历--------------------------
+			for(arr in json){
+				for(son in json[arr]){
+					console.log(json[arr][son]);
+				}
+			}
+			//定义一个json数组
+		  	var arr=[{'name':'张三','age' :'18'},{'name':'李四','age' :'18'},{'name':'王五','age' :'18'}];
+		  	console.log(arr);
+			console.log(arr[2].name);
+			----------------遍历--------------------------
+			for(var i=0;i<arr.length;i++){
+				for(a in arr[i]){
+					console.log(arr[i][a]);
+				}
+			}
+	   四:json究竟是什么?
+	   var json ={'name':'张三','age':'28'};
+	   		alert(typeof json);   ---------->object
+			alert(json.constructor);--------------->function Object(){[natice code]}
+			json是一个对象
+			json是一个object类下的一个对象
+		 json对象和构造器对象有各自有什么特点和使用场景!
+		 json对象:
+		    简化了构造器的定义。
+		   场景: 程序只需要一个这样的对象(工具类)
+		 构造器对象:
+		 	简化了属性的定义
+		   场景: 程序需要多个相同属性和方法的对象(用户类)
+		 五：json中的成员函数
+			类中定义函数
+		   	function  Person(name,age){
+			this.name= name;
+			this.age = age;
+			this.eat = function(){
+				alert(this.name+"吃饭");
+				}
+
+			}
+			var p1 = new Person("张三",18);
+			p1.eat();
+			java:
+				class Person{
+					public String name;
+					public int     age;
+					public void eat(){
+					 system.out.print(this.name+"正在吃饭");
+					}
+				}
+		json中定义函数
+		 var json ={'name':'张三','age':'28','eat':function(){
+			 	alert(this.name+'吃饭');
+			 }};
+			 json.eat();
+		六：PHP中如何传递json
+			1：生成json	 
+			 string  json_encode($obj|$user);
+			 A)从数组中生成json
+				$user = array('name'=>'张三','age'=>30);
+				$str  = json_encode($user);
+				echo $str;
+			B)从对象中生成json
+			  class Person{
+				public $name;
+				public $age;
+			  }
+			  $p1 =new Person();
+			  $p1->name="lisi";
+			  $p1->age = 18;
+			  $str = json_encode($p1);
+			  echo $str;
+			2:解析json
+			json_decode($jsonstr,$flag);//默认解析为对象
+			$flag  true:解析为数组
+			       false:解析为对象
+			    $user = array('name'=>'张三','age'=>30);
+				$str  = json_encode($user);
+				echo $str;
+				echo "<pre>";
+				var_dump(json_decode($str,true));
+		*/
+		
+			
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

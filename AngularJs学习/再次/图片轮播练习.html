@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<img ng-src="{{core}}"/>
+	<script>
+			var md = angular.module("myApp",['ng']);
+				md.controller("myCtrl",function($scope,$interval){
+				 		let	arr=[
+								'images/scenery_4.jpg',
+								"images/scenery_5.jpg",
+								"images/scenery_6.jpg"
+						];
+						$scope.core =arr[0];
+						let a =0;
+						let b =0;
+					let stop =$interval(function(){
+							console.log(a);
+							$scope.core =arr[b];
+							a++;
+							b++;
+							b=b>2?0:b;
+							if(a>30){
+								alert("可以停止了。");
+								  $interval.cancel(stop);
+							}
+						},1000);
+				});
+	</script>
+</body>
+</html>

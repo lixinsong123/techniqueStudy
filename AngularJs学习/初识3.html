@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" ng-app='myApp'>
+<head>
+	<meta charest="UTF-8">
+	<title>AngularJs初识3</title>
+	<style type="text/css">
+		.red{
+			background: red;
+		}
+		.blue{
+			background: blue;
+		}
+	</style>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+	/*	样式指令
+		ng-class:
+		在标签上使用---->ng-class='{Claas名:true,Claas名:true}'多个样式用逗号。
+		用{{}}表达式调用----->如下。ng-class='sClass'无效
+		ng-style:
+		在标签上使用---->ng-class="{样式属性:'值'}"多个样式用逗号。
+		用{{}}表达式调用----->如下。ng-style='sStyle'无效
+		var m1 = angular.module('myApp',[]);
+			m1.controller('show',['$scope',function($scope){
+			$scope.text='Hello AngularJs';
+			$scope.sClass="{red:true,blue:true}";
+			$scope.sStyle="{background:'red',color:'white'}";
+		}]);
+		<div ng-controller='show' ng-class="{{sClass}}">{{text}}</div>
+		<div ng-controller='show' ng-style="{{sStyle}}">{{text}}</div>
+		ng-href  类似href 
+		ng-src   类似src
+		通用:ng-attr-属性名   提高用户体验	
+		ng-hide   隐藏
+		ng-show	  显示
+		在标签中使用，true,false
+		var m1 = angular.module('myApp',[]);
+		m1.controller('one',['$scope',function($scope){
+			$scope.btn=true;
+		}]);
+		<div ng-controller='one'>
+			<input type='checkbox' ng-model='btn'>
+			<div  ng-show='btn'>显示中</div>
+		</div>
+		ng-if 节点操作
+		true:增加该节点
+		false:删除该节点 
+		ng-switch  切换效果, 如下
+		  on:父级标签上
+		  ng-switch-default:默认标签上
+		  ng-switch-when   :切换标签上
+		<input type='checkbox' ng-model='btn'>
+		<div ng-switch on='btn'>
+			<p ng-switch-default>默认的效果</p>
+			<p ng-switch-when='false'>切换的效果</p>
+		</div>	
+	*/
+		var m1 = angular.module('myApp',[]);
+		m1.controller('one',['$scope',function($scope){
+			$scope.btn=true;
+		}]);
+	</script>
+</head>
+<body>
+<div ng-controller='one'>
+	<input type='checkbox' ng-model='btn'>
+	<div ng-switch on='btn'>
+		<p ng-switch-default>默认的效果</p>
+		<p ng-switch-when='false'>切换的效果</p>
+	</div>		
+</div>
+</body>
+</html>

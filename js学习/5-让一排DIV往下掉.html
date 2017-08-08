@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>往下掉</title>
+
+<script src="miaov.js"></script>
+<script>
+window.onload = function () {
+	var str = '';
+	var len = 20;
+	var aDiv = document.getElementsByTagName('div');
+	var timer = null;
+	var num = 0;
+	
+	for ( var i=0; i<len; i++ ) {
+		str += '<div style="width:50px; height:50px; background:red; position:absolute; top:0px; left:'+ i*60 +'px;"></div>';
+	}
+	
+	document.body.innerHTML = str;
+	var div1=document.getElementsByTagName("div");
+	document.onclick = function () {
+		//clearInterval( timer );
+		if(div1[0].style.top=='0px'){
+			timer = setInterval( function (){
+					doMove( aDiv[num], 'top', 23, 500);
+					num ++;
+					if ( num === len ) {
+						clearInterval( timer );
+					}
+					
+				}, 100 );
+		}
+		if(div1[19].style.top=='500px'){
+
+			timer = setInterval( function (){
+				num --;
+				doMove( aDiv[num], 'top', 23, 0);
+				
+				if ( num === 0 ) {
+					clearInterval( timer );
+				}
+				
+			}, 100 );
+		}
+		
+	};
+};
+</script>
+
+</head>
+
+<body>
+</body>
+</html>
+

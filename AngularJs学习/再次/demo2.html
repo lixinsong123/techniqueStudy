@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-app>
+	<h1> Hello AngularJs</h1>
+	<span ng-init="name='Michael'">{{name}}</span>
+	<dir 
+	ng-init="student=[{
+			name :'张三',
+			sex  : '男',
+			scroe: '10'
+		},	
+		{
+			name :'李四',
+			sex  : '女',
+			scroe: '11'
+		}
+		,{
+			name :'王麻子',
+			sex  : '男',
+			scroe: '12'
+		}]">
+	</dir>
+	<table>
+		<tr>
+			<td>name</td>
+			<td>sex</td>
+			<td>scroe</td>
+		</tr>
+		<tr ng-repeat="item in student">
+			<td>{{item.name}}</td>
+			<td>{{item.sex}}</td>
+			<td>{{item.scroe}}</td>	
+		</tr>
+	</table>
+	<script type="text/javascript">
+	</script>
+</body>
+</html>

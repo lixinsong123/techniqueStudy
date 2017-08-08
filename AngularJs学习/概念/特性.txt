@@ -1,0 +1,44 @@
+						为什么要用AngularJS
+四大特征:
+	1.采用了MVC的设计模式。
+	2.双向数据绑定。
+	3.依赖注入。
+	4.模块化设计。
+						怎么使用AngularJS
+	引入对应的js文件
+	a.表达式
+		语法:{{表达式}}
+		作用:将表达式的结果输出到调用该表达式的元素的innerHTML中
+	ng-app指令:
+		1:指定angularJS的作用域范围
+		2:自动载入并启动ng应用
+
+	ng-init指令:初识化一些变量(对象,数组。。。)
+
+	是由AngularJS提供的,可以将指令在HTML中作为扩展属性，扩展标签
+	ngApp指令 ng应用的作用范围,如果ngApp调用了多次,只有第一次是生效.
+	
+	
+	ngBind:将表达式的结果输出到调用元素的innerHTML中，但是相对于{{}},
+	解决在ng启动较慢时,{{}}闪烁的问题。
+	用法: <ANY ng-bind="">
+
+
+	ngRepeat: 为HTML添加循环功能
+	语法: <ANY ng-repeat = "（下标，变量名） in 集合"></ANY>
+	用途 ：对于指定的集合的每个成员，一次赋值给临时变量，将当前
+	元素循环输出一遍。	
+
+	ngif指令: 为HTML添加选择功能
+	 语法:<ANY ng-if = "表达式"></ANY>
+	 用途:表达式的结果为true，当前元素会挂到DOM数，否则删除。
+
+	 ngShow/ngHide
+	  语法:<ANY ng-show="表达式"></ANY>
+	  用途:根据表达式输出结果,true->显示 false->隐藏
+
+	  语法:<ANY ng-hide="表达式"></ANY>
+	  用途:根据表达式输出结果,true->隐藏 false->显示
+
+	  ngSrc   加载图片路径推荐。
+	  语法 ：<img ng-src='{{url}}'/>

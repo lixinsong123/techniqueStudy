@@ -1,0 +1,8 @@
+						事件 (事件对象存放于$event)
+单击事件ngClick---> <button ng-click='show()'></button>
+ngDblClick
+ngMouseEnter/mouseleave...
+
+例:
+<input ng-click="show($event)" type="button" value="click" />
+$scope.show=function(ev){}

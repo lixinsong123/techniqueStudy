@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css绘制三角形</title>
+	<style type="text/css">
+		div{
+			margin-bottom: 10px;
+		}
+		#SJX_UP{
+			width: 0px;
+			height: 0px;
+			overflow: hidden;
+			border-left: 20px solid transparent;
+			border-right: 20px solid transparent;
+			/*兼容IE6*/
+			_border-left: 20px solid #fff;
+			_border-right: 20px solid #fff;
+			border-bottom: 20px solid red;
+		}
+		#SJX_DOWN{
+			width: 0px;
+			height: 0px;
+			overflow: hidden;
+			border-left: 20px solid transparent;
+			border-right: 20px solid transparent;
+			border-top: 20px solid red;
+		}
+		#SJX_RIGHT{
+			width: 0px;
+			height: 0px;
+			overflow: hidden;
+			border-top: 20px solid transparent;
+			border-bottom: 20px solid transparent;
+			border-left: 20px solid red;
+		}
+		#SJX_LEFT{
+			width: 0px;
+			height: 0px;
+			overflow: hidden;
+			border-top: 20px solid transparent;
+			border-bottom: 20px solid transparent;
+			border-right: 20px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="SJX_UP"></div>
+	<div id="SJX_DOWN"></div>
+	<div id="SJX_LEFT"></div>
+	<div id="SJX_RIGHT"></div>
+</body>
+</html>

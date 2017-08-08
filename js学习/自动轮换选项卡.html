@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动轮换选项卡</title>
+	<style>
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			width: 500px;
+			height: 500px;
+			position: relative;
+		}
+		#one{
+			width: 500px;
+			height: 21px;
+		}
+		#one>li{
+			float: left;
+			width: 100px;
+			text-align: center;
+			background: #228B22;
+		}
+		.two{
+			height: 300px;
+			position: absolute;
+			right: 51px;
+			top: 21px;
+			display: none;	
+		}
+		.two>li{
+			height: 50px;
+			line-height: 50px;
+			background: #EAEAEA;
+		}
+	</style>
+	<script type="text/javascript">
+	
+		var setTime=null;
+		var oindex=0;
+		window.onload=function(){
+			son();
+		}
+		function son(){
+			setTime=window.setInterval(function(){
+			
+				var obj=document.getElementById("oson");
+				var oli=obj.getElementsByTagName("li");
+				var oul=obj.getElementsByTagName("ul");
+				var img=document.getElementById("img");
+				var dul=document.getElementById("one");
+				var dli=dul.getElementsByTagName("li");
+				if(oindex>5){
+					dli[0].style.backgroundColor="#00FF00";
+					dli[1].style.backgroundColor="";
+					oul[0].style.display="block";
+					oul[1].style.display="none";
+					oindex=0;
+				}
+				for(var i=0;i<oli.length;i++){
+					oli[i].style.backgroundColor="";
+				}
+				oli[oindex].style.backgroundColor="#87CEFA";
+				
+				img.src="images/zd_"+(oindex+1)+".jpg";
+				oindex++;
+				if(oindex==4){
+					dli[1].style.backgroundColor="#00FF00";
+					dli[0].style.backgroundColor="";
+					oul[0].style.display="none";
+					oul[1].style.display="block";
+				}
+			},1000);
+		}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul id="one">
+			<li style="background:#00FF00">菜单一</li>
+			<li>菜单二</li>
+		</ul>
+		<img id="img" src="images/zd_1.jpg" />
+		<div id="oson">  
+			<ul class="two" style="display:block">
+				<li style="background:#87CEFA" >图片一</li>
+				<li>图片二</li>
+				<li>图片三</li>
+			</ul>
+			<ul class="two">
+				<li style="background:#87CEFA">图片四</li>
+				<li>图片五</li>
+				<li>图片六</li>
+			</ul>
+		</div>	
+	</div>
+</body>
+</html>

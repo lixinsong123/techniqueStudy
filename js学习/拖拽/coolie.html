@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie</title>
+	<script type="text/javascript">
+		window.onload=function(){
+				document.cookie='username='+encodeURI('leo\n你好')+'';
+				alert(decodeURI(document.cookie));
+		}
+	</script>
+</head>  
+<body>
+</body>
+</html>

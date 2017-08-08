@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>+1和透明</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			width: 400px;
+			height: 30px;
+			border: 1px solid black;
+			position: relative;
+			top: 500px;
+		}
+		#parent li{
+			float: left;
+			width: 40px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			position: absolute;
+		}
+	</style>
+	<script src="miaov.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var parent=document.getElementById("parent");
+			var li  =parent.getElementsByTagName("li");
+			var setTime=null;
+			var i=0;
+			var spink=false;
+			parent.onclick=function(){
+				setTime=setInterval(function(){
+					if(spink==true){
+						return;
+					}
+					if(i>li.length-1){
+						clearInterval(setTime);
+
+					}else{
+						spink=true;
+						diaphaneity(li[i],10,0,50);
+						doMove (li[i],'bottom', 10, 300);
+						i++;
+						console.log(i);
+						spink=false;
+					}
+						
+				},50);
+			}
+
+		}
+
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul>
+			<li  style="left:0px; ">+1</li>
+			<li  style="left:40px">+1</li>
+			<li  style="left:80px">+1</li>
+			<li  style="left:120px">+1</li>
+			<li  style="left:160px">+1</li>
+			<li  style="left:200px">+1</li>
+			<li  style="left:240px">+1</li>
+			<li  style="left:280px">+1</li>
+			<li  style="left:320px">+1</li>
+			<li  style="left:360px">+1</li>
+		</ul>
+	</div>
+</body>
+</html>

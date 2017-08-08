@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl1">
+		<button ng-click="funcCall()">
+			调用myCtrl2中的方法
+		</button>
+		<div ng-controller="myCtrl2">
+			<button ng-click="toChild()">
+				发送到子作用对象
+			</button>
+			<br>
+			<div ng-controller="myCtrl3">
+					<p>{{count}}</p>
+			</div>
+		</div>
+	</div >
+	<script>
+		var md = angular.module("myApp",['ng']);
+			md.controller("myCtrl1",function($scope){
+				$scope.$on('event_parent',function(event,data){
+						console.log("接收到了event_parent事件");
+						console.log(data);
+						$scope.funcCall =data;
+				});
+			});
+			md.controller("myCtrl2",function($scope){
+				$scope.toParent=function(){
+					console.log("toParent function is called");
+				}
+				//传递给父级
+				$scope.$emit('event_parent',$scope.toParent);
+				$scope.toChild = function(){
+					$scope.number = 10 ;
+					//传递给子级
+					$scope.$broadcast('event_child',$scope.number);
+				}
+			});
+			md.controller("myCtrl3",function($scope){
+					$scope.$on('event_child',function(event,data){
+						$scope.count = data;
+					});
+			});
+	</script>
+</body>
+</html>

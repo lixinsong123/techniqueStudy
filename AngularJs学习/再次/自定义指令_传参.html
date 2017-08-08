@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtr">
+		
+	</div>
+	<div ts-hello test-name="world"></div>
+	<script>
+		const md = angular.module("myApp",['ng']);
+		md.controller("myCtr",function($scope){
+
+		})
+		md.directive("tsHello",function(){
+			return {
+				template:'<p>hello {{testName}}</p>',
+				scope:{
+					testName : '@'
+				}
+			};
+		});
+
+	</script>
+</body>
+</html>

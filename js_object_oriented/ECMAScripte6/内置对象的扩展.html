@@ -1,0 +1,38 @@
+<script type="text/javascript">	
+	/*
+	*	字符串的扩展
+	*/
+	//模板字符串=======>``
+	//字符串拼接====>${}
+	let flag = true;
+	let html = `<ul>
+				<li>${'首页'}</li>
+				<li></li>
+				<li class="${flag?'show':'hide'}"></li>
+				<li></li>
+				</ul>`;
+	console.log(html);
+
+	/**
+	* 1.repeat
+	* 2.includes() startsWith() endsWith()
+	*/
+	 //repeat
+	 //字符串对象.repeat(一共多少);
+	 	let str1 = 'a';
+	 	let str2 = str1.repeat(3);
+	 	console.log(str2);
+
+	 //includes()-查找字符串中是否有字符
+	 let str_11 ="Hello ECMAscripte6";
+	 console.log(str_11.includes('ll'));
+	 //startsWith()-查找字符串开始是否有字符
+	  console.log(str_11.startsWith('He'));
+	  //endsWith()-查找字符串末尾是否有字符
+	   console.log(str_11.endsWith('e6'));
+</script>
+<script type="text/javascript">
+	/*
+	* 数组的扩展
+	*/
+</script>

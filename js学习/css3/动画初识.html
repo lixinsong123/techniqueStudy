@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画初识</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		html,body{
+			height: 100%
+
+		}
+		li,ul,a{
+			text-decoration: none;
+			list-style: none;
+		}
+		#parent{
+			width: 100%;
+			height: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		#parent>img{
+			position: absolute;
+			
+		}
+		#parent ul{
+			position: absolute;
+			top: 60%;
+			left: 8%;
+		}
+		#parent li{
+			float:  left;
+			border: 5px solid #CCCCCC;
+			width: 200px;
+			height: 300px;
+			margin: 10px;
+			text-align: center;
+			line-height: 300px;
+			color: 	#EEEE00;
+			font-size: 20px;
+			position: relative;
+			cursor: pointer;
+			background: linear-gradient(0deg, #FFB6C1 20%, #FFB5C5 50%,#FFAEB9 80%);
+			z-index: 9999;
+		}
+		#son a{
+			position: absolute;
+			border:10px solid #F0FFFF;
+			border-radius: 50%;
+			width:150px;
+			height: 140px;
+			display: block;
+			top: -50px;
+			left: 16px;
+			overflow: hidden;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+		}
+		#son a img{
+			position: absolute;
+			top: 0px;
+			left:-10px;
+		}
+		#son a div{
+			position: relative;
+		}
+		#son a:hover div{
+			background: rgba(225,225,225,0.4);
+			z-index: 99;
+		}
+		.bg0:target{
+			z-index: 999;
+		}
+
+		@keyframes pinghua{
+			0%{
+				left:-1500px;
+			}	
+			100%{
+				left: 0;
+			}
+		}
+		#bg1:target{
+			animation:pinghua 1s 0s 1;
+		}
+		#bg2:target{
+			animation:XZ 1s 0s 1;
+		}
+		#bg3:target{
+			animation:Da 1s 0s 1;
+		}
+		@keyframes XZ{
+			0%{
+				transform:rotate(180deg);
+			}
+			100%{
+				transform:rotate(0deg);
+			}
+		}
+		@keyframes Da{
+			0%{
+				transform:scale(0);
+			}
+			100%{
+				transform:scale(1);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="parent">
+		
+		<img id="bg1"  class="bg0 pinghua" src="images/bg_1.jpg" >
+		<img id="bg2"  class="bg0 XZ" src="images/bg_2.jpg">
+		<img id="bg3"  class="bg0 Da" src="images/bg_3.jpg">
+		<ul id="son">
+			<li>
+
+				<a href="#bg1">
+					<img src="images/bg_1.jpg" width=180 height=140/>
+					<div style="width:200px;height:200px"></div>
+				</a>^初音未来^</li>
+			<li>
+				<a href="#bg2">
+					<img src="images/bg_2.jpg" width=180 height=140/>
+					<div style="width:200px;height:200px"></div>	
+				</a>
+				^小萝莉^</li>
+			<li>
+				<a href="#bg3" >
+					<img src="images/bg_3.jpg" width=180 height=140/>
+					<div style="width:200px;height:200px"></div>
+				</a>^小魔女^</li>
+		</ul>
+	</div>
+</body>
+</html>

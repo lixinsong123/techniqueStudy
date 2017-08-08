@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝幻灯片</title>
+	<script type="text/javascript" src="move.js"></script>
+	<style type="text/css">
+		body,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		#parent{
+			width: 580px;
+			height: 363px;
+			margin:  100px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#ul{
+			position: absolute;
+			height: 100%;
+
+		}
+		#ul>li{float: left;}
+		#ul img{
+			display: block;
+		}
+		#p_controller{
+			position: absolute;
+			bottom: 0;
+			left: 233px;
+		}
+		#p_controller span{
+			display: inline-block;
+			float: left;
+			width: 15px;
+			height: 15px;
+			background: #eeeeee;
+			margin-left: 10px;
+			border-radius: 10px;
+		}
+		#p_controller .active{
+			background: yellow;
+		}
+		#on_controller{
+			position: absolute;
+			width: 100%;
+			padding-top: 70px;
+			display: none;
+		}
+		#on_controller span{
+			font-size: 122px;
+			color: #eee;
+			cursor: pointer;
+			background: rgba(0,0,0,0.3);
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var ul = document.getElementById("ul");
+			var li = document.getElementsByTagName("li");
+			var ul_width = li.length*parseInt(getStyle(li[0],'width'));
+			ul.style.width = ul_width+"px";
+			var p  = document.getElementById("p_controller");
+			var span_son = p.getElementsByTagName("span");
+			var on_index=0;
+			for(var i=0;i<span_son.length;i++){
+				span_son[i].index =i;
+				span_son[i].onmouseover=function(){
+					for(var j=0;j<span_son.length;j++){
+						span_son[j].style.background="#eeeeee";
+					}
+					startMove(ul,{
+						"left" : -(this.index * parseInt(getStyle(li[0],'width')))
+					});
+					this.style.background="yellow";
+					on_index=this.index;
+				}
+			}
+			var parent = document.getElementById("parent");
+			var on_p   = document.getElementById("on_controller");
+			var on_span = on_p.getElementsByTagName("span");
+			parent.onmouseover=function(){
+				on_p.style.display = 'block';
+			}
+			parent.onmouseout=function(){
+				on_p.style.display = 'none';
+			}
+			for(var i=0;i<on_span.length;i++){
+				on_span[i].onmouseover=function(){
+				this.style.background="rgba(0,0,0,0.6)";
+				}
+				on_span[i].onmouseout=function(){
+					this.style.background="";
+				}
+			}
+			//左
+			on_span[0].onclick=function(){
+				startMove(ul,{
+						"left" : ul.offsetLeft+parseInt(getStyle(li[0],'width'))
+					});	
+
+				for(var j=0;j<span_son.length;j++){
+						span_son[j].style.background="#eeeeee";
+					}
+					on_index=on_index-1;
+					span_son[on_index].style.background="yellow";
+					
+			}
+			//右
+			on_span[1].onclick=function(){
+				startMove(ul,{
+						"left" : ul.offsetLeft-parseInt(getStyle(li[0],'width'))
+					});
+				for(var j=0;j<span_son.length;j++){
+						span_son[j].style.background="#eeeeee";
+					}
+					on_index=on_index+1;
+					span_son[on_index].style.background="yellow";		
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul id="ul">
+			<li><img src="../images/huan_1.jpg" alt=""></li>
+			<li><img src="../images/huan_2.jpg" alt=""></li>
+			<li><img src="../images/huan_3.jpg" alt=""></li>
+			<li><img src="../images/huan_4.jpg" alt=""></li>
+			<li><img src="../images/huan_5.jpg" alt=""></li>
+			
+		</ul>
+		<p id="p_controller">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+		</p>
+		<p id="on_controller">
+			<span style="float:left"><</span>
+			<span style="float:right">></span>
+		</p>
+	</div>
+</body>
+</html>

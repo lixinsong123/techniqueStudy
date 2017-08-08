@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<ul>
+		<li ng-repeat = "item in list |orderBy : 'age':'' | limitTo : '3'">
+			{{item.name+" "+item.age+" "+item.score}}
+		</li>
+	</ul>
+	<ol>
+		<li ng-repeat = "item in list |orderBy : 'score':'true' | limitTo : '3'">
+			{{item.name+" "+item.age+" "+item.score}}
+		</li>
+	</ol>
+	<script>
+		var md = angular.module("myApp",['ng']);
+			md.controller("myCtrl",function($scope){
+					$scope.list = [
+						{
+							'name' : "vue",
+							'age'  : 7,
+							"score": 300
+						},
+						{
+							'name' : "rect",
+							'age'  : 12,
+							"score": 800
+						},
+						{
+							'name' : "angular",
+							'age'  : 9,
+							"score": 600
+						},
+						{
+							'name' : "jquert",
+							'age'  : 14,
+							"score": 400
+						},
+						{
+							'name' : "redux",
+							'age'  : 3,
+							"score": 500
+						}
+					];
+			});
+	</script>
+</body>
+</html>

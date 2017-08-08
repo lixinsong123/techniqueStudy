@@ -1,0 +1,8 @@
+
+@mixin border-radius($radius){
+	-webkit-border-radius:$radius;
+	border-radius:$radius;
+}
+ul{
+	@include border-radius(3px);
+}

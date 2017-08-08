@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+   	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+</head>
+	<style>
+		#dowebok .one{
+			width: 100%;
+			height: 100%;
+			position:relative;
+		}
+		#dowebok .one .bg{
+			width: 100%;
+			height: 100%;
+			position:absolute;
+			left: 0px;
+			top:0px;
+			z-index: -999;
+		}
+		#dowebok .logo_emil{
+			background:url(images/logo.png) 50% 0 no-repeat;
+			width: 400px;
+			height: 30px;
+			position: absolute;
+			top: -50px;
+			left:750px;
+			transition:all 1s;
+		}
+		#dowebok .rgroup{
+			width: 580px;
+			height: 180px;
+			background: url(images/slogan.png) no-repeat ;
+			transition:all 1s;
+			opacity:1;
+			background-size: 100% 100%;
+			transform: scaleX(1) scaleY(1);
+			margin: 0 auto;
+		}
+		#dowebok .one_qi{
+			width: 1383px;
+			height: 377px;
+			background: url(images/bg13.png) no-repeat; 
+			position: absolute;
+			bottom: 0px;
+			left:300px;
+			z-index: 801;
+			transition:all 1s;
+		}
+		#dowebok .tow_qi{
+			width: 1383px;
+			height: 400px;
+			background: url(images/bg12.png) no-repeat; 
+			position: absolute;
+			bottom: 100px;
+			left: 310px;
+			z-index: 800;
+			transition:all 2s;
+
+		}
+	</style>
+<body>
+	<div id="dowebok">
+		<div class="section one" style="overflow:hidden">
+			<div class="bg">
+				<img src="images/section1.jpg" style="display:block;width:100%;height:100%"/>
+			</div>
+			<div class="logo_emil">
+				
+			</div>
+			<div class="rgroup">
+				
+			</div>
+			<p class="p" style="color:white;font-size:13px;display:block;text-align:center;padding-top:30px">
+				网易邮箱6.0版——2014年最具创意气质的重量级新邮箱，重生光华，为之瞩目。唯美
+				<br>
+				的视觉设计和视觉化交互，无可替代的独创动态情景皮肤，多项国内创意产品专利技术,
+				<br>
+				成就无与伦比的出众品味，无可比拟的美妙体验。
+			</p>
+			<div class="one_qi">
+			</div>
+			<div class="tow_qi">
+			</div>
+		</div>
+		<div class="section">
+			<h2>这是第二屏</h2>
+				<p>这是滚动一屏的内容</p>
+		</div>
+		<div class="section">
+
+			<h3>这是第三屏</h3>
+				<p>这是滚动一屏的内容</p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("#dowebok").fullpage({
+		afterRender:function(){
+			$(".logo_emil").css("top","20px");
+			
+		},
+		afterLoad:function(anchorLink,index){
+			if(index==1){
+				$(".logo_emil").css("top","20px");
+				$(".one_qi").css("bottom","0px");
+				$(".tow_qi").css("bottom","100px");
+				$(".rgroup").animate({
+					width:'200px',
+					height:'60px',
+					opacity:0.2
+				},500,function(){
+
+					$(".rgroup").css('transform','scaleX(0.2) scaleY(0.2)');
+
+					
+				});
+				$(".rgroup").animate({
+					width:'400px',
+					height:'120px',
+					opacity:0.5
+				},500,function(){
+					$(".rgroup").css('transform','scaleX(0.6) scaleY(0.6)');
+				});
+				$(".rgroup").animate({
+					width:'580px',
+					height:'180px',
+					opacity:1
+				},500,function(){
+					$(".rgroup").css('transform','scaleX(1) scaleY(1)');
+				});
+
+				$(".p").fadeIn(8000);
+			}	
+		},
+		onLeave:function(index,nextIndex,direction){
+			$(".logo_emil").css("top","-50px");
+			$(".one_qi").css("bottom","-400px");
+			$(".tow_qi").css("bottom","-600px");
+			$(".rgroup").animate({
+					opacity:0.2,
+					width:"0px",
+					height:"0px"
+				})
+			$(".p").fadeOut(100);
+
+		}
+	});
+</script>
+
+</html>

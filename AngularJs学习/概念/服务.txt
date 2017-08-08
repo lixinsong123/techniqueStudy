@@ -1,0 +1,36 @@
+								服务
+	在ng中服务是一种单例对象，所谓单例，服务在每一个应用中只会被实例化一次。
+	功能:为应用提供数据和对象。
+	两大类 : 
+			a.内置的服务。
+			b.自定义服务。
+	如果在控制器中，‘使用’ng中内置的服务，需要在控制器的回调函数中，将
+	对应的服务给‘注入进来’，就可以使用服务了。
+	md.controller("myCtrl",function($scope,$location){
+				$scope.url='';
+				$scope.getUrl=function(){
+					$scope.url=$location.absUrl();
+				}
+	});
+	内置的服务($http,$interval,$timeout)
+		a.双向数据绑定的工作原理
+		<p>{{num}}</p>===>ng框架自动添加一个监听(watch),和$scope . 
+		$watch是一样的，只要是数据发生了变化，视图就会更新。
+		？？？
+		如何知道数据是否发生了变化?
+		ng会周期性的运行一个函数来检查$scope的模型数据是否发生变化,
+		称之为$digest===>$scope.$digest()
+
+		什么时候才会调用$digest()?
+		ng指令，很少直接手工调用$digest(),都是$scope.$apply()=====>
+		$rootScope.$digest()
+
+		setInterval是原生js的功能，本身就是一个循环，需要我们手工调用
+		$scope 
+
+	AJAX调用:$http服务器发起AJAX请求，异步的获取服务器端返回的数据，声明为模型数据，在视图中展现出来。
+
+	$http.get('url').success(function(data){...});
+	$http.defaults.headers.post = {'Content-Type':'application/x-
+	www-form-urlencoded'};
+	$http.post('url',data).success(function(data){...})

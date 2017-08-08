@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享到----基础运动</title>
+	<style type="text/css">
+		#div1{
+			width: 100px;height: 200px;background: pink;position: absolute;
+			top: 100px;left: -100px;
+		}
+		#div2{
+			width: 30px;
+			height: 70px;
+			position: absolute;left: 100px;top: 70px;background: black;
+			color: white;
+			text-align: center;
+		}
+		#img1{
+			margin-left:300px;
+			opacity: 0.3;
+			filter:alpha(opacity=30);
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+				var div1 = document.getElementById("div1");
+				var setTime=null;
+				div1.onmouseover=function(){
+					console.log("1");
+					startMove(this,0,10);
+				}
+				div1.onmouseout=function(){
+					console.log("2");
+					startMove(this,-100,-10);
+				}
+				function startMove(obj,target,dir){
+					 clearInterval(setTime);
+					 setTime=setInterval(function(){
+					 	if(obj.offsetLeft==target){
+					 		clearInterval(setTime);
+					 	}else{
+					 		obj.style.left=obj.offsetLeft+dir+'px';
+					 	}
+					 },30);
+				}
+				var img1 = document.getElementById("img1");
+				img1.onmouseover=function(){
+					startMove1(100,10);
+				}
+				img1.onmouseout=function(){
+					startMove1(30,-10);
+				}
+				function startMove1(target,dir){
+					 clearInterval(setTime);
+					 setTime=setInterval(function(){
+					 	var iCur =Math.round(getStyle(img1,'opacity')*100);
+					 	if(iCur==target){
+					 		clearInterval(setTime);
+					 	}else{
+					 		img1.style.opacity=(iCur+dir)/100;
+					 		img1.style.filter='alpha(opacity='+(iCur+dir)+')';
+					 	}
+					 },30);
+				}
+		}
+				//获取样式的值
+	function getStyle ( obj, attr ){ 
+		return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr];
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">分享到</div>
+	</div>
+	<img id="img1" src="../images/scenery_16.jpg"/>
+</body>
+</html>

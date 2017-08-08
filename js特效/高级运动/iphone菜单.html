@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iphone菜单</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		#parent{
+			width: 580px;
+			height: 363px;
+			margin: 0 auto;
+			top: 300px;
+			position: relative;
+			overflow: hidden;
+		}
+		ul{
+			width: 500%;
+			height: 363px;
+			position:  absolute;
+			top:0px;
+			left:0px;
+		}
+		li{
+			width: 580px;
+			height: 363px;
+			float: left;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+				var ul = document.getElementById("start");
+				var lis = ul.getElementsByTagName("li");
+				
+				var iNow  =0;
+				ul.onmousedown=function(ev){
+
+					var ev = ev||window.event;
+					//元素到鼠标的距离
+					var zhi = event.clientX;
+					var disX = ev.clientX-this.offsetLeft;
+				  document.onmousemove=function(ev){
+				  	clearInterval(Timer);
+				  	var ev  = ev ||window.event;
+				  	var  a  = ev.clientX-disX;
+				  	ul.style.left=a+"px";
+				  }
+				  document.onmouseup=function(ev){
+				  	var newzhi = ev.clientX;
+				  	document.onmousemove=document.onmouseup=null;
+				  	if(newzhi-zhi<0){
+				  		if(iNow!=lis.length-1){
+				  			iNow++;
+				  		}
+				  		startMove(-lis[0].offsetWidth*iNow);
+				  	}else{
+				  		
+				  		if(iNow!=0){
+				  			iNow--;
+				  		}
+				  		startMove(-lis[0].offsetWidth*iNow);
+				  	}
+				  }
+				  return false;
+				}
+				var Timer=null;
+			var iSpeed=0;
+			function startMove(target){
+				clearInterval(Timer);
+				Timer=setInterval(function(){
+					iSpeed+=(target-ul.offsetLeft)/5
+					iSpeed*=0.7;
+					if(Math.abs(iSpeed)<=1&&Math.abs(target-ul.offsetLeft)<=1){
+							clearInterval(Timer);
+							ul.style.left=target+"px";
+							iSpeed=0;
+					}else{
+					ul.style.left=ul.offsetLeft+iSpeed+"px";
+					}
+				},30)
+		}
+		}
+		
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul id="start">
+			<li><img src="../images/huan_1.jpg"></li>
+			<li><img src="../images/huan_2.jpg"></li>
+			<li><img src="../images/huan_3.jpg"></li>
+			<li><img src="../images/huan_4.jpg"></li>
+			<li><img src="../images/huan_5.jpg"></li>
+		</ul>
+	</div>
+</body>
+</html>

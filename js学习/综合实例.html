@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>综合实例</title>
+	<script src="miaov.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			width: 1000px;
+			height:400px;
+			border-top: 6px solid #737373;
+		}
+		#parent>ul>li{
+			float: left;
+			width: 246px;
+			height: 400px;
+			border-right: 4px solid #EAEAEA;
+			position: relative;
+
+		}
+		#parent>ul>li div input{
+			margin-left: 21px;
+			background-color:#E5E5E5;
+			border: none;
+			height: 22px;
+			width: 180px;
+		}
+		#parent>ul>li div strong{
+			color: #EE7600;
+			cursor: pointer; 
+		}
+		#parent>ul>li div span{
+			margin-left: 30px;
+			color: 	#C4C4C4;
+		}
+		#parent>ul>li div span i{
+			font-style:normal;
+			font-size:20px;
+			color: 	#949494;
+		}
+		#parent>ul>li div img{
+			padding: 20px 31px;
+		}
+		#reval{
+			padding-top: 50px;
+		}
+		#reval  li{
+			float: left;
+			height: 40px;
+			width: 250px;
+			text-align: center;
+			line-height: 40px;
+			color: 	#CD6600;
+			font-size: 18px;
+
+		}
+		
+	</style>
+	<script src="miaov.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			
+		}
+		/**
+		*
+		*倒计时函数
+		*/
+		var zongji= 0;
+		function start(a){
+				//上一次确定是否执行完毕
+				
+				var panduan = false;
+				if(panduan==true){
+					return;
+				}
+				panduan=true;
+				var parent = document.getElementById("parent");
+				var son    = parent.getElementsByTagName("ul")[0];
+
+				var liList = son.getElementsByTagName("li");
+
+				var content = liList[a].getElementsByTagName("div")[1];
+
+				var newText = content.getElementsByTagName("input")[0];
+				var timeText= newText.value;
+				//获取未来的时间
+				var newTime = new Date(timeText);
+				
+				var span = document.getElementsByTagName("span")[a];
+				var iday =span.getElementsByTagName("i")[0];
+				var ihours=span.getElementsByTagName("i")[1];
+				var iminutes=span.getElementsByTagName("i")[2];
+				var iseconds=span.getElementsByTagName("i")[3];
+				var setTime=setInterval(function(){
+						//获取现在的时间
+					var nowTime=new Date();
+					//获取时间差
+					var t =Math.floor(newTime-nowTime)/1000;
+					if(t>=0){
+						//天
+						var day =Math.floor(t/86400);
+							day = day>=10?day:'0'+day;
+						//时
+						var hours =Math.floor(t%86400/3600);
+							hours = hours>=10?hours:'0'+hours;
+						//分
+						var minutes= Math.floor(t%86400%3600/60);
+							minutes = minutes>=10?minutes:'0'+minutes;
+						//秒
+						var seconds =Math.floor(t%60);
+							seconds = seconds>=10?seconds:'0'+seconds;
+						iday.innerHTML=day;
+						ihours.innerHTML=hours;
+						iminutes.innerHTML=minutes;
+						iseconds.innerHTML=seconds;
+					}else{
+						panduan=false;
+						//变化开始执行var content = liList[a].getElementsByTagName("div")[1];
+						//需要抖动的对象，抖动的频率,帧数,方向,初始位置
+						shake(content,20,3,'left',0);
+						//让层上下左右移动 ，参数   标签对象，上/下/左/右,终点距离,回调函数 
+						doMove ( content, 'bottom', 5, -350);
+						//透明函数,对象，速度，目标点,改变频率,回调函数
+						diaphaneity(content,30,0,150)
+						//让div显示
+						setTimeout(function(){
+							var showP = document.getElementById("reval");
+							var shows = showP.getElementsByTagName("div")[a+1];
+							var cli = shows.getElementsByTagName("li")[1];
+							shows.style.display="block";
+							var setcountP=document.getElementById("count");
+							var setcount=setcountP.getElementsByTagName("em")[0];
+							zongji=zongji+parseFloat(cli.innerHTML,2);
+							setcount.innerHTML=zongji;
+						},1000);
+						
+						clearInterval(setTime);
+					}
+				},1000);
+			}
+	</script>
+</head>
+<body>
+
+	<div style="margin:0 auto;width:1000px;height:1000px;">
+		<em style="color:#FFA500;font-size:30px">限时抢购</em>
+		<div id="parent">
+			<ul>
+				<li>
+					<!--背景盒子-->
+					<div style="position:absolute;background:
+					#EAEAEA;width:246px;height:400px;z-index:-9;text-align:center;font-size:40px;color:#EE7621;line-height:400px;">
+						商品已下架
+					</div>
+					<!--内容盒子-->
+					<div style="background:white;position: relative;"  >
+						<div>
+							<input type="text"  value="May,9,2017 09:53:20"/>
+							<strong onclick="start(0)">确定</strong>
+						</div>
+						<div style="padding-top:10px">
+							<span>
+								剩余<i>00</i>天<i>00</i>时<i>00</i>分<i>00</i>秒
+							</span>
+						</div>
+						<div>
+							<img src="images/one_1.jpg" width=180 higth=300/>
+						</div>
+						<div style="width:246px;height:120px">
+							<p style="color:#D1D1D1;margin-left:5px">美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱</p>
+							<p style="color:#D3D3D3;margin-left:5px">抢购价￥<em style="color:#EE7942;font-size:35px">179.00</em></p> 
+						</div>
+					</div>
+				</li>
+				<li>
+					<!--背景盒子-->
+					<div style="position:absolute;background:
+					#EAEAEA;width:246px;height:400px;z-index:-9;text-align:center;font-size:40px;color:#EE7621;line-height:400px;">
+						商品已下架
+					</div>
+					<!--内容盒子-->
+					<div style="background:white;position: relative;"  >
+						<div>
+							<input type="text" value="May,9,2017 10:17:50" />
+							<strong onclick="start(1)">确定</strong>
+						</div>
+						<div style="padding-top:10px">
+							<span>
+								剩余<i>00</i>天<i>00</i>时<i>00</i>分<i>00</i>秒
+							</span>
+						</div>
+						<div>
+							<img src="images/one_2.jpg" width=180 higth=300/>
+						</div>
+						<div style="width:246px;height:120px">
+							<p style="color:#D1D1D1;margin-left:5px">美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱</p>
+							<p style="color:#D3D3D3;margin-left:5px">抢购价￥<em style="color:#EE7942;font-size:35px">99.00</em></p> 
+						</div>
+					</div>
+				</li>
+				<li>
+					<!--背景盒子-->
+					<div style="position:absolute;background:
+					#EAEAEA;width:246px;height:400px;z-index:-9;text-align:center;font-size:40px;color:#EE7621;line-height:400px;">
+						商品已下架
+					</div>
+					<!--内容盒子-->
+					<div style="background:white;position: relative;"  >
+						<div>
+							<input type="text" value="May,9,2017 10:17:50" />
+							<strong onclick="start(2)">确定</strong>
+						</div>
+						<div style="padding-top:10px">
+							<span>
+								剩余<i>00</i>天<i>00</i>时<i>00</i>分<i>00</i>秒
+							</span>
+						</div>
+						<div>
+							<img src="images/one_3.jpg" width=180 higth=300/>
+						</div>
+						<div style="width:246px;height:120px">
+							<p style="color:#D1D1D1;margin-left:5px">美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱</p>
+							<p style="color:#D3D3D3;margin-left:5px">抢购价￥<em style="color:#EE7942;font-size:35px">158.00</em></p> 
+						</div>
+					</div>
+				</li>
+				<li style="border-right:none;"><!--背景盒子-->
+					<div style="position:absolute;background:
+					#EAEAEA;width:246px;height:400px;z-index:-9;text-align:center;font-size:40px;color:#EE7621;line-height:400px;">
+						商品已下架
+					</div>
+					<!--内容盒子-->
+					<div style="background:white;position: relative;"  >
+						<div>
+							<input type="text" value="May,9,2017 10:17:50" />
+							<strong onclick="start(3)">确定</strong>
+						</div>
+						<div style="padding-top:10px">
+							<span>
+								剩余<i>00</i>天<i>00</i>时<i>00</i>分<i>00</i>秒
+							</span>
+						</div>
+						<div>
+							<img src="images/one_4.jpg" width=180 higth=300/>
+						</div>
+						<div style="width:246px;height:120px">
+							<p style="color:#D1D1D1;margin-left:5px">美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱</p>
+							<p style="color:#D3D3D3;margin-left:5px">抢购价￥<em style="color:#EE7942;font-size:35px">119.00</em></p> 
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="reval" >
+			<div  style="background:#D3D3D3;width:1000px;height:40px">
+				<ul>
+					<li>
+						商品名称
+					</li>
+					<li>
+						价格
+					</li>
+					<li>
+						
+					</li>
+					<li>
+						
+					</li>
+				</ul>
+			</div>
+			<div  style="background:#D3D3D3;width:1000px;height:100px;margin-top:5px;display:none">
+				<ul>
+					<li style="color:black;font-size:15px;height:100px;line-height: 100px;	overflow: hidden;">
+						美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱
+					</li>
+					<li style="color:#CD4F39;height:100px;line-height: 100px;">
+						179.00
+					</li>
+					<li style="width:400px;text-align:right;height:100px;line-height: 100px;">
+						<img style="border:1px solid red;margin-top:4px" src="images/one_1.jpg" width=90 heigth=90/>
+					</li>
+				</ul>
+			</div>
+			
+			<div  style='background:#D3D3D3;width:1000px;height:100px;margin-top:5px;display:none'>
+				<ul>
+					<li style='color:black;font-size:15px;height:100px;line-height: 100px;	overflow: hidden;'>
+						美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱
+					</li>
+					<li style='color:#CD4F39;height:100px;line-height: 100px;'>
+						99.00
+					</li>
+					<li style='width:400px;text-align:right;height:100px;line-height: 100px;'>
+						<img style="border:1px solid red;margin-top:4px" src="images/one_2.jpg" width=90 heigth=90/>
+					</li>
+				</ul>
+			</div>
+			<div  style='background:#D3D3D3;width:1000px;height:100px;margin-top:5px;display:none'>
+				<ul>
+					<li style='color:black;font-size:15px;height:100px;line-height: 100px;	overflow: hidden;'>
+						美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱
+					</li>
+					<li style='color:#CD4F39;height:100px;line-height: 100px;'>
+						99.00
+					</li>
+					<li style='width:400px;text-align:right;height:100px;line-height: 100px;'>
+						<img style="border:1px solid red;margin-top:4px" src="images/one_3.jpg" width=90 heigth=90/>
+					</li>
+				</ul>
+			</div>
+			<div  style='background:#D3D3D3;width:1000px;height:100px;margin-top:5px;display:none'>
+				<ul>
+					<li style='color:black;font-size:15px;height:100px;line-height: 100px;	overflow: hidden;'>
+						美的(Midea)BCD-169CM(E) 169升 爆款升级 时尚新外观 低温不停机节能静音 家用冰箱 	两门小冰箱
+					</li>
+					<li style='color:#CD4F39;height:100px;line-height: 100px;'>
+						99.00
+					</li>
+					<li style='width:400px;text-align:right;height:100px;line-height: 100px;'>
+						<img style="border:1px solid red;margin-top:4px" src="images/one_4.jpg" width=90 heigth=90/>
+					</li>
+				</ul>
+			</div>
+			
+			<div id="count" style="margin:10px;font-size:30px">
+				<b>总计:<em style="color:#CD3333">0.00</em> 元</b>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+						常用函数(所属与ng中的function)
+		forEach
+		uppercas/lowercase
+		tojson/fromjson
+		序列化   : 将一个json对象转换为json格式的字符串
+		反序列化 : 将一个json格式的字符串转换为json格式的对象

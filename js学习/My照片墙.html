@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My照片墙</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			width: 830px;
+			height: 600px;
+			margin-top:50px;
+		}
+		#parent li{
+			float: left;
+			height: 250px;
+			margin: 10px;
+			width: 250px;
+		}
+	</style>
+	<script type="text/javascript">
+		/**
+		*
+		*将浮动布局转换为绝对定位布局
+		*/
+
+		window.onload=function(){
+			var parent = document.getElementById("parent");
+			var son    = document.getElementsByTagName("li");
+			var start1=document.getElementById("start");
+			var lastindex=0;
+			var arr=[];
+			//存储定位前的li的left,top值。
+			for(var i=0;i<son.length;i++){
+				arr.push([son[i].offsetLeft,son[i].offsetTop]);
+				son[i].index=i;
+			}
+			//转换为定位，并赋值
+			for(var i=0;i<son.length;i++){
+				son[i].style.position="absolute";
+				son[i].style.left=arr[i][0]+"px";
+				son[i].style.top =arr[i][1]+"px";
+				son[i].style.margin=0;
+			}
+			for(var i=0;i<son.length;i++){
+				drag(son[i]);;
+			}
+				//返回一个X-Y之间的随机数
+				function stochastic(x,y){
+					//四舍五入和0-1之间的随机数
+					return Math.round(Math.random()*(y-x)+x);
+				}
+			//-----待改进,随机移动有问题，------
+			start1.onclick=function(){
+				var arr1 =[0,1,2,3,4,5,6,7,8];
+				var temp=0;
+				var newarr=arr1.sort(function(a,b){
+					return Math.random()-0.5;
+				});
+				//alert(newarr); 2,0,3,4,7,8,5,6,1
+				//console.log(kleft+":"+ktop);
+				var kleft=0;
+				var ktop=0;
+
+				for(var i=0;i<son.length;i++){	
+					
+					kleft=arr[newarr[i]][0];
+					 ktop=arr[newarr[i]][1];
+					
+					 console.log(kleft+":"+ktop);
+					startMove(son[i],{'left':kleft,'top':ktop});
+						
+					
+						
+					son[i].index=newarr[i];
+					
+					
+
+				}
+			}
+	//改进版------移动函数
+	function startMove ( obj,json, endFn ){
+
+		clearInterval( obj.timer );
+		
+		var a= false;
+		var b=false;
+		obj.timer = setInterval(function () {
+			var dir=13;
+		for(var attr in json){
+		var target=json[attr];
+		dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
+
+			var speed = parseInt(getStyle( obj, attr )) + dir;			// 步长
+				
+			if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+					speed = target;
+				
+				
+			}
+			obj.style[attr] = speed + 'px';
+			if ( speed == target&&attr=='left') {
+					a=true;
+			}else if(speed == target&&attr=='top'){
+					b=true;
+			}
+
+			if(a&&b){
+				clearInterval(obj.timer);
+				endFn&&endFn();
+			}
+		}
+			
+		}, 30);
+	
+}
+			//拖拽函数
+			function drag(obj){
+				var disX=0;
+				var disY=0;
+				++lastindex;
+				obj.onmousedown = function(ev){
+					obj.style.zIndex=lastindex;
+					var ev = ev||window.event;
+					disX = ev.clientX - obj.offsetLeft;
+					disY = ev.clientY - obj.offsetTop;
+					
+						document.onmousemove = function(ev){
+							var ev = ev||window.event;
+							
+							obj.style.left=ev.clientX - disX + "px";
+							obj.style.top =ev.clientY - disY + "px";
+						
+							/*碰撞测试
+						 	for(var i =0;i<son.length;i++){
+						 	if(impectCheck(obj,son[i])&&obj!=son[i]){
+								son[i].style.border="3px solid red";
+							}else{
+								son[i].style.border="";
+							}
+						}
+						*/
+							//清楚所有样式
+							for(var i =0;i<son.length;i++){
+								son[i].style.border=" ";
+							}
+							var oLi= nearLi(obj);
+							/*
+							*这里的值有问题!
+							*/
+							
+								oLi.style.border="3px solid red";
+							
+							
+
+						
+					};
+					document.onmouseup = function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+						
+							//交换位置
+							//最近的li
+							var oLi= nearLi(obj);
+							var temp=0;
+
+						//拖拽的值
+						var nowleft =arr[obj.index][0];
+						var nowtop = arr[obj.index][1];
+
+						
+						if(oLi){
+							//被碰撞的值
+							var newleft =arr[oLi.index][0];
+							var newtop = arr[oLi.index][1]
+							//console.log(arr[obj.index][1])
+							//console.log(arr[oLi.index][1])
+							//alert(arr[oLi.index][0]);
+							//console.log(oLi)
+							doMove( oLi, 'left', 50, nowleft,function(){
+								//console.log(oLi)
+								doMove( oLi, 'top', 50,nowtop ,function(){
+										//console.log(oLi)
+								});
+							});
+							doMove( obj, 'left', 50, newleft,function(){
+								doMove( obj, 'top', 50, newtop,function(){
+									
+								});
+							});
+							//console.log(oLi.index);
+						
+								//console.log(obj.index);
+							//清楚样式
+							oLi.style.border="";
+							//交换索引
+							temp=oLi.index;
+							oLi.index=obj.index;
+							obj.index=temp;
+							//console.log(obj.index);
+						}else{
+							doMove( obj, 'left', 50, nowleft,function(){
+								doMove( obj, 'top', 50, nowtop);
+							});
+						}
+						
+					};
+					return false;
+				};
+			}
+
+					//找出最近的li
+				function nearLi(obj){
+					var min=9999;
+					var index=-1;
+					for(var i=0;i<son.length;i++){
+
+						if(impectCheck(obj,son[i])&&obj!=son[i]){
+							var c =range(obj,son[i]);
+							if(c<min){
+								min=c;
+								index=i;
+							}
+						}
+					}
+					//判断是否碰撞了。
+					var arr = index!=-1?son[index]:false;
+					return arr ;
+				}
+
+		}
+		//获取样式的值
+	function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+	//勾股定理找出斜边---->最近的li
+		function range(obj1,obj2){
+
+			var a=obj1.offsetLeft-obj2.offsetLeft;
+			var b=obj1.offsetTop-obj2.offsetTop;
+
+			return Math.sqrt(a*a+b*b);
+
+		}
+		
+		//碰撞检测函数
+		function impectCheck(obj1,obj2){
+			var L1 = obj1.offsetLeft;
+			var R1 = obj1.offsetLeft+obj1.offsetWidth;
+			var T1 = obj1.offsetTop;
+			var B1 = obj1.offsetTop+obj1.offsetHeight;
+
+			var L2 = obj2.offsetLeft;
+			var R2 = obj2.offsetLeft+obj2.offsetWidth;
+			var T2 = obj2.offsetTop;
+			var B2 = obj2.offsetTop+obj2.offsetHeight;
+			if(L2>R1||L1>R2||T2>B1||T1>B2){
+				return false;
+			}else{
+				return true;
+			}
+		}
+		//移动函数
+function doMove ( obj, attr, dir, target, endFn ) {
+	var target=target;
+	dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
+	
+	clearInterval( obj.timer );
+	
+	obj.timer = setInterval(function () {
+		
+		var speed = parseInt(getStyle( obj, attr )) + dir;			// 步长
+		
+		if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+			speed = target;
+		}
+		
+		obj.style[attr] = speed + 'px';
+		
+		if ( speed == target) {
+			clearInterval( obj.timer );
+			
+			/*
+			if ( endFn ) {
+				endFn();
+			}
+			*/
+			endFn && endFn();
+			
+		}
+		
+	}, 30);
+}
+	</script>
+</head>
+<body>
+	<div id="start" style="background:#698B22;width:120px;height:50px;cursor: pointer;text-align:center;line-height:50px;position: absolute;top:2px;left:45%">
+		<b>打乱顺序</b>
+	</div>
+	<ul id="parent">
+		<li><img src="images/PX_5.jpg"/></li>
+		<li><img src="images/PX_6.jpg"/></li>
+		<li><img src="images/PX_7.jpg"/></li>
+		<li><img src="images/PX_8.jpg"/></li>
+		<li><img src="images/PX_9.jpg"/></li>
+		<li><img src="images/PX_10.jpg"/></li>
+		<li><img src="images/PX_11.jpg"/></li>
+		<li><img src="images/PX_12.jpg"/></li>
+		<li><img src="images/PX_13.jpg"/></li>
+
+	</ul>
+</body>
+</html>

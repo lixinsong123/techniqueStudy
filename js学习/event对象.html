@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function init(){
+			var a =document.getElementById("arm");
+			a.style.width="100%";
+			a.style.height="300px";
+			a.style.background="black";
+			a.style.cursor="crosshair";
+		}
+		function move(e){
+			var ax=document.getElementById("xx");
+			var ay=document.getElementById("yy");
+
+			ax.value=e.clientX;
+			ay.value=e.clientY;
+		}
+		function leave(){
+			var ax=document.getElementById("xx");
+			var ay=document.getElementById("yy");
+
+			ax.value="0.0";
+			ay.value="0.0";
+		}
+	</script>
+</head>	
+<body onload="init()">
+	<div id="arm" onmousemove="move(event)" onmouseout="leave()"></div>
+	X:<input type="text" value="0.0" id="xx"/>
+	Y:<input type="text" value="0.0" id="yy">
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp2">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<dir ng-controller="myCtrl">
+		<button ng-click="funcClick()">ClickMe</button>
+	</dir>
+	<script>
+			var md1 = angular.module("myApp1",['ng']);
+				md1.factory('$custom',function(){
+					return {
+						show:function(){
+							console.log('$custom service'+
+								"show method is called")
+						}
+					}
+				});
+			var md2 = angular.module("myApp2",['ng','myApp1']);
+				md2.controller('myCtrl',['$scope','$custom',function($scope,$custom){
+						$scope.funcClick = function(){
+									$custom.show();
+						}
+				}]);
+	</script>
+</body>
+</html>

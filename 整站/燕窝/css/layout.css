@@ -1,0 +1,87 @@
+body,ul,li,p{margin: 0;padding: 0}
+li{list-style: none;}
+a{text-decoration: none;}
+/*public*/
+.clear:after{content: '';display: block;clear: both;}
+.clear{*zoom:1;}
+.maxWidth{width: 100%}
+.center{margin: 0 auto}
+.core{width: 1200px}
+.maxHeight{height: 100%}
+.Relative{position:relative}
+.Absolute{position: absolute}
+.a_inbl{display: inline-block;}
+.block{display: block;}
+.left{float: left;}
+.right{float: right;}
+.t_aligh{text-align: center;}
+.border_img{border: none;}
+/*private*/
+/*头部*/
+#header .heared_bg{margin-left: 155px;margin-right: 73px}
+/*导航*/
+.nav{height: 29px;background: #672a09;}
+.nav_view{width: 770px}
+.nav_view>li{width: 110px;height: 100%;float: left;}
+.nav_view>li>a{font-size: 13px;color: #ffffff;display: block;line-height: 29px;height: 100%;width: 100%;text-align: center;}
+.nav_view>li>a.active{background: #ff0000}
+.nav_view>li:hover{background: #ff0000}
+.collect{background: url(../images/collect.png);width: 201px;height: 44px;right: 183px;top: -11px;}
+.collect>a{margin-top: 4px;}
+/*bar图*/
+.bar{height: 577px;padding-top: 85px;padding-bottom: 39px;overflow: hidden;}
+.bar_bg{top:110px;}
+.favourable{bottom: 9px;left: 295px;width: 624px;height: 76px}
+.favourable>li{background: #672a09;width: 136px;height: 100%;margin-right: 20px;}
+.favour_span{display:inline-block;float: left;height: 100%}
+.fas_left{width: 71px}
+.fas_right{width: 65px}
+.favour_b{color: #ffd800;font-size: 12px;float: left;margin-left: 3px;margin-top: 36px}
+.favour_strong{color: #ffd800;font-size: 24px;float: left;margin-top: 26px}
+.favour_p{padding-top: 19px;width: 100%;height: 26px;padding-left: 3px}
+.favour_p_b{color: #ffffff;font-size: 12px;display: block;}
+.favour_button{height: 15px;padding: 3px 2px 0px 3px;width: 59px}
+.rect_button{display:block;height: 100%;width: 100%;background: #ff0000}
+.rect_button>a{display: block;height: 100%;width: 100%;color: #ffffff;font-size: 11px;text-align: center;font-weight:bold}
+/*Shop explosion 店内爆款*/
+.shop_explosion{height: 437px;}
+.explosion_bg{top: -114px;left: 0;z-index: -1;}
+.shop_explosion .core{height: 421px;}
+.shop_explosion .explosion_show{ padding-top: 56px;width: 1000px;height: 321px}
+.rect_show{float: left;width: 250px;height: 100%;text-align: center;}
+.rect_show img{border: none;}
+/*更多产品*/
+.more_product{height: 466px;padding-bottom: 86px}
+.more_product .core{background: #f6e3d8}
+.product_title{height: 98px;padding-top: 9px;}
+.product_title .title{background: #672a09;}
+.product_title .title>img{position: absolute;}
+.title_bg_1{right: 164px;top: -33px}
+.title_bg_2{top: -195px;right: -149px;z-index: -1}
+.title_bg_3{bottom: -409px;left: -154px;z-index: -1;}
+.product_show{width: 1105px;padding-top: 23px;height: 335px;}
+.product_one{width: 265px;height: 100%;}
+.product_two{width: 346px;height: 100%;padding-left: 157px;padding-right: 72px}
+.pimg_title{display:block;width: 100px;height: 24px;background: #672a09;text-align: center;line-height: 24px}
+.pimg_title strong{color: white;font-size: 19px}
+.product_show p{color: #672a09;font-size: 13px}
+.minute_top{padding-top: 5px}
+.minute_body{padding-top: 20px}
+/*购物商城*/
+.shopping_mall{height: 994px;position: relative;}
+.shopping_mall_bg{position: absolute;top: -86px;left: -354px;z-index: -2;}
+.shopping_link{position: absolute;left: 0;top: 0}
+.shopping_show_top{width: 1146px;height: 565px;padding-left: 57px;padding-top: 23px}
+.shopping_show_top>li{height: 100%;float: left;}
+.shopping_show_top .top_1{width: 357px;}
+.shopping_show_top .top_2{width: 430px;}
+.shopping_show_top .top_3{width: 359px;}
+.shopping_show_top img{display: block;margin: 0 auto;}
+.top_price{width: 157px;height: 60px;margin: 0 auto;padding-top: 4px}
+.top_price>p>span{display: inline-block;}
+.price_left{margin-left: 10px;width: 69px;height: 23px;background: #672a09;color: #ffffff;font-size: 16px;text-align: center;}
+.price_right{color: #ff0808;font-size: 13px;}
+.price_right b{font-size: 18px;font-weight: normal;}
+.price_buy{width: 136px;height: 26px;background: #ff0000;color: white;display: block;margin: 4px auto;text-align: center;}
+.shopping_show_bottom{position: relative;padding-left: 129px;height: 1074px;height: 406px;background: url(../images/shopping_pic_4.png) no-repeat;}
+.bottom_price{position: absolute;bottom: 76px;left: 53%}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片自动切换</title>
+	<script src="miaov.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			width: 350px;
+			height: 262px;
+
+			position: relative;
+			margin: 0 auto;
+			top: 300px;
+			overflow: hidden;
+
+		}
+		#parent ul{
+			position: absolute;
+			width: 1750px;
+			height: 263px;
+			left: 0px;
+		}
+		#parent li{
+			float: left;
+		}
+		#parent img{
+			width: 350px;
+		}
+	</style>
+	<script type="text/javascript">
+	//图片自动切换，待改进。
+		window.onload=function(){
+			var parent=document.getElementById("parent");
+			var son=parent.getElementsByTagName("ul")[0];
+			var size='350px';
+			var setTime=null;
+			position_shift(son,size,'left',-1400);
+			var length=0;
+		}
+		function position_shift(obj,size,attr,tarset){
+			setTime=setInterval(function(){
+				//当前的attr值   
+			var extent=parseInt(getStyle(obj,attr));
+			var li =obj.getElementsByTagName("li");
+			var speed=tarset==0?parseInt(size):-parseInt(size);
+			
+				//记录改变后的值;   
+			target=extent+speed;
+			console.log(length);
+				if(target>=tarset&&target!=350){
+					doMove (obj, attr, 20, target );		
+						length++;
+				}
+				if(target==-1750){
+					clearInterval(setTime);
+					tarset=0;
+					position_shift(obj,size,attr,tarset);
+				}
+				if(target==350){
+					clearInterval(setTime);
+					tarset=-1400;
+					position_shift(obj,size,attr,tarset);	
+				}
+				if(target<tarset&&target!=-1750){
+					doMove (obj, attr, 20, target);		
+						length--;
+				}
+			},2000);
+		}
+
+
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul>
+			<li><img src="images/zd_1.jpg"/></li>
+			<li><img src="images/zd_2.jpg"/></li>
+			<li><img src="images/zd_3.jpg"/></li>
+			<li><img src="images/zd_4.jpg"/></li>
+			<li><img src="images/zd_5.jpg"/></li>
+		</ul>
+	</div>
+</body>
+</html>

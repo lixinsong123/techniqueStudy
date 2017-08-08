@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选中图片放大居中</title>
+	<style type="text/css">
+		body,ul,li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		#ul{
+			position: relative;
+			width: 630px;
+			margin:  100px auto;
+		}
+		#ul li{
+			float: left;
+			width: 200px;
+			height: 200px;
+			background: pink;
+			margin-right: 10px;
+			margin-top: 10px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var ul  = document.getElementById("ul");
+			var lis = document.getElementsByTagName("li");
+			var arr =[];
+			for(var i=0;i<lis.length;i++){
+				arr.push({
+					'left' : lis[i].offsetLeft,
+					'top'  : lis[i].offsetTop
+ 				});	
+			}
+			for(var i=0;i<arr.length;i++){
+				lis[i].style.position='absolute';
+				lis[i].style.left =arr[i].left+"px"; 
+				lis[i].style.top  =	arr[i].top+"px";
+				//重要
+				lis[i].style.margin='0';
+				lis[i].index=i;
+				lis[i].onmouseover=function(){
+					startMove(this,{
+						//放大核心:原先大小的2倍
+						'width'  : 400,
+						'height' : 400,
+						//居中核心。元素宽度的一半
+						'left'   : arr[this.index].left - this.offsetWidth/2,
+						'top'   : arr[this.index].top - this.offsetWidth/2
+					});
+				}
+				lis[i].onmouseout=function(){
+					startMove(this,{
+						'width'  : 200,
+						'height' : 200,
+						'left'   : arr[this.index].left,
+						'top'   : arr[this.index].top
+					});
+				}
+			}
+
+		}
+		function startMove(obj,json,endfn){
+					 clearInterval(obj.setTime);
+					 var iCur =0;
+					 obj.setTime=setInterval(function(){
+					 	var kaiguan = true;
+					 	var dir;
+					   for(var attr in json){
+						 	if(attr=='opacity'){
+						 	 	iCur =Math.round(getStyle(obj,'opacity')*100);
+						 	}else{
+						 		 iCur =parseInt(getStyle(obj,attr));
+						 		 		
+						 	}
+						 	dir = (parseInt(json[attr])-iCur)/8;
+						 	dir = dir>0?Math.ceil(dir):Math.floor(dir);					 	
+						 	if(iCur!=parseInt(json[attr])){
+						 		kaiguan=false;
+						 		if(attr=='opacity'){
+							 		obj.style.opacity=(iCur+dir)/100;
+							 		obj.style.filter='alpha(opacity='+(iCur+dir)+')';
+						 		}else{
+						 			obj.style[attr]=iCur+dir+'px';
+						 		}	
+						 	}	
+						 }
+						 if(kaiguan){
+						 	clearInterval(obj.setTime);
+						 	//回调函数
+						 	endfn&&endfn.call(obj);
+						 }
+					 },30);
+					
+				}
+
+				//获取样式的值
+	function getStyle ( obj, attr ){ 
+		return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr];
+	}
+	</script>
+</head>
+<body>
+	<ul id="ul">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

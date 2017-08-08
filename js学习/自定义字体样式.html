@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义字体形状</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			margin-top: 200px;
+			height: 350px;
+			width: 600px;
+			border:0.5px solid  #EAEAEA;
+		}
+		#parent li{
+			width:600px;
+			display: block;
+			float: left;
+		}
+		#parent .kk{
+			border:1px solid 	#D9D9D9;
+			width:500px;
+			height:100px;
+			margin: 20px 50px 0 50px;
+			background: #D1EEEE;
+			display:block;
+		}
+		span{
+			
+			width: 50px;
+			height: 50px;
+			display: inline-block;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 50px;
+			color:#CD0000;
+			font-size: 20px
+		}
+	</style>
+</head>
+<body style="background:#DBDBDB">
+	<div id="parent">
+		<ul>
+			<li style="height:120px">
+				<div id="bg" class="kk">
+					
+
+				</div>
+			</li>
+			<li style="height:55px">
+				<div  style="width:200px;height:30px;margin:10px 0 10px 50px">
+					<select id ="zhiti" style="width:200px;height:25px"> 
+					<option value="0">气球字体形状</option> 
+					<option value="1">自定义字体形状</option> 
+					</select> 
+				</div>
+			</li>
+			<li style="height:120px">
+				<div class="kk" style="margin-top:0">
+					<textarea style="resize : none;border:none;width:500px;height:100px;font-size:20px">（人）人总是来来回回	不曾是停停留留</textarea>
+				</div>
+			</li>
+			<li style="height:55px">
+				<div style="margin-left:50px">
+					<input type="button" value="确定" onclick="check()"/>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		function check(){
+			var bg=document.getElementById("bg");
+			var select1=document.getElementById("zhiti");
+			var text =document.getElementsByTagName("textarea")[0];
+			var bg=document.getElementById("bg");
+			var nowText=text.innerHTML;
+			var num =select1.selectedIndex;
+			if(num==0){
+				var arr=nowText.split('');
+				for(var i=0;i<arr.length;i++){
+					arr[i]="<span style='background: url(images/timg_1.jpg) ;'><b>"+arr[i]+"</b></span>";
+				}
+				var newText=arr.join('');
+				bg.innerHTML=newText;
+			}else{
+				var arr=nowText.split('');
+				for(var i=0;i<arr.length;i++){
+					arr[i]="<span style='background: url(images/timg_2.jpg) ;'><b>"+arr[i]+"</b></span>";
+				}
+				var newText=arr.join('');
+				bg.innerHTML=newText;
+			}
+		}
+	</script>
+</body>
+</html>

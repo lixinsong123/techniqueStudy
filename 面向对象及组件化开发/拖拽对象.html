@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽对象</title>
+	<style type="text/css">
+		#div1{
+			width: 100px;
+			height: 100px;
+			background: pink;
+			position: absolute;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			 var div1 = document.getElementById("div1");
+			var d1 = new Draw(div1);
+			d1.init();
+		}
+		function  Draw(obj){
+			this.obj = obj;
+			this.disX=0;
+			this.disY=0;
+		}
+		Draw.prototype.init=function(){
+			var This =this;
+			this.obj.onmousedown=function(){
+				This.fn_down();
+			};
+		}
+		Draw.prototype.fn_down=function(ev){
+				var ev =ev||window.event;
+				this.disX = ev.clientX-this.obj.offsetLeft;
+				this.disY = ev.clientY-this.obj.offsetTop;
+				var This =this;	
+				 document.onmousemove=function(ev){
+				 	var ev =ev||window.event;
+				 	This.fn_move(ev);
+				 	 return false;
+				 };
+				 document.onmouseup=function(){
+				 	This.fn_up();
+				 };
+			
+		}
+		Draw.prototype.fn_move=function(ev){
+			
+				 	var nowX = ev.clientX-this.disX;
+				 	var nowY = ev.clientY-this.disY;
+				 	this.obj.style.top=nowY+"px";
+				 	this.obj.style.left=nowX+"px";
+		}
+		Draw.prototype.fn_up=function(){
+			document.onmousemove=document.onmouseup=null;
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

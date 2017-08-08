@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app='myApp'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		 var m1 = angular.module('myApp', []);
+				 m1.controller('one',['$scope','$filter',function($scope,$filter) {
+				 	//原始数据
+				   	var  oData=[
+			   		{'name':'八重樱','age':'500','phone':'134845','email':'cc.com'},{'name':'芽衣','age':'15','phone':'13455845','email':'cb.com'},{'name':'琪雅娜','age':'13','phone':'13455845','email':'ca.com'}
+			   		];
+			   		$scope.dataList=oData;
+			   		$scope.fn_sort=function(arg){
+			   			//开关
+			   			arguments.callee['fn_sort'+arg]=!arguments.callee['fn_sort'+arg];
+			   		//排序，第三个参数，控制从大---》小，小----->大
+			   		 $scope.dataList=$filter('orderBy')($scope.dataList,arg,arguments.callee['fn_sort'+arg]);
+			   		}
+			   		$scope.fn_serach = function(){
+			   			//过滤器
+			   			$scope.dataList=$filter('filter')(oData,$scope.seaVal);	
+			   		}
+			   }])
+	</script>
+</head>
+<body>
+	<div ng-controller='one'>
+		<input type='text' ng-model='seaVal'/> <input type="button" value='搜索' ng-click='fn_serach()'>
+		<hr/>
+		<table border='1'>
+			<tr>
+				<td ng-click='fn_sort("name")'>姓名</td>
+				<td ng-click='fn_sort("age")'>年龄</td>
+				<td>电话</td>
+				<td>邮箱</td>
+			</tr>
+			<tr ng-repeat='data in dataList'>
+				<td>{{data.name}}</td>
+				<td>{{data.age}}</td>
+				<td>{{data.phone}}</td>
+				<td>{{data.email}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

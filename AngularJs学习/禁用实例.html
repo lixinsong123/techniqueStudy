@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app='myApp'>
+<head>
+	<meta charset="UTF-8">
+	<title>ng-disabled</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		 var m1 = angular.module('myApp', []);
+		 		//需要添加$interval
+				 m1.controller('one',['$scope','$interval',function($scope,$interval) {
+				 	var now = 5;
+				 	$scope.text=now+'秒';
+				 	$scope.isDisabled=true;
+				 	/* 第一种，使用$apply
+				 	var setTime=setInterval(function(){
+				 		$scope.$apply(function(){
+				 			now--;
+				 		$scope.text=now+'秒';
+					 		if(now==0){
+					 			clearInterval(setTime);
+					 			$scope.isDisabled=false;
+					 			$scope.text='可以点击啦';
+					 		}
+				 		});
+				 	},1000);
+				*/
+				//第二种使用$interval指令 用法类似setInterval()
+				var setTime = $interval(function(){
+					now--;
+					$scope.text=now+'秒';
+					if(now==0){
+					 	$interval.cancel(setTime);
+					 			$scope.isDisabled=false;
+					 			$scope.text='可以点击啦';
+					 		}
+					},1000);
+			   }]);
+	</script>
+</head>
+<body>
+	<div ng-controller='one'>
+		
+		<!-- 数据显示优化 
+			ng-cloack:
+			原理；数据未解析前，div的display:none
+			      数据解析后，div的display:block
+			ng-bind:适用用单个数据
+			ng-bind-template:适用用多个数据
+		-->
+		<div ng-cloack>{{text}}</div>
+		<div ng-bind='text'></div>
+		<div ng-bind-template='{{text}},{{text}}'></div>
+	</div>
+</body>
+ 
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抖动</title>
+	<script src="miaov.js"></script>
+	<style type="text/css">
+		img{
+			position: absolute;
+			top: 30%;
+			left: 40%;
+			width: 350px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var img=document.getElementsByTagName("img");
+			
+			/*函数未封装
+			var arr=[];
+			var setTime=null;
+			for(var i=40;i>0;i-=5){
+				arr.push(i,-i);
+			}
+			arr.push(0);
+			var index=0;
+			var left=parseInt(getStyle(img,'left'));
+			img.onclick=function(){
+				if(setTime==null){
+					setTime=setInterval(function(){
+						if(index>=arr.length){
+								index=0;
+								clearInterval(setTime);
+								setTime=null;
+						}else{
+							left=left+arr[index];
+							img.style.left=left+"px";
+							index++;
+						}
+					},50);
+				}
+			}
+			*/
+			var shaleing =false;
+			for(var i=0;i<img.length;i++){
+				var size=getStyle(img[i],'top');
+				img[i].onmouseover=function(){
+
+					shake(this,40,5,'top',size);
+				}
+			}
+			/*
+			没有解决....
+			function shake(obj,rate,frame,att){
+					var arr=[];
+					var setTime=null;
+					if(shaleing==true){
+						return;
+					}
+					shaleing=true;
+					for(var i=rate;i>0;i-=frame){
+						arr.push(i,-i);
+					}
+					arr.push(0);
+					var index=0;
+					var setdu=parseInt(getStyle(obj,att));//有问题的
+					console.log(setdu);
+						setTime=setInterval(function(){
+						if(index>=arr.length){
+								index=0;
+								clearInterval(setTime);
+								setTime=null;
+								shaleing=false;
+						}else{
+								setdu=setdu+arr[index];
+								obj.style[att]=setdu+"px";
+								index++;
+							}
+						},50);
+				}
+				*/
+		}
+
+	
+	</script>
+</head>
+<body>
+	<img style="left:0%" src="images/zd_1.jpg"/>
+	<img style="left:20%"   src="images/zd_2.jpg"/>
+	<img style="left:40%"  src="images/zd_3.jpg"/>
+	<img style="left:60%"  src="images/zd_4.jpg"/>
+	<img style="left:80%"  src="images/zd_5.jpg"/>
+	<img style="left:100%"  src="images/zd_6.jpg"/>
+</body>
+</html>

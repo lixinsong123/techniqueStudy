@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="jquery.js">
+</script>
+<style>
+.red{
+		background-color:#F00;
+}
+.blue{
+		background-color:#03F;
+}
+.white{
+	background-color:#FFF;
+}
+</style>
+<title>jquery</title>
+</head>
+<body>
+	<div id="one"style="width:100px;height:100px;">
+    	
+    </div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		var s = $("#one");
+		var count=0;
+		s.click(function(){
+			$(this).toggleClass("red",count++%3==0);	
+		});
+	});
+</script>
+</html>

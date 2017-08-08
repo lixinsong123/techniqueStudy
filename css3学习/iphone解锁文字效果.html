@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iphone解锁文字效果</title>
+	<style type="text/css">
+		body{
+			background: black;
+		}
+		#parent{
+			padding-top: 200px;
+			padding-left: 600px;
+		}
+		h1{
+			width: 900px;
+			text-align: center;
+			display: inline-block;
+			font: 80px "微软雅黑" ;
+			color: rgba(225,225,225,0.3);
+			background: -webkit-linear-gradient(-21deg,
+				rgba(255,255,255,0) 0,rgba(255,255,255,0) 150px,rgba(255,255,255,1 ) 180px,
+				rgba(255,255,255,1) 210px,rgba(255,255,255,0) 240px
+				) no-repeat -250px 0;
+			-webkit-background-clip: text;
+		}
+		/*h1:hover{
+			background-position: 1000px 0;
+		}*/
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oDiv = document.getElementById("parent");
+			var oH   = oDiv.getElementsByTagName("h1")[0];
+			var timer=null;
+			var oLeft=-250;
+			tomove();
+			function tomove(){
+				timer=setInterval(function(){
+					oLeft+=2;
+					if(oLeft>=700){
+						oLeft=-250;
+						clearInterval(timer);
+					}
+					oH.style.backgroundPosition=oLeft+"px 0px";
+				},10);
+			}
+			setInterval(tomove,6000);
+		}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<h1>Falsity 四月是你的谎言</h1>
+	</div>
+</body>
+</html>

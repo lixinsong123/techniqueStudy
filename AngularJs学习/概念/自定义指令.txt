@@ -1,0 +1,24 @@
+						一,自定义指令
+语法:
+	var app = angular.module('myModule',['ng']);
+	app.directive(name,fn);
+
+	//自定义指令 驼峰式命名
+	md.directive("tsHello",function(){
+			return {
+				template : '<h1> Hello Directive </h1>',
+				restrict:''
+			}
+	});
+	restrict ："EA"默认
+	E-->Element元素
+	A-->Attribut属性
+	C-->Class
+	M-->Comment注释(在指令中添加一个属性: replace:true)
+新指令的命名 :
+	a.驼峰式
+	b.前缀一般是公司或者项目的简写，后缀一般是指令的作用
+	c.使用指令:tsHello---->ts-hello
+	总结:如果要传递参数，需要在创建指令的时候，加上scope,同时指定对
+	应的属性名称(testName),在使用指令的时候，需要加上对应的属性
+	('test-name="")

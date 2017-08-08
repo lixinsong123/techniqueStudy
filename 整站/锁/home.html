@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>重庆汇帆科技</title>
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<!--[if !IE]><!--> <script type="text/javascript" src="js/bar.js"></script><!--<![endif]-->
+
+	<!--IE9以下不使用-->
+	<!--[if !IE]><!-->
+	<style type="text/css" id="css">
+#wrap{/*width: 1024px;*/width: 1903px;position: relative;overflow: hidden;}
+#wrap .picList{-webkit-perspective:800px;/*width: 1024px;*/width: 1920px;height: 600px;}
+#wrap .picList>li{height: 600px;width: 32px;position: relative;-webkit-transform-style:preserve-3d;float: left;-webkit-transform-origin:center center -300px;}
+.picList>li>a{display: block;width:100%;height: 100%;position: absolute;top: 0;left: 0;}
+.picList>li a:nth-of-type(1){background: url(images/bar/bar_1.png) no-repeat;}
+.picList>li a:nth-of-type(2){background: url(images/bar/bar_2.png) no-repeat;-webkit-transform:rotateX(90deg);-webkit-transform-origin:bottom;top:-600px; }
+.picList>li a:nth-of-type(3){background: url(images/bar/bar_3.png) no-repeat;-webkit-transform:translateZ(-600px) rotateX(180deg);/*-webkit-transform-origin:top;*/}
+.picList>li a:nth-of-type(4){background: url(images/bar/bar_1.png) no-repeat;-webkit-transform:rotateX(-90deg);-webkit-transform-origin:top;top:600px; }
+.picList>li span:nth-of-type(1){-webkit-transform:rotateY(90deg);-webkit-transform-origin:left;
+left: 0;}
+.picList>li span:nth-of-type(2){-webkit-transform:rotateY(-90deg);-webkit-transform-origin:right;right: 0;}
+.picList>li>span{position: absolute;width: 600px;height: 600px;background: rgba(0,0,0,0);}
+.controller{position: absolute;bottom: 20px;left: 43%;}
+.controller li{cursor: pointer;float: left;width: 57px;height: 4px;margin-right:9px;background: #ffffff;
+}
+.controller .active{background: #00439e;}
+</style>
+<!--<![endif]-->
+<!--IE9以下使用-->
+<!--[if lte IE 9]> 
+			<link rel="stylesheet" type="text/css" href="css/ie.css">	
+<![endif]-->
+<!--IE9以下使用-->
+<!--[if lte IE 9]> 
+			<script type="text/javascript" src="js/ie.js"></script>
+<![endif]-->
+</head>
+<body>
+		<!--头部-->
+	  <div id="header" class="clear">
+		<div class="logo fl">
+			<h1>重庆汇帆科技</h1>
+			<a href="javscript:;"></a>
+		</div>
+		<ul class="nav rt">
+			<li><a href="javscript:;">首页</a></li>
+			<li><a href="javscript:;">公司简介</a></li>
+			<li><a href="javscript:;">新闻动态 </a></li>
+			<li><a href="javscript:;">产品展示</a></li>
+			<li><a href="javscript:;">联系我们</a></li>
+		</ul>
+	  </div>
+	 <!--bar-->
+	<div class="bar">
+		<div id="wrap" class="bar_wrap"> 
+			<ul id="picList"  class="picList">
+				<!--[if lte IE 9]>        
+					<li>
+					<a href="javscript:;">
+						<img src="images/bar/bar_1.png"/>
+					</a>
+					</li>
+					<li>
+					<a href="javscript:;">
+						<img src="images/bar/bar_1.png"/>
+					</a>
+					</li>
+					<li>
+					<a href="javscript:;">
+						<img src="images/bar/bar_2.png"/>
+					</a>
+					</li>
+					<li>
+					<a href="javscript:;">
+						<img src="images/bar/bar_2.png"/>
+					</a>
+					</li>
+				<![endif]-->
+			</ul>
+			<ul id="controller" class="controller">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<!--关于我们-->
+	<div class="concerning">
+		<div class="serach clear">
+			<p class="fl">
+				热线电话：<a href="javscript:;">188  888 88888</a>
+			</p>
+			<div class="rt">
+				<div class="rt_left">
+					<span>产品<div class="sjx_down"></div></span>
+					<ul class="pull_down" style="display:none" >
+						<li><a href="javscript:;">芽衣</a></li>
+						<li><a href="javscript:;">琪雅娜</a></li>
+						<li><a href="javscript:;">姬子</a></li>
+						<li><a href="javscript:;">德莉莎</a></li>
+					</ul>
+				</div>
+				<div class="rt_right">
+					<input type="text" value="请输入关键字！"/>
+				</div>
+			</div>
+		</div>
+		<h2 class="h2_center"><img src="images/home/concerning_link.png"/></h2>
+		<p class="font_blue">“诚信为本  客户为先  以质量求生存  以科技求发展  以服务求信誉  以管理争效率  以人才为根本”</p>
+		<div class="concerning_font_wrap">
+			<p class="concerning_font">重庆汇帆科技有限公司是一家集研发、生产、销售和服务于一体的现代化高科技企业，总部座落于美丽的深圳。公司主营指纹识别及摄像监控系列产品的全球营销，致力于生物识别技术在
+	全球的推广应用及产业化的发展。</p>
+			<p class="concerning_font">我们不但拥有丰富的研发和生产经验，同时还拥有一支经验丰富、高素质、高技术的销售和售后服务的团队，一直立足于“不断进取、诚信为本、客户为先”的发展战略，坚持“以质量求
+	生存、以科技求发展、以服务求信誉、以管理争效率、以人才为根本”的经营理念，全面完整地为客户提供品质优良的产品以及全面的售后服务。</p>
+		</div>
+		<ul class="concerning_show clear">
+			<li class="bg_1">
+				<a href="javscript:;">
+					<p>公司内景</p>
+				</a>
+			</li>
+			<li class="bg_2">
+				<a href="javscript:;">
+					<p>办公设备</p>
+				</a>
+			</li>
+			<li class="bg_3">
+				<a href="javscript:;">
+					<p>自动生产车间</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!--新闻咨询-->
+	<div class="news_Consulting_bg">
+		<div class="news_Consulting">
+			<p class="news_Consulting_link">
+				为您提供公司新闻 行业知讯以及产品选购知识
+			</p>
+			<ul class="content_skeleton clear">
+				<li class="content_skeleton_1">
+					<a href="javscript:;">
+						<b></b>
+					</a>
+					<div class="core_content">
+						<h3>公司新闻</h3>
+						<div class="news_scroll">
+							<div>
+								<div class="news_scroll_controller">
+									<a href="javscript:;">
+										<strong>17/7/1</strong>							重庆汇帆科技有限公司领导到深圳实习考察
+									</a >
+									<a href="javscript:;">
+										<strong>17/6/25</strong>							重庆汇帆科技有限公司领导到深圳实习考察
+									</a>
+								</div>
+							</div>
+							<div >
+								<div class="news_scroll_controller">
+									<a href="javscript:;">
+										<strong>17/7/24</strong>							重庆汇帆科技有限公司领导到深圳实习考察
+									</a>
+									<a href="javscript:;">
+										<strong>17/6/23</strong>							重庆汇帆科技有限公司领导到深圳实习考察
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="content_skeleton_2">
+					<a href="javscript:;">
+						<b></b>
+					</a>
+					<div class="core_content content_p ">
+						<h3>行业咨询</h3>
+						<a href="javscript:;">
+							<p>指纹锁是一种以人体指纹为识别载体和手段的</p>
+							<p>智能锁具，它是计算机信息技术、电子技术、机械技术</p>
+							<p>和现代五金工艺的完美结晶。</p>
+							<p>。。。。</p>
+						</a>
+					</div>
+				</li>
+				<li class="content_skeleton_3">
+					<a href="javscript:;">
+						<b></b>
+					</a>
+					<div class="core_content content_p ">
+						<h3>选购知识</h3>
+						<a href="javscript:;">
+							<p> 购买指纹锁看似简单，实质要注意许多问题。</p>
+							<p>很多人认为价格高的就一定安全，其实不是这样的。</p>
+							<p>当然指纹锁也不是越贵越好，真正在买指纹锁的时候,</p>
+							<p>一般应该关注“安全性、通用性和稳定性”。</p>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--产品展示-->
+	<div class="product_Display">
+		<h2 class="h2_center"><img src="images/home/product_Display_link.png"/></h2>
+		<p class="font_blue h2_center">品位生活  心安锁得</p>
+		<div class="productMove_parent">
+			<span class="product_left"><</span>
+			<span class="product_right">></span>
+			<div class="Move_provt">
+				<ul class="Move_parent one">
+					<li>
+						<img src="images/home/product_1.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li>
+						<img src="images/home/product_2.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li>
+						<img src="images/home/product_3.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li class="margin_none">
+						<img src="images/home/product_4.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+				</ul>
+				<ul class="Move_parent two">
+					<li>
+						<img src="images/home/product_3.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li>
+						<img src="images/home/product_1.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li>
+						<img src="images/home/product_3.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li class="margin_none">
+						<img src="images/home/product_4.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+				</ul>
+				<ul class="Move_parent three">
+					<li>
+						<img src="images/home/product_2.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li>
+						<img src="images/home/product_4.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li>
+						<img src="images/home/product_3.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+					<li class="margin_none">
+						<img src="images/home/product_1.png" />
+						<a href="javscript:;" class="a_product_Display">
+							<img src="images/home/Move_parent_a.png" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="product_more">
+			<a href="javscript:;"><img src="images/home/product_Display_more.png" /></a>
+		</div>
+	</div>
+	<!--合作伙伴-->
+	<div class="cooperative_Partner">
+		<h2 class="h2_center"><img src="images/home/cooperative_Partner_link.png"/></h2>
+		<p class="font_blue h2_center">你有我   我有你   合作共赢创未来。</p>
+		<ul class="cooperative_Partner_core">
+			<li><a href="javscript:;" class="Partner_1"></a></li>
+			<li><a href="javscript:;" class="Partner_2"></a></li>
+			<li><a href="javscript:;" class="Partner_3"></a></li>
+			<li class="mR_none"><a href="javscript:;" class="Partner_4"></a></li>
+			<li class="mB_none"><a href="javscript:;" class="Partner_5"></a></li>
+			<li class="mB_none"><a href="javscript:;" class="Partner_6"></a></li>
+			<li class="mB_none"><a href="javscript:;" class="Partner_7"></a></li>
+			<li class="mB_none mR_none"><a href="javscript:;" class="Partner_8"></a></li>
+		</ul>
+	</div>
+	<!--尾部-->
+	<div id="footer">
+		<div class="footer_wrap clear">
+			<div class="qR_Code fl">
+				<span class="qR_Code_top">
+					<b></b>
+				</span>
+				<span class="qR_Code_body">
+					<b></b>
+				</span>
+				<span class="qR_Code_bottom">
+					<b></b>
+				</span>
+				<strong class="qr_subline"></strong>
+			</div>
+			<div class="footer_content rt">
+				<ul class="footer_nav">
+					<li><a href="javscript:;">首页</a></li>
+					<li><a href="javscript:;">公司简介</a></li>
+					<li><a href="javscript:;">新闻动态</a></li>
+					<li><a href="javscript:;">产品展示</a></li>
+					<li><a href="javscript:;">联系我们</a></li>
+				</ul>
+				<p class="friendly_Link">
+					友情链接：
+					<a href="javscript:;">汇帆科技旗舰店</a>
+					<a href="javscript:;">百度一下</a>
+					<a href="javscript:;">汇帆地产</a>
+					<a href="javscript:;">汇帆科技旗舰店</a>
+					<a href="javscript:;">百度一下</a>
+					<a href="javscript:;">汇帆地产</a>
+					<a href="javscript:;" class="marginR_none">汇帆科技旗舰店</a>
+					<a href="javscript:;" class="marginB_none">百度一下</a>
+					<a href="javscript:;" class="marginB_none">汇帆地产</a>
+					<a href="javscript:;" class="marginB_none">汇帆科技旗舰店</a>
+					<a href="javscript:;" class="marginB_none">百度一下</a>
+					<a href="javscript:;" class="marginB_none">汇帆地产</a>
+					<a href="javscript:;" class="marginB_none">汇帆科技旗舰店</a>
+					<a href="javscript:;" class="marginB_none">百度一下</a>
+				</p>
+				<h4>联系我们</h4>
+				<p class="footer_content_wrap clear">
+					<span class="fl">邮箱：sfffwe@545345.com</span>
+					<span class="rt">汇帆科技网   版权所有</span>
+				</p>
+				<p class="footer_content_wrap clear ">
+					<span class="fl">传真：+86-1223654861</span>
+					<span class="rt">渝ICP备023574554号</span>
+				</p>
+				<p class="footer_content_wrap clear">
+					<span class="fl">网址：www.huifankeji.cn</span>
+					<span class="rt">诚聘英才    法律声明    渝公安备 110023556487</span>
+				</p>
+				<p class="footer_content_wrap clear">
+					<span class="fl">地址：重庆市渝北区机场路45号</span>
+					<span class="rt">Copyright @ Science and Technology Daily,All Reserved</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

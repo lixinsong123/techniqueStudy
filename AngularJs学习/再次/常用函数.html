@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<script>
+			var md = angular.module("myApp",['ng']);
+				md.controller("myCtrl",function($scope){
+
+				});
+				//转换大小写
+				var name= ' John';
+				console.log(angular.uppercase(name));
+				console.log(angular.lowercase(name));
+				//定义一个json对象
+				var json={
+					'name' : 'Lucy',
+					'age'  :20
+				}
+				//json对象------>字符串
+				var jsonStr = angular.toJson(json);
+				console.log(jsonStr);
+				//字符串对象------>json对象
+				jsonStr =  angular.fromJson(jsonStr);
+				console.log(jsonStr);
+				//遍历json对象
+				angular.forEach(jsonStr,function(value,key){
+						console.log(key+" "+value);
+				});
+	</script>
+</body>
+</html>

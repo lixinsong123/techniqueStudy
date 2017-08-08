@@ -1,0 +1,31 @@
+@charset "utf-8";
+body{margin: 0;padding: 0;min-width: 1300px;}
+li{list-style:none;}
+#parent{padding-top:124px;background: url(../images/guide/body_bg.png) center center no-repeat;}
+#parent .wrap{height: 497px;width: 224px;margin: 0 auto;position: relative;left: 75px;z-index: 5;}
+#parent .wrap h1{background: url(../images/guide/logo.png) center center no-repeat;position: absolute;width: 181px;height: 96px;bottom: -132px;left: -41px;color: rgba(0,0,0,0);}
+.scale_effect{width: 165px;height: 154px;position: absolute;top: 263px;left: 13px;}
+.scale_effect>span{position: absolute;display: block;z-index: 99;}
+		@-webkit-keyframes outsideMove{
+			0%{
+				-webkit-transform:rotate(0deg);
+			}
+			100%{
+				-webkit-transform:rotate(100000deg);
+			}
+		} 
+
+		@-webkit-keyframes insideMove{
+			0%{
+				-webkit-transform:rotate(0deg);
+			}
+			100%{
+				-webkit-transform:rotate(-100000deg);
+			}
+		} 
+.outside{width: 160px;height: 154px;background: url(../images/guide/scale_1.png) center center no-repeat;top: -3px;left: -45px;-webkit-animation:outsideMove 2000s;}
+.inside{width: 103px;height: 107px;background: url(../images/guide/scale_2.png) center center no-repeat;top: 19px;left: -17px;-webkit-animation:insideMove 2000s;}
+.fingerprint{width: 72px;height: 71px;background: url(../images/guide/fingerprint.png) center center no-repeat;top: 37px;left: 2px;}	
+.scale_effect .finger{width: 105px;height: 110px;background: url(../images/guide/finger.png) center center no-repeat;left: -6px;display: none;position: absolute;top: 25px;cursor: pointer;}
+.circuit_card{background:url(../images/guide/click_end.png);width: 1024px;height: 980px;position: absolute;top: 0;left: 23%;-webkit-transform:scale(0);/*333*/z-index: 1;
+		}

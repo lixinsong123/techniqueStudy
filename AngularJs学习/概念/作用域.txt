@@ -1,0 +1,22 @@
+						控制器和作用范围（类似js原型继承 prototype）
+	$scope与$rootScope
+	$scope是$rootScope的子作用域控制对象，$rootScope的id为1，其他
+	为2,3
+
+	不同的控制器之间，所对应的作用域对象($scope),之间是相互隔离的，
+	如果共享数据，怎么办?
+
+	借助$rootScope实现。
+	子元素只能读不能写
+
+	如果父作用域对象想要调用子作用域对象的变量或者方法，ng提供了
+	2个方法:
+		a.$broadcast  将事件从父级传递给子级
+		  $scope.$broadcast(eventName.data);
+
+		b.$emit 将事件从子级传递给父级
+		  $scope.$emit(eventName,data);
+	接收:
+		$scope.$on(eventName,function(event,data){
+		
+		})

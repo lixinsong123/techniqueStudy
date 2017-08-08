@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>折纸布局</title>
+	<style type="text/css">
+		#wrap{
+			margin: 0 auto;
+			width: 500px;
+			position: relative;
+			-webkit-perspective:800px;
+			-webkit-transform-style:preserve-3d;
+		}
+		#wrap div{
+			width: 500px;
+			background: #eee;
+			position: absolute;
+			top: 102px;
+			left: 0px;
+			-webkit-transform-origin:top;
+			-webkit-transform-style:preserve-3d;
+		}
+		#wrap span{
+			height:100px;
+			display: block;
+			border: 1px solid black;
+		}
+		#wrap>div:nth-of-type(1){top: 0;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div style="-webkit-transform:rotateX(-45deg)">
+			<span>1</span>
+			<div style="-webkit-transform:rotateX(90deg)">
+				<span>2</span>
+				<div style="-webkit-transform:rotateX(-45deg)">
+					<span>3</span>
+					<div style="-webkit-transform:rotateX(90deg)">
+						<span>4</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

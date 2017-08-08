@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟扩展</title>
+	<script src="miaov.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			
+			margin: 0 auto;
+			margin-top:200px;
+			width: 1000px;
+			height: 172px;
+			overflow: hidden;
+		}
+		#parent ul{
+			height: 344px;
+			width: 122px;
+			position: relative;
+			float: left;
+		}
+		#parent  li{
+			position: absolute;
+		}
+	</style>
+	<script type="text/javascript">
+	/****
+	*
+	*动态时钟，有小问题，，待完善。
+	有替代  
+	*/
+		window.onload=function(){
+			var date=null;
+
+				
+			var setTime=setInterval(function(){
+				date=new Date();
+				var ul=document.getElementsByTagName("ul");
+				var li=ul[1].getElementsByTagName("li");
+				var img=ul[1].getElementsByTagName("img");
+				
+				var iHours=getNum(date.getHours());//12
+				var iMinutes=getNum(date.getMinutes());//10
+				var iSeconds=getNum(date.getSeconds());//08
+				var str=iHours+iMinutes+iSeconds;//135047
+				//Oimg[0].src="images/"+str.charAt(4)+".jpg";
+				kdate(li,img,str,5);
+				var Oli=ul[0].getElementsByTagName("li");
+				var Oimg=ul[0].getElementsByTagName("img")
+				if(str.charAt(5)=='9'){
+					kdate(Oli,Oimg,str,4);
+				}
+			},1000);
+			
+
+		}
+		function getNum(n){
+			return n<10?"0"+n:""+n
+		}
+		function  kdate(li,img,str,index){
+			if(li[0].style.top=="0px"){
+					img[0].src="images/"+str.charAt(index)+".jpg";
+					doMove ( li[0], "top", 15, -176 ,function(){
+						li[0].style.top=176+"px";
+					});
+					doMove ( li[1], "top", 15, 0,function(){
+						
+					});
+					if((Number(str.charAt(index))+1)==10&&index==5){
+						img[1].src="images/"+0+".jpg";
+
+					}else{
+						img[1].src="images/"+(Number(str.charAt(index))+1)+".jpg";
+					}
+
+					if((Number(str.charAt(index))+1)==6&&index==4){
+						img[1].src="images/"+0+".jpg";
+						img[0].src="images/"+0+".jpg";
+					}
+				}else if(li[0].style.top=="176px"){
+					img[1].src="images/"+str.charAt(index)+".jpg";
+					doMove ( li[1], "top", 15, -176 ,function(){
+						li[0].style.top=0   +"px";
+
+					});
+					doMove (li[0], "top", 15, 0,function(){
+							li[1].style.top=176+"px";
+						});
+					if((Number(str.charAt(index))+1)==10&&index==5){
+						img[0].src="images/"+0+".jpg";
+					
+					}else{
+						img[0].src="images/"+(Number(str.charAt(index))+1)+".jpg";
+					}
+					if((Number(str.charAt(index))+1)==6&&index==4){
+						img[1].src="images/"+0+".jpg";
+						img[0].src="images/"+0+".jpg";
+
+					}
+				}
+		}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul>	
+			<li style="top:0;">
+				<img src="images/0.jpg"/>
+			</li>
+			<li style="top:176px;">
+				<img src="images/0.jpg"/>
+			</li>
+		</ul>
+		<ul >	
+			<li style="top:0;">
+				<img src="images/1.jpg"/>
+			</li>
+			<li style="top:176px;">
+				<img src="images/1.jpg"/>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

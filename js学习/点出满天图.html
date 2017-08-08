@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		img{
+			position:absolute;
+		}
+	</style>
+	<script type="text/javascript">
+		function init(){
+			var obj1=document.getElementById("body");
+			obj1.style.background="pink";
+		}
+		function showP(e){
+			
+			var obody=document.getElementById("body");
+			var x=e.clientX;
+			var y=e.clientY;
+			var newimg=document.createElement("img");
+			newimg.style.left=x+"px";
+			newimg.style.top=y+"px";
+			newimg.src="images/1.jpg";
+			var w =Math.floor(Math.random()*(100-15+1)+15);
+			newimg.width=w;
+			obody.appendChild(newimg);
+			
+		} 
+	</script>
+</head>
+<body onload="init()" id="body" onclick="showP(event)" style="width:100%;height:2000px">
+	<img src="images/1.jpg"  style="display:none"/>
+</body>
+</html> 

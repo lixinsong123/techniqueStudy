@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>检测数字</title>
+	<style type="text/css">
+		div{
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			
+		}  
+		function dianji(){
+			var input = document.getElementsByTagName("input")[0];
+			alert(check(input));
+		}
+		//需要检测的标签对象-->检测标签中的内容是否全部都是数字(仅对与input标签)
+		function check(obj){		
+			var text = obj.value;
+			var judge=true;
+			for(var i=0;i<text.length;i++){
+				//alert(text.charCodeAt(i)>57);
+				if(text.charCodeAt(i)>57||text.charCodeAt(i)<48){
+					judge=false;
+				}
+			}
+			/*
+			if(panduan==false){
+				alert("这不是一串数字");
+			}*/
+			return judge==false? false: true;
+		}
+	</script>
+</head>
+<body>
+	<input type="text" value="请输入账号！"/>
+	<div onclick="dianji()" >检测</div>
+</body>
+</html>

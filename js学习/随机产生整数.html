@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机产生整数</title>
+	<script type="text/javascript">
+		var arr =['a','b','c','d','e'];
+		alert(indexof1(arr,'b'));
+		//为数组添加indexOf()方法
+		function indexof1(arr,a){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i]==a){
+					return i ;
+				}
+			}
+		}
+		//随机产生n个从x-y中不重复的整数
+		function check(n,x,y){
+			var num=[];
+			for(var i=0;i<n;i++){
+				num[i]=Math.ceil(Math.random()*(y-x)+x);
+				for(var j=0;j<num.length-1;j++){
+					if(num[j]===num[++j]){
+						num.splice(j,1);
+						n++;
+					}
+				}
+			}
+			//alert(num.length);
+			return num;
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

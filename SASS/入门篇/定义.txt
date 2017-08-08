@@ -1,0 +1,100 @@
+							Sass 的变量包括三个部分：
+
+					声明变量的符号“$”
+					变量名称
+					赋予变量的值
+						普通变量
+				定义之后可以在全局范围内使用。
+				$fontSize: 12px;
+				body{
+				    font-size:$fontSize;
+				}
+						默认变量
+				sass 的默认变量仅需要在值后面加上 !default 即可。
+				$baseLineHeight:1.5 !default;
+				body{
+				    line-height: $baseLineHeight; 
+				}
+						什么时候声明变量？
+
+						我的建议，创建变量只适用于感觉确有必要的情况下。不要为了某些骇客行为而声明新变量，这丝毫没有作用。只有满足所有下述标准时方可创建新变量：
+
+						a.该值至少重复出现了两次；
+						b.该值至少可能会被更新一次；
+						c.该值所有的表现都与变量有关（非巧合）。
+						d.基本上，没有理由声明一个永远不需要更新或者只在单一地方使用变量。
+							1、选择器嵌套
+
+					假设我们有一段这样的结构：
+
+					<header>
+					<nav>
+					    <a href=“##”>Home</a>
+					    <a href=“##”>About</a>
+					    <a href=“##”>Blog</a>
+					</nav>
+					<header>
+					想选中 header 中的 a 标签，在写 CSS 会这样写：
+
+					nav a {
+					  color:red;
+					}
+
+					header nav a {
+					  color:green;
+					}
+					那么在 Sass 中，就可以使用选择器的嵌套来实现：
+
+					nav {
+					  a {
+					    color: red;
+
+					    header & {
+					      color:green;
+					    }
+					  }  
+					}
+
+						Sass 中还提供属性嵌套，CSS 有一些属性前缀相同，只是后缀不一样，比如：border-top/border-right，与这个类似的还有 margin、padding、font 等属性。假设你的样式中用到了：
+
+						.box {
+						    border-top: 1px solid red;
+						    border-bottom: 1px solid green;
+						}
+						在 Sass 中我们可以这样写：
+
+						.box {
+						  border: {
+						   top: 1px solid red;
+						   bottom: 1px solid green;
+						  }
+}
+							[Sass]嵌套-伪类嵌套
+其实伪类嵌套和属性嵌套非常类似，只不过他需要借助`&`符号一起配合使用。我们就拿经典的“clearfix”为例吧：
+
+										.clearfix{
+										&:before,
+										&:after {
+										    content:"";
+										    display: table;
+										  }
+										&:after {
+										    clear:both;
+										    overflow: hidden;
+										  }
+										}
+										编译出来的 CSS：
+
+										clearfix:before, .clearfix:after {
+										  content: "";
+										  display: table;
+										}
+										.clearfix:after {
+										  clear: both;
+										  overflow: hidden;
+										}
+避免选择器嵌套：
+
+选择器嵌套最大的问题是将使最终的代码难以阅读。开发者需要花费巨大精力计算不同缩进级别下的选择器具体的表现效果。
+选择器越具体则声明语句越冗长，而且对最近选择器的引用(&)也越频繁。在某些时候，出现混淆选择器路径和探索下一级选择器的错误率很高，这非常不值得。
+为了防止此类情况，我们应该尽可能避免选择器嵌套。然而，显然只有少数情况适应这一措施。

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品计算</title>
+	<script type="text/javascript">
+		var jianMax=0;
+		var feiMax=0;
+		var danjMax=0;
+		var countMax=0;
+		var arr=[0,0,0,0,0];
+		function panduan(a,b){
+				var li1=document.getElementsByTagName("li");
+				add_decrease(li1[a],b,a);
+				console.log(arr);
+		}
+		function add_decrease(a,b,c){
+			var dj=a.getElementsByTagName("em");
+			var price=Number(dj[0].innerHTML);
+			var he=a.getElementsByTagName("span");
+			var heMax=Number(he[0].innerHTML);//string类型
+			var js=a.getElementsByTagName("strong");
+			var jsMax=Number(js[0].innerHTML);
+			var feiyong=document.getElementsByTagName("i");
+			if(b=='+'){
+				jsMax++;
+				js[0].innerHTML=""+jsMax;
+				heMax=heMax+price;
+				he[0].innerHTML=""+heMax;
+				feiMax=price+feiMax;
+				feiyong[1].innerHTML=""+feiMax;
+
+				jianMax++;
+				feiyong[0].innerHTML=""+jianMax;
+				if(arr[c]!=price){
+
+					arr[c]=price;
+				}
+			}else{
+				if(jsMax==0){
+					return;
+				}
+				jsMax--;
+				js[0].innerHTML=""+jsMax;
+				heMax=heMax-price;
+				he[0].innerHTML=""+heMax;
+				feiMax=feiMax-price;
+				feiyong[1].innerHTML=""+feiMax;
+
+				jianMax--;
+				feiyong[0].innerHTML=""+jianMax;
+				if(jsMax==0){
+					arr[c]=0;
+				}
+			}
+			countMax=arr[0];
+			for(var i=0;i<arr.length;i++){
+					if(countMax<arr[i]){
+						countMax=arr[i]
+					}
+			}
+			feiyong[2].innerHTML=""+countMax;
+		}
+
+	</script>
+</head>
+<body>
+   <ul>
+   	<li>
+		<input type="button" value="-" onclick="panduan(0,'-')"/>
+		 <strong>0</strong>
+		<input type="button" value="+" onclick="panduan(0,'+')"/>
+			单价:<em>12.5</em> 元
+			小计:<span>0</span>元
+	</li>
+	<li>
+		<input type="button" value="-" onclick="panduan(1,'-')"/>
+		 <strong>0</strong>
+		<input type="button" value="+" onclick="panduan(1,'+')"/>
+			单价:<em>20.5</em> 元
+			小计:<span>0</span>元
+	</li>
+	<li>
+		<input type="button" value="-" onclick="panduan(2,'-')"/>
+		 <strong>0</strong>
+		<input type="button" value="+" onclick="panduan(2,'+')"/>
+			单价:<em>5.5</em> 元
+			小计:<span>0</span>元
+	</li>
+	<li>
+		<input type="button" value="-" onclick="panduan(3,'-')"/>
+		 <strong>0</strong>
+		<input type="button" value="+" onclick="panduan(3,'+')"/>
+			单价:<em>42.5</em> 元
+			小计:<span>0</span>元
+	</li>
+	<li>
+		<input type="button" value="-" onclick="panduan(4,'-')"/>
+		 <strong>0</strong>
+		<input type="button" value="+" onclick="panduan(4,'+')"/>
+			单价:<em>99.5</em> 元
+			小计:<span>0</span>元
+	</li>
+   </ul>
+	商品合计共：<i>0 </i>件，共花费了：<i>0 </i>元
+	<br>
+	其中最贵的商品单价是：<i>0 </i>元
+</body>
+</html>

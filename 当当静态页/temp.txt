@@ -1,0 +1,72 @@
+
+	<script type="text/javascript">
+		window.onload = init;
+		var s;	//定义一个全局变量，以之作为定时器名字
+		function init()
+		{
+			//启动（创建）一个定时器
+			s = window.setInterval("huan()",1000)
+		}
+
+		var i = 1;
+		function huan()
+		{
+			i++;
+			//换图
+			var jiaodian = document.getElementById("dd_scroll");
+			jiaodian.src = "images/dd_scroll_" + i + ".jpg";
+			//alert("images/dd_scroll_ " + i + ".jpg");
+			
+			//同时去更换按钮的背景
+			clearAllBack();
+
+			////然后再设定需要背景
+			var obj1 = document.getElementById("scroll_number_" + i);
+			obj1.style.backgroundColor = "orange";
+
+			if(i == 6)
+			{
+				i = 0;
+			}
+		}
+		function ting()
+		{
+			window.clearInterval(s);
+		}
+
+		function zou(myli)
+		{
+			s = window.setInterval("huan()",1000);
+			//myli.style.backgroundColor = "";
+		}
+		function zou2()
+		{
+			s = window.setInterval("huan()",1000);
+		}
+
+		function dian(n, myli)
+		{
+			window.clearInterval(s);	//先停止定时器
+			//再来换图
+			var jiaodian = document.getElementById("dd_scroll");
+			jiaodian.src = "images/dd_scroll_" + n + ".jpg";
+			
+			clearAllBack();
+
+			myli.style.backgroundColor = "orange";
+
+			i = n;
+
+		}
+		function clearAllBack()
+		{
+			////先清除“所有按钮”的背景
+			for(var k = 1; k <= 6; k++)
+			{
+				var obj2 = document.getElementById("scroll_number_" + k);
+				obj2.style.backgroundColor = "";
+			}
+		}
+
+
+	</script>

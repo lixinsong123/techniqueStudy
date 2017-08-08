@@ -1,0 +1,46 @@
+<!--  1: 什么是 Symbol?
+ 	Symbol,表示独一无二的值，它是js中的第七中数据类型
+
+*基本数据类型:Null Undefined Number Boolean String Symbol
+*引用数据类型:object 
+
+*Symbol 函数不能使用new否则会报错，原因在于Symbol是一个原始类型的值，不是对象
+
+*Symbol函数接受一个字符串作为参数,表示对Symbol的-描述-，主要是为了在控制台显示，或者转为字符串的时候，比较容易区分。
+		2：Symbol 数据类型的转换
+	*可以转换成 字符串和Boolean;
+		Symbol('leo').toString();
+		!!Symbol====>为true;
+	*注意,不能做任何运算
+		3:作为对象的属性名
+			*第一种:
+			let yyy = Symbol('yyy');
+			const obj = {};
+			obj[yyy] = 'hello';
+			console.log(obj);
+			console.log(obj[yyy]);
+			*第二种:
+			let ss =Symbol("ss");
+			const data = {
+				[ss]:"hello World"
+			}
+			console.log(data);
+			console.log(data[ss]);
+	*注意:
+	不能被for...in循环遍历,但是也不是私有的属性，可以通过object.getownPropertySymbols方法获得一个对象的所有Symbol属性
+
+-->
+<script type="text/javascript">
+	let yyy = Symbol('yyy');
+	const obj = {};
+	obj[yyy] = 'hello';
+	console.log(obj);
+	console.log(obj[yyy]);
+
+	let ss =Symbol("ss");
+	const data = {
+		[ss]:"hello World"
+	}
+	console.log(data);
+	console.log(data[ss]);
+</script>

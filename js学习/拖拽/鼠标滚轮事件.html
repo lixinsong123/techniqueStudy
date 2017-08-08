@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标滚轮事件</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var div1 = document.getElementById("div1");
+			document.onmousewheel=function(event){
+				
+				var b = event.wheelDelta>0? true:false;
+				if(b){
+					div1.style.height=(div1.offsetHeight-10)+"px";
+				}else{
+					div1.style.height=(div1.offsetHeight+10)+"px";
+				}
+				return false;
+			}		
+		}
+	</script>
+</head>
+<body style='height:2000px'>
+	<div id="div1" style="height:100px;width:100px;background:red"></div>
+</body>
+</html>

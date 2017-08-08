@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽--->碰撞菜单</title>
+	<style type="text/css">
+		#div{
+			width: 150px;
+			height: 150px;
+			background: pink;
+			position: absolute;
+			top: 30px;
+			left: 30px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var div = document.getElementById("div");
+			var prevX = 0;
+			var prevY =0;
+			var iSpeedX=0;
+			var iSpeedY=0;
+			var Timer = null;
+			div.onmousedown=function(ev){
+				var ev = ev ||window.event;
+				var disX = ev.clientX - this.offsetLeft;
+				var disY = ev.clientY - this.offsetTop;
+				prevX=ev.clientX;
+				prevY=ev.clientY;
+				document.onmousemove=function(ev){
+					var ev = ev||window.event;
+					div.style.left = ev.clientX-disX+"px";
+					div.style.top  = ev.clientY-disY+"px";
+					iSpeedX=ev.clientX-prevX;
+					iSpeedY=ev.clientY-prevY;
+					prevX=ev.clientX;
+					prevY=ev.clientY;
+				}
+				document.onmouseup=function(){
+					document.onmousemove=document.onmouseup=null;
+					clearInterval(Timer);
+					Timer=setInterval(function(){
+						iSpeedY+=3;
+					 var L=div.offsetLeft+iSpeedX;
+					 var T=div.offsetTop +iSpeedY;
+					 
+					 if(L>document.documentElement.clientWidth-div.offsetWidth){
+					 	L=document.documentElement.clientWidth-div.offsetWidth;
+					 	iSpeedX*=-1;
+					 	iSpeedX*=0.75;
+					 }else if(L<0){
+					 	L=0;
+					 	iSpeedX*=-1;
+					 	iSpeedX*=0.75;
+					 }else if(T>document.documentElement.clientHeight-div.offsetHeight){
+					 	T=document.documentElement.clientHeight-div.offsetHeight;
+					 	iSpeedY*=-1;
+					 	iSpeedX*=0.75;
+					 	iSpeedY*=0.75;
+					 	console.log(iSpeedX+":"+iSpeedY);
+					 }else if(T<0){
+					 	T=0;
+					 	iSpeedY*=-1;
+					 	iSpeedY*=0.75;
+					 }
+						div.style.left=L+"px";
+						div.style.top =T+"px";
+					},30)
+				}
+				return false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+1.创建模块
+angular.module()
+2.启动模块
+angualr.bootstrap()
+3.通过模块组织维护代码
+	a.value:定义模块变量
+	b.constant:定义模块常量
+	c.directive:定义指令
+	d.component:定义组件
+	e.controller:定义控制器
+	f.provider:定义供应商
+	j.service:定义服务
+	...
+4.创建控制器，编写相关业务逻辑代码
+md.controller('mainController',funciton(){})

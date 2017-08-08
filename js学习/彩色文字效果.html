@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>彩色文字效果--简单版</title>
+	<style type="text/css">
+		span{
+			display: block;
+			float: left;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			line-height: 100px;
+
+		}
+		#one{
+			padding-top:100px;
+			padding-left: 150px;
+		}
+		#two{
+			padding-top: 150px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var one = document.getElementById("one");
+			var son = document.getElementsByTagName("span");
+			var text = document.getElementsByTagName("input")[0];
+			var a =document.getElementsByTagName("a")[0];
+			
+			a.onclick=function(){
+				var getText=text.value;
+				var attr = getText.split('');
+				for(var i=0;i<son.length;i++){
+					son[i].innerHTML=attr[i];
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div style="margin:0 auto;width:700px;height:600px;border:1px solid red">
+	  <div id="one">
+		<span style="background:#AEEEEE;color: #EEAEEE;">文</span>
+		<span style="background:#AB82FF;color: #8A2BE2;">字</span>
+		<span style="background:#ADFF2F;color: #548B54;">内</span>
+		<span style="background:#B0E2FF;color:	#1E90FF;">容</span>
+	  </div>
+	  <div id="two">
+	  		<input type="text" value="努力奋斗！" style="margin-left:200px;height:30px;width:300px"/>
+	  		<a href="javascript:void(0)"style="text-decoration:none;color:red">确定</a>
+	  </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+@charset "utf-8";
+* {
+  font-size: 0.32rem;
+}
+body,
+p {
+  margin: 0;
+  padding: 0;
+}
+.fl {
+  float: left;
+}
+.rt {
+  float: right;
+}
+.Mr_none {
+  margin-bottom: 0;
+}
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.clear {
+  *zoom: 1;
+}
+.swiper-container {
+  width: 100%;
+  height: 26.64rem;
+}
+.swiper-slide {
+  background: url(../images/bg.png) no-repeat center center;
+}
+.croup {
+  padding: 71px 2.78rem 64px 2.64rem;
+}
+.profile {
+  padding: 0 0.56rem 0 0.82rem;
+}
+.logo img {
+  width: 6.56rem;
+  height: 239px;
+}
+.logo_content p {
+  height: 34px;
+  border: 2px solid #9da4ae;
+  border-radius: 8px;
+  width: 6.46rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-size: 0.52rem;
+  text-indent: 18px;
+  line-height: 34px;
+}
+.paopao {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  z-index: 1;
+  width: 119px;
+  height: 118px;
+  transition: 10s;
+}
+.croup_core {
+  height: 640px;
+  width: 13.2rem;
+  padding: 0.5rem 0.76rem;
+  position: relative;
+}
+.rotate_core {
+  width: 100%;
+  height: 100%;
+  animation: move 400s;
+}
+@keyframes move {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(10000deg);
+  }
+}
+.rotate_core a {
+  width: 3rem;
+  height: 3rem;
+  background: rgba(5, 53, 90, 0.2);
+  display: block;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  position: absolute;
+}
+.rotate_core a > div {
+  padding: 6px 32px 0 29px;
+}
+.rotate_core a > div > img {
+  transform: scale(0.9);
+}
+.rotate_core a > div > span {
+  color: white;
+  font-size: 18px;
+  display: block;
+  text-align: center;
+  position: relative;
+  top: -9px;
+  width: 109px;
+}
+.rotate_core .ceshi {
+  padding: 6px 32px 0 8px;
+}
+.rotate_core a:nth-of-type(1) {
+  top: 60px;
+  left: 70px;
+}
+.rotate_core a:nth-of-type(2) {
+  bottom: 60px;
+  left: 70px;
+}
+.rotate_core a:nth-of-type(3) {
+  top: 60px;
+  right: 70px;
+}
+.rotate_core a:nth-of-type(4) {
+  bottom: 60px;
+  right: 70px;
+}
+.stop_core {
+  position: absolute;
+  top: 36%;
+  left: 29%;
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹性菜单</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#ul{
+			width: 600px;
+			height: 100px;
+			margin: 0 auto;
+			position: relative;
+			padding-top: 100px;
+		}
+		#ul .box {
+			width: 100px;
+			height: 30px;
+			border-radius: 7px;
+			background: pink;
+			float: left;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 30px;
+			color: white;
+			cursor: pointer;
+		}
+		#mark{
+			position: absolute;
+			width: 100px;
+			height: 30px;
+			background: rgba(225,225,225,0.5);
+			border-radius: 7px;
+			overflow: hidden;
+		}
+		#mark ul{
+			position: absolute;
+			width: 600px;
+		}
+		#mark ul>li{
+			width: 100px;
+			height: 30px;
+			border-radius: 7px;
+			float: left;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 30px;
+			color: yellow;
+			cursor: pointer;
+			background: rgba(225,225,225,0.5);
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var mark = document.getElementById("mark");
+			var lis  = document.getElementsByClassName("box");
+			var mark_ul = mark.getElementsByTagName("ul")[0];
+			var iTimer=null;
+			var iSpeed=0;
+			var iTimer2=null;
+			for(var i=0;i<lis.length;i++){
+				lis[i].onmouseover=function(){
+					clearInterval(iTimer2);
+					startMove(this.offsetLeft);
+				}
+				lis[i].onmouseout=function(){
+					iTimer2=setTimeout(function(){
+						startMove(0);
+					},100)
+					
+				}
+			}
+			mark.onmouseover=function(){
+				clearInterval(iTimer2);
+			}
+			mark.onmouseout=function(){
+				iTimer2=setTimeout(function(){
+						startMove(0);
+					},100)
+			}
+			function startMove(target){
+			clearInterval(iTimer);
+			iTimer=setInterval(function(){
+				iSpeed+= (target-mark.offsetLeft)/6;
+				iSpeed*= 0.7;
+				if(Math.abs(iSpeed)<=1&&Math.abs(target-mark.offsetLeft)<=1){
+					clearInterval(iTimer);
+					iSpeed=0;
+					mark.style.left=target+"px";
+					mark_ul.style.left=-target+"px";
+				}else{
+					mark.style.left=mark.offsetLeft+iSpeed+"px";
+					mark_ul.style.left=-mark.offsetLeft+"px";
+				}
+			},30)
+		}		
+		}
+		
+	</script>
+</head>
+<body>
+	<ul id="ul">
+		<li id="mark">
+			<ul>
+				<li>首页</li>
+				<li>论坛</li>
+				<li>视频</li>
+				<li>介绍</li>
+				<li>关于我们</li>
+			</ul>
+		</li>
+		<li class="box">首页</li>
+		<li class="box">论坛</li>
+		<li class="box">视频</li>
+		<li class="box">介绍</li>
+		<li class="box">关于我们</li>
+	</ul>
+</body>
+</html>

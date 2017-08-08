@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一般拖拽</title>
+	<style type="text/css">
+		#div1{
+			width: 100px;
+			height: 100px;
+			background: pink;
+			position: absolute;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var div1 = document.getElementById("div1");
+			var disX = 0;
+			var disY = 0;
+			div1.onmousedown=function(ev){
+				var ev =ev||window.event;
+				 disX = ev.clientX-this.offsetLeft;
+				 disY = ev.clientY-this.offsetTop;
+				 document.onmousemove=function(ev){
+				 	var ev =ev||window.event;
+				 	var nowX = ev.clientX-disX;
+				 	var nowY = ev.clientY-disY;
+				 	div1.style.top=nowY+"px";
+				 	div1.style.left=nowX+"px";
+				 }
+				 document.onmouseup=function(){
+				 	document.onmousemove=document.onmouseup=null;
+				 }
+				 return false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

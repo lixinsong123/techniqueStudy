@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自适应轮播图</title>
+	<!--速度太快有bug-->
+	<script type="text/javascript" src="js/miaov.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+		#parent{
+			position: relative;
+			min-width: 1000px;
+			height: 480px;
+			overflow: hidden;
+		}
+		#son{
+			position: absolute;left:0; 
+		}
+		#son img{
+			position: relative;
+			left: 0;
+		}
+		#son li{
+			float: left;
+		}
+		#btn{
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			z-index: 2;
+		}
+		#btn a{
+			display: inline-block;
+			background: white;
+			height: 20px;
+			width: 20px;
+			border-radius: 6px;
+
+		}
+		#btn a:hover{
+			background: rgba(0,0,0,0.4);
+		}
+		#btn .active{
+			background: rgba(0,0,0,0.4);
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oDiv = document.getElementById("parent");
+			var oUl  = document.getElementById("son");
+			var oLi  = oUl.getElementsByTagName("li");
+			var oImg = oUl.getElementsByTagName("img");
+
+			var oBtn  = document.getElementById("btn");
+			var oA    = oBtn.getElementsByTagName("a");
+
+			var imgWidth = 1920;
+			oUl.style.width  = imgWidth*oImg.length+"px";
+			toCenter();
+			/*图片控制*/
+			var index =0;
+			var index2=0;
+			/*运动效果*/
+			oUl.setTimer = setInterval(setMove,5000);
+			/*自动移动*/
+			function setMove(){
+				var nowTarget = oUl.offsetLeft;
+				var newTarget = nowTarget-imgWidth;
+				if(index==oLi.length-1){
+					index=0;
+					oLi[0].style.position="relative";
+					oLi[0].style.left = imgWidth*oLi.length+"px";
+					//index2--;
+				}else{
+					index++;
+				}
+				//index2++;
+				timeMove(oUl,{"left":newTarget},3000,"elasticOut",function(){
+					if(index==0){
+						oLi[0].style.position="static";
+						oUl.style.left=0+"px";
+						//index2=0;	
+					}
+				});
+				for(var i=0;i<oA.length;i++){
+					oA[i].classList.remove("active");
+				}
+				oA[index].classList.add("active");
+			}
+			/*点击移动*/
+			for(var i=0;i<oA.length;i++){
+				oA[i].index=i;
+				oA[i].onclick=function(){
+					clearInterval(oUl.setTimer);
+					index=this.index;
+					var newTarget = -index*imgWidth;
+					timeMove(oUl,{"left":newTarget},3000,"backIn");
+					for(var j=0;j<oA.length;j++){
+						oA[j].classList.remove("active");
+					}
+					oA[this.index].classList.add("active");
+					oUl.setTimer = setInterval(setMove,5000);
+				}
+			}
+			/*图片居中效果*/
+			function toCenter(){
+				var cliWidth = document.documentElement.clientWidth;
+				if(cliWidth>1000){
+					var newWidth = (imgWidth-cliWidth)/2;
+					for(var i=0;i<oImg.length;i++){
+						oImg[i].style.left=-newWidth+"px";
+					}
+					//oUl.style.width=cliWidth*oImg.length+"px"
+				}
+				
+			}
+			window.onresize = function(){
+				toCenter();
+			}
+		}
+	</script>
+</head>
+<body>
+	 <div id="parent">
+		<ul id="son">
+			<li><img src="images/bg_1.jpg" alt=""></li>
+			<li><img src="images/bg_2.jpg" alt=""></li>
+			<li><img src="images/bg_3.jpg" alt=""></li>
+			<li><img src="images/bg_4.jpg" alt=""></li>
+		</ul>
+		<div id="btn">
+			<a class="active" href="javascript:;"></a>
+			<a href="javascript:;"></a>
+			<a href="javascript:;"></a>
+			<a href="javascript:;"></a>
+		</div>
+	</div>
+	
+</body>
+</html>

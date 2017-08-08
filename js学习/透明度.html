@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>透明度</title>
+	<script src="miaov.js"></script>
+	<style>
+		#img{
+			opacity: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		//透明函数,对象，速度，目标点
+		window.onload=function(){
+			var img=document.getElementsByTagName("img")[0];
+			diaphaneity(img,13,100,200,function(){
+				//alert("success ?");
+			});
+			
+		}
+		//透明函数,对象，速度，目标点,改变频率,回调函数
+		function diaphaneity(obj,speed,target,rate,enfn){
+			var setTime =null;
+			var target=target;
+			speed = parseFloat(getStyle(obj,'opacity'))*100<target?speed:-speed;
+			setTime=setInterval(function(){
+
+				//console.log(parseFloat(getStyle(obj,'opacity'))*100);
+				var extent=parseFloat(getStyle(obj,'opacity'))*100+speed;//改变后的透明度
+				obj.style.opacity=extent*0.01+"";
+				if(parseFloat(getStyle(obj,'opacity'))*100===target){
+					obj.style.opacity=target*0.01+"";
+					clearInterval(setTime);
+					enfn&&enfn();
+				}
+
+			},rate);
+		}
+	</script>
+</head>
+<body>
+	<img id="img" src="images/zd_3.jpg"/>
+</body>
+</html>

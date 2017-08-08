@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
+</head>
+<body ng-controller="parentCtr">
+	<div ng-view>
+		
+	</div>
+	<script>
+		var md = angular.module("myApp",['ng','ngRoute']);
+			md.config(function($routeProvider){
+				$routeProvider
+				.when('/start',{
+					templateUrl:'tpl/start.html'
+				})
+				.when('/start/:id',{
+					templateUrl:'tpl/start.html',
+					controller:'startCtrl'
+				})
+				.when('/register',{
+					templateUrl:'tpl/register.html'
+				})
+				.otherwise(
+					{redirectTo:'/start'}
+				);
+			});
+			md.controller('startCtrl',['$scope','$routeParams',function($scope,$routeParams){
+					console.log($routeParams.id);
+			}]);
+			md.controller('parentCtr',['$scope','$location',function($scope,$location){
+					$scope.jump=function(arg){
+						$location.path(arg);
+					}
+			}]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#one{
+			position:absolute;
+			left: 40%;
+			top: 40%;
+		}
+	</style>
+	<script type="text/javascript">
+		var x=40;
+		var y=40;
+		function move(evt){
+			
+
+			var obj =document.getElementById("one");
+			var code=evt.keyCode;
+			if(code==119){
+				if(x==0){
+					return;
+				}
+				x--;
+				obj.style.top=x+"%";	
+
+			}
+			if(code==115){
+				if(x==90){
+					return;
+				}
+				x++;
+				obj.style.top=x+"%";
+			}
+			if(code==97){
+				if(y==0){
+					return;
+				}
+				y--;
+				obj.style.left=y+"%";
+			}
+			if(code==100){
+				if(y==90){
+					return;
+				}
+				y++;
+				obj.style.left=y+"%";
+			}
+		}
+	</script>
+</head>
+<body onkeypress="move( event )" >
+	<img id="one" src="images/mouse5.jpg" width="100px" />
+</body>
+</html>

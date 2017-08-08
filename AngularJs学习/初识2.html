@@ -1,0 +1,185 @@
+<!doctype html>
+<!-- 要在这里引用模块名 -->
+<html lang="en" ng-app='myApp'>
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJs初识2</title>
+	<!--引入AngularJs的文件-->
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		//模块化:angular.module(模块名，空数组)
+		/* 
+	   var phonecatApp =	angular.module('phonecatApp', []);
+	   phonecatApp.controller('PhoneListCtrl',function($scope,$rootScope) {
+	  		$scope.name='Hello world';
+	   })
+	   //建议用这种方式,解决压缩问题!
+		var m1 = angular.module('myApp', []);
+	  	 	m1.controller('one',['$scope',function($scope) {
+	   		$scope.name='Hello world';
+	   }])
+	    	m1.controller('two',['$scope',function($scope) {
+	   		$scope.name='Hi world';
+	   }])
+	  工具方法:
+	   1:angular.bind();---类似---》call()/apply(); 改this指向
+			  	function show(a,b){
+					alert(this);
+					alert(a+":"+b);
+				}
+				angular.bind(document,show)(3,4);
+		2:angular.copy();-------》拷贝对象
+				var a  ={
+					'name':'张三'
+				};
+				var b  = {
+					'age':'18'
+				};
+				var c = angular.copy(a,b);------->a把所有值覆盖给了b
+				console.log(c);
+				console.log(b);
+		3:angular.extend();-------》继承对象
+			var a  ={
+				'name':'张三'
+			};
+			var b  = {
+				'age':'18'
+			};
+				var c = angular.extend(a,b); ------》a继承了b的属性
+				console.log(c);
+				console.log(a);
+				console.log(b);
+		4：angular.isArray(); 			判断是否为一个数组对象
+		 var  arr = [];
+		 console.log(angular.isArray(arr));
+		5:  angular.isDate();  			判断是否为一个日期对象
+		6： angular.isDefined(); 		判断是否存在
+		7:  angular.isUndefined();		判断是否不存在
+		8:  angular.isFunction();		判断是否为一个函数
+		9:  angular.isNumber(); 		判断是否为一个数字
+		10: angular.isObject(); 		判断是否为一个对象
+		11: angular.isString(); 		判断是否为一个字符串对象
+		12: angular.isElement();		判断是否为一个元素（标签对象）
+		13: angular.version             获取AngularJs的版本号
+			console.log(angular.version);
+		14:angular.equals(a,b);         比较是否相等
+		注意:
+			var a = NaN;
+			var b = NaN;
+				  a==b;                           false
+			console.log(angular.equals(a,b));  //为true 
+		15:angular.forEach(对象,回调函数,result);
+			对象:数组对象，集合对象,json对象...
+			回调函数有两个参数:值,对象名(下标)
+			result:在回调函数中this代表它。
+			var json={
+				'name':'八重樱',
+				'age' :'500'
+			};
+			var result={
+
+			};
+			angular.forEach(json,function(value,index){
+				console.log(index+":"+value);
+				this[index]=value;
+				this.love='卡莲'
+			},result);
+			console.log(result);
+		16: angular.fromJson();  将字符串转换为json对象类似与JSON.parse();
+
+				var str = '{"name":"芽衣","age":"18"}';
+			//var json=JSON.parse(str);
+			var json  = angular.fromJson(str);
+			console.log(json);
+
+			angular.toJson(); 将json对象转化为字符串类似与JSON.stringify();
+			第二个参数,true.是否换行，可读性高
+			var json={
+				'name':'八重樱',
+				'age' :'500'
+			};
+			//var str  = JSON.stringify(json);
+			var str = angular.toJson(json,true);
+			console.log(str);
+			console.log(typeof(str));
+		17: angular.lowercase/uppercase  大小写转换	
+			console.log(angular.lowercase('HELLO'));
+			console.log(angular.uppercase('hello'));
+		18: angular.bootstrap(绑定模块的对象,[]) 动态初识化模块  不使用ng-app
+			[] ---------->ng-app
+			['myApp']---->ng-app='myApp'
+				var m1 = angular.module('myApp', []);
+			  	m1.controller('one',['$scope',function($scope) {
+			   		$scope.name='Hello world';
+			    }])
+			    m1.controller('two',['$scope',function($scope) {
+			   		$scope.name='Hi world';
+			    }])
+			    document.onclick=function(){
+			    	angular.bootstrap(this,['myApp']);
+			    }
+		$scope.$apply()  看实例!
+				setTimeout(function(){
+				   	$scope.name='ok';(值不会改变)
+						},2000);
+
+			var m1 = angular.module('myApp', []);
+			  	m1.controller('one',['$scope',function($scope) {
+			   		$scope.name='Hello world';
+				   		setTimeout(function(){
+				   			$scope.$apply(function(){
+				   				$scope.name='ok';(值会改变)
+				   			});
+						},2000);
+			}])
+		document.onclick=function(){
+			    	angular.bootstrap(this,['myApp']);
+			    }
+		 angular.module().run();//建立全局作用域的属性
+		 	var m1 = angular.module('myApp', []);
+				m1.run(['$rootScope',function($rootScope){
+						$rootScope.name='Hello world';
+				}]);
+			console.log(m1);
+		  自定义过滤器:
+			var m1 = angular.module('myApp', []);
+			//让字符串的首字母大写
+			 m1.filter('firstUpper',function(){
+		 		return function(str,num){
+		 			return str.charAt(0).toUpperCase()+str.substring(1)+num;
+			 		}
+			 });
+			  m1.controller('one',['$scope','$filter',function($scope,$filter) {
+			   		//$scope.name='Hello world';
+			   		$scope.name=$filter('firstUpper')('Hello world',2);
+			   }])
+			 ng-repeat指令-----》in遍历集合  
+			<li ng-repeat='data in dataList'>{{data}}</li>
+			   var m1 = angular.module('myApp', []);
+				 m1.controller('one',['$scope','$filter',function($scope,$filter) {
+				   		//$scope.name='Hello world';
+			   		$scope.dataList=['姬子','琪雅娜','芽衣'];
+			   }])
+			事件指令
+			ng-click------------------->onclick
+			ng-mousedown--------------->onmousedown
+			其他都类似
+			区别在于，js原生的事件不支持{{}}表达式
+
+			ng-disabled:按钮禁用
+			true:禁用
+			false:不禁用
+			$interval指令 用法类似setInterval()
+		*/
+
+				
+	</script>
+</head>
+<body>
+	<div ng-controller='one'>
+			
+	</div>
+	<!-- <div ng-controller='one'>{{name}}</div>
+	<div ng-controller='two'>{{name}}</div> -->
+</body>
+</html>

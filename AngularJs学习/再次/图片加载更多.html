@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片加载更多实例</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin:0;
+			list-style: none;
+		}
+		#parent{
+			padding-top: 100px;
+			width: 800px;
+			margin:0 auto;
+		}
+		#parent p{
+			float: left;
+		}
+		#parent p b{
+			display: block;
+		}
+		#parent img{
+			width: 150px;
+			height: 150px;
+		}
+		b{
+			width: 600px;
+			line-height: 70px;
+		}
+		.one{
+			border-bottom: 1px solid black;
+		}
+		.son{
+			border: 1px solid #eeeeee;
+			padding: 10px 10px;
+			overflow: hidden;
+		}
+	</style>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-app="myApp">
+	<div id="parent">
+		<ul ng-controller="myCtr">
+			<li class="son" ng-repeat="(key,value) in arr">
+				<p><img ng-src="{{value.src}}"></p>
+				<p>
+					<b class="one">{{value.name}}</b>
+					<b class="two">价格: {{value.price}}</b>
+				</p>
+			</li>
+			<input type="button" value="加载更多" ng-click="add()"></input>
+		</ul>
+	</div>
+	<script>
+			var md=angular.module('myApp',['ng']);
+			md.controller("myCtr",function($scope){
+				$scope.arr=[
+					{
+						src:"images/PX_1.jpg",
+						name:"鱼香肉丝",
+						price:30
+					},
+					{
+						src:"images/PX_2.jpg",
+						name:"土豆肉丝",
+						price:40
+					},
+					{
+						src:"images/PX_3.jpg",
+						name:"回锅肉",
+						price:10
+					}
+				];
+				$scope.add=function(){
+					$scope.arr.push({
+						src:"images/PX_4.jpg",
+						name:"回锅肉",
+						price:10
+					});
+					$scope.arr.push({
+						src:"images/PX_5.jpg",
+						name:"回锅肉",
+						price:10
+					});
+					$scope.arr.push({
+						src:"images/PX_6.jpg",
+						name:"回锅肉",
+						price:10
+					});
+				};
+			});
+	</script>
+</body>
+</html>

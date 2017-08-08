@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function init(){
+			document.getElementById("username").value="请输入用户名";
+		}
+		function panduan(){
+			var a= document.getElementById("username").value;
+			if(a=="请输入用户名"){
+				document.getElementById("username").value="";
+			}else{
+
+			}
+		}
+		function huqu(){
+			var a= document.getElementById("username").value;
+			if(a==""){
+				document.getElementById("username").value="请输入用户名"
+			}else{
+				
+			}
+		}
+	</script>
+</head>
+<body onload="init()">
+	<form action="###">
+		<input type="text" id="username" onfocus="panduan()" onblur="huqu()"/>
+		<br>
+		<input type="password">
+		<br>
+		<input type="submit" value="登录"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+							ng四大特征
+			a.采用了MVC的设计模式
+			b.双向数据绑定(view和model)
+			c.依赖注入
+			d.模块化设计
+	一.如何自定义模块并调用。
+		自定义模块 : angular.module();
+		模块之间如何相互之间的调用:
+			angular.module('myApp2',['ng','myApp2'])
+		模块化的好处 :
+			体现了'高内聚，低耦合'的设计原则，提供代码的复用率,
+			降低测试难度。
+		模块分类 :
+			a.ng官方提供的模块
+				ng\ngAnimate\ngRoute\ngTouch...
+			b.用户自定义的模块
+				angular.module();
+			一个angularJs的模块可以包含那些组件??
+				a.controller: 维护模型数据
+				b.directive : 用在view中 输出/绑定Model数据
+				c.function  : forEach\toJson\formJson
+				d.filter    : 结果的筛选，过滤，格式化
+				e.service   : 提供变量或者方法的服务
+				...		

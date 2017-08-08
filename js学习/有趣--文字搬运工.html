@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>有趣--文字搬运工</title>
+	<!--成功执行-->
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			margin-top: 200px;
+			width: 900px;
+			height: 300px;
+			border:10px solid #999999;
+
+		}
+		#parent>ul{
+			margin: 10px;
+			
+		}
+		#parent>ul>li{
+			float: left;
+			margin-left:5px;
+			
+		}
+		#texiao {
+			opacity: 0;
+		}
+		#texiao li {
+			float: left;
+			color: black;
+			background: #EEEE00;
+			width: 10px;
+			margin-left: 5px;
+			height: 15px;
+		}
+	</style>
+	<script src="miaov.js"></script>
+	<script type="text/javascript">
+
+		//alert(stochastic(42,100));
+		var kongzhi =false;
+
+		function start(){
+			
+			if(kongzhi==true){
+				return;
+			}
+			kongzhi=true;
+			var obj=document.getElementsByTagName("textarea")[0];
+			var nowText=obj.value;
+			if(nowText==''){
+				alert("内容为空哦!");
+				kongzhi=false;
+				return;
+			}
+			var i=0;
+			var arr=nowText.split('');
+			var textArr='';
+			var newobj=document.getElementById("newText");
+			newobj.innerHTML='';
+
+			var ems=document.getElementsByTagName("em");
+			ems[1].innerHTML=arr.length;
+			ems[0].innerHTML=arr.length;
+			var texiao=document.getElementById("texiao");
+			//透明函数,对象，速度，目标点,改变频率,回调函数
+			diaphaneity(texiao,13,100,200);
+			//var da=0;
+			//var setTime1=setInterval(teXiao,70);
+			var setTime=setInterval(function(){
+				if(i<arr.length){
+					textArr=arr[i];
+					arr[i]='';
+					i++;
+				ems[0].innerHTML=i;
+				}
+				var newarr=arr.join('');
+				//var newtext=textArr.join('');
+				obj.value=newarr;
+				newobj.innerHTML+=textArr;
+				
+				index++;
+				if(i==arr.length){
+					clearInterval(setTime);
+					//clearInterval(setTime1);
+					diaphaneity(texiao,13,0,100);
+					kongzhi=false;	
+				}
+				teXiao(texiao);	
+			},50);
+
+			
+		}
+		var index=-1;
+		function teXiao(texiao){
+				
+				var tLi =texiao.getElementsByTagName("li");
+				
+				
+				for(var i=0;i<tLi.length;i++){
+					tLi[i].style.background="#EEEE00";
+				}
+				tLi[index].style.background="#EE0000";
+				if(index==tLi.length-1){
+					index=-1;
+				}
+			}
+	</script>
+</head>
+<body>
+	<div id="parent">
+		<ul>
+			<li style="width: 365px;0px;border:2px solid	#C4C4C4;height: 270px;background:	#EED8AE;">
+				<div style="margin:20px;overflow: hidden;">
+					
+			<textarea rows="8" style="border:0;outline:none;width:325px;height:250px;color:black;font-size:14px;background:	#EED8AE; resize : none;overflow: hidden;">生命的意义何在，存在有理由？这样有什么意义可言吗？还有，为什么食物就是比垃圾好吃得多，这是我，这是我，话说回来，这小家伙也是我。作为一只狗，可选择的生活方式有很多，不过，这话说的有点早，我们还是从故事的开头说起吧。 
+对我而言，这个小男孩是一切的起源，他的名字是Ethan，而我的名字是Bailey Bailey Bailey Bailey。 
+我有了新的使命，又有人需要我了，又一次，又一次，在每一段新生命里，我都能发现新的意义，我尝试着理解所见一切的意义，我的这段旅程有意义吗？意义从何而来？ 
+The Ones We Rescue Rescue Us 
+我们所拯救的 终将拯救我们 
+A Dog’s Purpose 
+若我能将幸福带给你，我就完成了自己的使命。</textarea>
+				</div>
+			</li>
+			<li style="color:white;background:#EEAD0E;width:120px;height: 30px;" onclick="start()">
+				<span style="width:120px;height: 30px;line-height:30px;padding-left:20px;cursor: pointer;">把文字右移</span>
+				<div style="color:black;font-size:25px;width:70px;margin-left:18px">
+					<em>00</em>/<em>00</em>
+				</div>
+				<div>
+					<ul id="texiao">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>                                                       
+					</ul>
+				</div>
+			</li>
+
+			<li style="width: 365px;0px;border:2px solid #C4C4C4;height: 270px;background:	#87CEFF;color:black;overflow: hidden;font-size:14px">
+				<div id="newText" style="margin:20px;">
+					
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

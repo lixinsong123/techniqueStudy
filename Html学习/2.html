@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<!--
+								定位:position
+		相对定位: relative（left|right|top|bottom）
+			1：不影响元素本身的特性。
+			2：不使元素脱离文档流（元素移动之后原始位置会被保留）。
+			3：如果没有定位偏移值，对元素本身没有任何影响。
+			4：提示层级。
+
+	-->
+	<style type="text/css">
+		header{
+			width: 300px;
+			height: 200px;
+			background: pink;
+			display: block;
+		}
+		section{
+			width: 200px;
+			height: 100px;
+			background: red;
+			display: block;
+		}
+		footer{
+			width: 100px;
+			height: 50px;
+			background: yellow;
+			display: block;
+		}
+		#parent{border:1px solid red;overflow: hidden;width: 400px}
+		.left{background: pink;float: left;}
+		.right{background: blue;float: right;}
+		h2{margin: 0;height: 30px;}
+	</style>
+	<script type="text/javascript">
+				document.createElement("header");
+				document.createElement("section");
+				document.createElement("footer");
+	</script>
+<body>
+	<header>header</header>
+	<section>section</section>
+	<footer>footer</footer>
+	<div id='parent'>
+		<div class='left'>
+			<h2>左边</h2>
+		</div>
+		<div class='right'>
+			<h2>右边</h2>
+		</div>
+	</div>
+</body>
+</html>

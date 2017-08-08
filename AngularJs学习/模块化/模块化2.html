@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl">
+		{{title}}
+	</div>
+	<script>
+			//创建模块
+			//$scope作用域对象
+		  var md1=angular.module("myApp1",['ng']);
+			  md1.controller("myCtrl",function($scope){
+			  	//处理该模块下的控制器的业务逻辑
+			  	$scope.title="Hello";
+			  	
+			  })
+
+			//创建一个依赖myApp1模块的myApp2模块
+			//依赖注入
+			var md2 = angular.module("myApp2",['myApp1']);
+
+			//启动应用模块
+			angular.bootstrap(document,['myApp2']);
+	</script>
+</body>
+</html>

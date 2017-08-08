@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl">
+		<form name="temp_form">
+			<input type="text" ng-model='name'  name="t_name" required/>
+			<span ng-show="temp_form.t_name.$error.required">
+						姓名不能为空
+			</span>
+			<span ng-show="temp_form.t_name.$pristine">
+						未输入过
+			</span>
+			<span ng-show="temp_form.t_name.$dirty">
+						已输入过
+			</span>
+			<span ng-show="temp_form.t_name.$valid">
+						验证通过
+			</span>
+			<span ng-show="temp_form.t_name.$invalid">
+						验证未通过
+			</span>
+		</form>
+	</div>
+	<script>
+			var md = angular.module('myApp',['ng']);
+				md.controller('myCtrl',['$scope',function($scope){
+						$scope.name='web1609';
+				}]);
+	</script>
+</body>
+</html>

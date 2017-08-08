@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自由落体运动</title>
+	<style type="text/css">
+		#div{
+			width: 200px;
+			height: 200px;
+			background: pink;
+			position: absolute;
+			top: 40px;
+		}
+	</style>
+	<script type="text/javascript">
+	  window.onload=function(){
+	  	var div = document.getElementById("div");
+	  	var start = document.getElementById("start");
+		var iSpeed=0;
+		start.onclick=function(){
+			setInterval(function(){
+				iSpeed+=10;
+				var T = div.offsetTop+iSpeed;
+				if(T>document.documentElement.clientHeight-div.offsetHeight){
+					T=document.documentElement.clientHeight-div.offsetHeight
+					iSpeed*=-1;
+					iSpeed*=0.75;
+				}
+				div.style.top=T+"px";
+			},30)
+		}
+		
+	  }
+		
+	</script>
+</head>
+<body>
+	<input type="button" value="开始" id="start"/>
+	<div id="div"></div>
+</body>
+</html>

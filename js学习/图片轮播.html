@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片轮播</title>
+	<style>
+		ul,li{
+			text-decoration: none;
+			font-style: normal;
+			list-style: none;
+
+		}
+		ul{
+			position:absolute;
+			top: 50px;
+			right: 400px;
+		}
+		li{
+			border: 1px solid black;
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			margin-bottom: 5px;
+			cursor: pointer; 
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=init;
+		var t1;
+		function init(){
+			 t1 =window.setInterval("bian()",3000);
+			document.getElementsByTagName("li")[0].style.background="orange";
+		}
+		var n=1;
+		function bian(){
+			//换图
+			if(n>5){
+				n=0;
+			}
+			var img1=document.getElementById("img");
+			n++;
+			img1.src="images/dd_scroll_"+n+".jpg"
+			//换按钮背景
+			/*有问题
+			allname=document.getElementsByTagName("li");
+			allname[n-1].style.background="orange";
+			if(n==1){
+				allname[5].style.background="";
+			}else{
+				allname[n-2].style.background="";
+			}*/
+			setbgname(n-1);
+		}
+		function ting(){
+			 window.clearInterval(t1); 
+		}
+		function start(){
+			t1 =window.setInterval("bian()",3000);
+		}
+		function huan(a){
+			n=a-1;
+			bian();
+			ting();
+		}
+		function setbgname(a){
+			var allname=document.getElementsByTagName("li");
+			for(var i =0;i<allname.length;i++){
+				allname[i].style.background="";
+			}
+			allname[a].style.background="orange";
+		}
+	</script>
+</head>
+<body>
+	<div style="margin:0 auto;width:50%;position: relative">
+		<h1>这是一个轮播图</h1>
+		<img src="images/dd_scroll_1.jpg" id="img" onmouseover="ting()" onmouseout="start()"/>
+		<ul>
+			<li onmouseover="huan(1)" onmouseout="start()">1</li>
+			<li onmouseover="huan(2)" onmouseout="start()">2</li>
+			<li onmouseover="huan(3)" onmouseout="start()">3</li>
+			<li onmouseover="huan(4)" onmouseout="start()">4</li>
+			<li onmouseover="huan(5)" onmouseout="start()">5</li>
+			<li onmouseover="huan(6)" onmouseout="start()">6</li>
+		</ul>
+	</div>
+</body>
+</html>

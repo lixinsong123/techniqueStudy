@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app='myApp' >
+<head>
+	<meta charset="UTF-8">
+	<title>指令之间的交互</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		var myApp = angular.module('myApp', [])
+		  myApp.directive('myHello', function() {
+		    return {
+		        restrict: 'E',
+		        replace:true,
+				controller:['$scope',function($scope){
+					this.name='hello'
+				}],
+				link :function(scope,element,attr){
+					console.log(this.name);
+				}
+		    };
+		}) 
+		myApp.directive('myHi', function() {
+		    return {
+		        restrict: 'E',
+		        replace:true,
+		        require:'?^myHello',
+				controller:['$scope',function($scope){
+				}],
+				link :function(scope,element,attr,reController){
+					reController.name='ok';
+					console.log(reController);
+				}
+		    };
+		}) 
+		  myApp.controller('one',['$scope','$http',function($scope){
+					
+		  }]);
+	
+	
+	</script>
+
+</head>
+<body ng-controller='one'>
+	<my-hello>
+			<my-hi></my-hi>
+	</my-hello>
+	
+</body>
+</html>

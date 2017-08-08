@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>有趣--替删改</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		#parent{
+			margin: 0 auto;
+			width: 1000px;
+			height: 1000px;
+		}
+		#son{
+			position: relative;
+		}
+		#nav{
+			position: absolute;
+			top: 0;
+			right: 112px;	
+		}
+		#nav li{
+			background: #D1D1D1;
+			margin-top:2px;
+			width: 70px;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			cursor: pointer;
+		}
+		#feature li{
+			float: left;
+			background:#EAEAEA;
+			width: 70px;
+			height: 30px;
+			text-align: center;
+			margin-left: 1px;
+			line-height: 30px;
+			cursor: pointer;
+		}
+		b{
+			cursor: pointer;
+		}
+		strong{
+			background: #EEEE00;
+			color: white;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var nav=document.getElementById("nav");
+			var nav_s=nav.getElementsByTagName("li");
+			//expand
+			var expand =true;
+			nav_s[0].onclick=function(){
+				nav_s[1].style.background='';
+				nav_s[1].style.color='';
+				nav_s[2].style.background='';
+				nav_s[2].style.color='';
+				if(expand==true){
+					this.innerHTML='收缩';
+					this.style.background='#8E8E8E';
+					nav_s[1].style.display="block";
+					nav_s[2].style.display="block";	
+					expand=!expand;
+				}else{
+					this.innerHTML='展开';
+					this.style.background='';
+					nav_s[1].style.display="none";
+					nav_s[2].style.display="none";	
+					expand=!expand;
+				}
+				
+			}
+			nav_s[1].onclick =function(){
+				/*
+					样式变换
+				*/
+				nav_s[2].style.background='';
+				nav_s[2].style.color='';
+				this.style.background='#EEAD0E';
+				this.style.color='white';
+				
+				var obj=document.getElementById("accomplish");
+				obj.style.display="block";
+				start_p(0);
+			}
+			nav_s[2].onclick =function(){
+				var obj=document.getElementById("accomplish");
+				obj.style.display="block";
+				nav_s[1].style.background='';
+				nav_s[1].style.color='';
+				this.style.background='#EEAD0E';
+				this.style.color='white';
+				start_p(1);
+			}
+		}
+		function start_p(a){
+			var obj=document.getElementById("Reality");
+			var son=obj.getElementsByTagName("div");
+			var obj_s=document.getElementById("feature");
+			var son_s=obj_s.getElementsByTagName("li");
+			if(a==0){
+				son_s[a].style.background="#838B8B";
+				son_s[a+1].style.background="";
+				son[a].style.display='block';
+				son[a+1].style.display='none';
+			}else{
+				son_s[a].style.background="#838B8B";
+				son_s[a-1].style.background="";
+				son[a].style.display='block';
+				son[a-1].style.display='none';
+			}
+		}
+		function Hidden(){
+			var obj=document.getElementById("accomplish");
+			obj.style.display="none";
+		}
+	
+	</script>
+</head>
+<body style="background:#E5E5E5">
+	<div id="parent">
+		<div id="son" style="width:700px;height:800px;margin-top:100px;margin-left:200px;">
+			<div id="view" style="border:8px solid #CDB7B5;width:500px;background:white">
+				<span style="display:block;margin:20px;font-size:19px;letter-spacing:1px;line-height:30px">
+ 					生命的意义何在，存在有理由？这样有什么意义可言吗？还有，为什么食物就是比垃圾好吃得多，这是我，这是我，话说回来，这小家伙也是我。作为一只狗，可选择的生活方式有很多，不过，这话说的有点早，我们还是从故事的开头说起吧。 
+对我而言，这个小男孩是一切的起源，他的名字是Ethan，而我的名字是Bailey Bailey Bailey Bailey。 
+我有了新的使命，又有人需要我了，又一次，又一次，在每一段新生命里，我都能发现新的意义，我尝试着理解所见一切的意义，我的这段旅程有意义吗？意义从何而来？ 
+The Ones We Rescue Rescue Us 
+我们所拯救的 终将拯救我们 
+A Dog’s Purpose 
+若我能将幸福带给你，我就完成了自己的使命。
+				</span>
+			</div>
+			<ul id="nav">
+				<li>展开</li>
+				<li style="display:none"  >查找</li>
+				<li style="display:none" >替换</li>
+			</ul>
+			<div id="accomplish" style="border:8px solid 	#333333;width:500px;background:#DCDCDC;display:none">
+				<div style="width:480px;height:20px;margin:3px">
+					<b style="float:right;font-size:20px" onclick="Hidden()">X</b>
+				</div>
+				<div id="feature" style="width:500px;height:33px">
+					<ul style="margin-left:10px;width:450px;height:30px;border-bottom:2px solid #8E8E8E;">
+						<li style="background:#838B8B" onclick="start_p(0)">查找</li>
+						<li onclick="start_p(1)">替换</li>
+					</ul>
+				</div>
+				<div id="Reality"style="margin-top:2px;width:500px;height:50px;">
+				  <div  style="margin:20px;	">
+					<input type="text" style="height:25px;width:300px"/> 
+
+					&nbsp;
+					<input type="button" value="查找" onclick="selecti()"/>
+				  </div>
+				  <div  style="margin:20px;display:none">
+					<input type="text" style="height:25px;width:150px"/> 
+
+					&nbsp;
+					<input type="text" style="height:25px;width:150px"/> 
+					<input type="button" value="替换" onclick="deletei()" />
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function deletei(){
+			var parent = document.getElementById("Reality");
+			var obj  = parent.getElementsByTagName("div");
+			var son1  = obj[1].getElementsByTagName("input")[0];
+			var son2 = obj[1].getElementsByTagName("input")[1];
+			var view = document.getElementById("view");
+			var span = view.getElementsByTagName("span")[0];
+			var newText=span.innerHTML;
+			var ceshi=newText.split(son1.value);
+			if(son1.value==''){
+				alert("不能为空！");
+				return;
+			}
+			if(son2.value==''){
+				var arr = newText.split(son1.value).join('<strong>'+son1.value+'</strong>');
+				span.innerHTML=arr;
+				
+				setTimeout(function(){
+					var startq=newText.split(son1.value).join('');
+					span.innerHTML=startq;
+				},1000);
+				
+				return;
+			}
+			if(son1.value==son2.value){
+					alert("替换的内容一致!");
+					return;
+			}
+			
+			if(ceshi.length==1){
+				alert("不可替换，没有替换的字符");
+				return;
+			}
+			var startq=newText.split(son2.value).join('<strong>'+son2.value+'</strong>');
+			span.innerHTML=startq;
+		}
+		function selecti(){
+			var parent = document.getElementById("Reality");
+			var obj  = parent.getElementsByTagName("div");
+			var son  = obj[0].getElementsByTagName("input")[0];
+			var nowText=son.value;
+			if(nowText==''){
+				alert("内容不能为空!");
+				return;
+			}
+			var view = document.getElementById("view");
+			var span = view.getElementsByTagName("span")[0];
+			var newText=span.innerHTML;
+			var arr = newText.split(nowText).join('<strong>'+nowText+'</strong>');
+			span.innerHTML=arr;
+		}
+	</script>
+</body>	
+
+</html>

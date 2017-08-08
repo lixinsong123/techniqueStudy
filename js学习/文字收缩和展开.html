@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字展开和收缩</title>
+	<script type="text/javascript">
+		
+		var  panduan =true;
+		var  text ='';
+		window.onload=function(){
+			var obj= document.getElementsByTagName("span")[0];
+			text=obj.innerHTML;
+		}			
+			function start(){
+				
+				var a  =document.getElementsByTagName("a")[0];
+				var obj= document.getElementsByTagName("span")[0];
+				//atext=a.innerHTML;
+				var newtext =text.substring(0,20)+'...';
+				if(panduan){
+					obj.innerHTML=newtext;
+					a.innerHTML ="<<展开";
+					panduan=!panduan;
+				}else{
+					obj.innerHTML=text;
+					a.innerHTML ="<<收缩";
+					panduan=!panduan;
+				}
+				
+			}
+	</script>
+</head>
+<body>
+	<div style="margin:0 auto; width:400px;background:rgba(0,0,0,0.1)">
+		<span style="color:	#EE00EE;font-size:20px">“我的世界变得奇妙更难以言喻，还以为是从天而降的梦，直到确定手的温度来自你心里，这一刻我终於勇敢说爱你”一个人的世界会因为爱变得奇妙、变得美好，这就是爱情的魔力!新时代、新观念，所谓的爱情表白已然不是男生的专利。遇见自己喜欢的男生，女生也有足够的权利去表达自己的爱恋。爱就是需要去争取，爱就是要说出来，遇上对的，遇上爱的，那就大声的说爱你吧!</span><a href="javascript:void(0)" onclick="start()" style="font-size:25px;text-decoration:none"><<收缩</a>
+	<div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+数据类型
+ Sass 和 JavaScript 语言类似，也具有自己的数据类型，在 Sass 中包含以下几种数据类型：
+
+ 数字: 如，1、 2、 13、 10px；
+ 字符串：有引号字符串或无引号字符串，如，"foo"、 'bar'、 baz；
+ 颜色：如，blue、 #04a3f9、 rgba(255,0,0,0.5)；
+ 布尔型：如，true、 false；
+ 空值：如，null；
+ 值列表：用空格或者逗号分开，如，1.5em 1em 0 2em 、 Helvetica, Arial, sans-serif。
+
+SassScript 也支持其他 CSS 属性值（property value），比如 Unicode 范围，或 !important 声明。然而，Sass 不会特殊对待这些属性值，一律视为无引号字符串 (unquoted strings)。
+
+[Sass]值列表
+所谓值列表 (lists) 是指 Sass 如何处理 CSS 中： 
+
+margin: 10px 15px 0 0
+或者： 
+
+font-face: Helvetica, Arial, sans-serif
+像上面这样通过空格或者逗号分隔的一系列的值。
+
+事实上，独立的值也被视为值列表——只包含一个值的值列表。
+
+Sass列表函数（Sass list functions）赋予了值列表更多功能（Sass进级会有讲解）：
+
+nth函数（nth function） 可以直接访问值列表中的某一项；
+join函数（join function） 可以将多个值列表连结在一起；
+append函数（append function） 可以在值列表中添加值； 
+@each规则（@each rule） 则能够给值列表中的每个项目添加样式。
+综合上述，”/  ”符号被当作除法运算符时有以下几种情况：
+
+•    如果数值或它的任意部分是存储在一个变量中或是函数的返回值。
+•    如果数值被圆括号包围。
+•    如果数值是另一个数学表达式的一部分。
+
+如下所示：
+
+//SCSS
+p {
+  font: 10px/8px;             // 纯 CSS，不是除法运算
+  $width: 1000px;
+  width: $width/2;            // 使用了变量，是除法运算
+  width: round(1.5)/2;        // 使用了函数，是除法运算
+  height: (500px/2);          // 使用了圆括号，是除法运算
+  margin-left: 5px + 8px/2px; // 使用了加（+）号，是除法运算
+}

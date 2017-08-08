@@ -1,0 +1,19 @@
+						AngularJS如何实现MVC
+	M:model模型数据：js定义变量
+	V:view视图:增强过后的html,显示数据
+	C:controller控制器，负责数据的操作，function来处理
+
+	步骤:
+		a.声明一个模块
+		 var app =angular.module('模块名','依赖的列表');
+		b.注册模块
+			ng-app='模块名';
+		c.声明控制器
+			模块(app).controller('控制器名',function(){})
+		d.调用控制器
+			ng-controller='控制器名字'
+		e.操作：操作模型数据
+			$scope.name="小明"
+		f.显示
+			在控制器的范围内，通过ng指令或者双花括号来显示数据
+			{{name}}

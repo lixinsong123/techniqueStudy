@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>_protoype原型</title>
+	<script type="text/javascript">
+	/*
+	*      prototype的使用
+	 一:prototype的介绍
+	   功能:
+	      返回对象原型的引用
+	   格式:
+	      class.prototype
+	    简单使用
+		    function Person(name){
+				this.name=name;
+			}
+			//可以为Person类下的所有对象添加一个'age'的属性或者一个叫'eat'的函数
+			var p3 = new Person("小金");
+			Person.prototype.age=30;
+			Person.prototype.eat=function(){
+				console.log("吃饭");
+				return this.name+":"+this.age;
+			};
+			var p1 = new Person('小木');
+		    var p2 = new Person("小火");
+		      alert(p1.eat());
+		      alert(p2.eat());
+		      alert(p3.eat());
+		    注意点:
+		      是Person.prototype.age=30;
+		      不是Person.age=30;
+			Person.prototype.age=30;---->是为Person类下的"对象"添加age属性。对象.age
+			Person.age=30;------->是为Person类添加属性。是一个"静态"属性。 类.age
+	二:原理
+		当程序加载Person函数时，会为Person构造器创建Person原型对象，它们是独立存在的
+		。构造器中有一个prototype属性指向了原型对象，原型对象中有一个constructor属性指向构造器，当Person类的实例在使用一个不存在的属性时，会自动到Person构造器的原型对象中找。
+		 function Person(name){
+				this.name=name;
+			}
+			var p1 = new Person('小木');
+		    console.log(p1.constructor);
+		    console.log(Person.prototype.constructor);
+	 >>>p1.constructor：p1对象中没有constructor属性，所以会到Person构造器的原型对象中去找,原型对象中的constructor指向了Person构造器，所以最后返回了Person构造器
+注意:
+		  function Person(name){
+				this.name=name;
+			}
+				//可以为Person类下的所有对象添加一个'age'的属性或者一个叫'eat'的函数
+				var p3 = new Person("小金");
+				Person.prototype.age=30;
+				Person.prototype.eat=function(){
+					return this.name+":"+this.age;
+				};
+				var p1 = new Person('小木');
+			    var p2 = new Person("小火");
+			    p2.age=20;     //------p2动态添加了一个age属性。 
+			    alert(p1.age+":"+p2.age);
+			    //p1.age----》自己中找不到，所以去原型对象中找---->30
+			    //p2.age----》现在自己中找，找不到才去原型对象中找---->20
+
+	三:原型继承：“所有类的父类都是object”，所有类的实例对象的父类是自己类的原型对象;
+	  			 console.log(p1.toString());
+	  p1对象中没有toString()方法----->原型对象中也没有toString方法---->object中有。
+				对象------>类的原型对象------->object;
+						(Person.prototype) = new Object();
+		产生一个疑问？
+			js中有重载和重写吗？
+			java中重载：方法名相同，参数个数不同。（子类）
+			java中重写:方法名，参数相同。方法实现改变。（子类）
+
+			function Person(name){
+				this.name=name;
+				
+			}
+			这种叫做重写吗？ 
+			Person.prototype.toString=function(){
+				console.log(this.name);
+			};
+			var p1 = new Person('小木');
+		    p1.toString();
+		  	
+		  	function Person(name){
+				this.name=name;
+				
+			}
+		 	这种叫做重载吗？
+			Person.prototype.toString=function(a,b){
+				console.log(this.name+a+b);
+			};
+			var p1 = new Person('小木');
+		    p1.toString(2,3);
+	
+	  四：原型链！！！！！！！！（重要）
+	  	》》》先找自己---》类的原型对象-----》object《《《《
+			function Person(name){
+					this.name=name;
+					
+				}
+			Object.prototype.age=30;
+			Object.prototype.eat=function(){
+				alert("吃饭了");
+			}
+				var p1 = new Person('小木');
+				alert(p1.age);
+				p1.eat();
+		练习一：扩展数组的功能：为每一个数组添加一个方法，可以查找某个元素所在的位置
+			Array.prototype.search=function(a){
+				var kaiguan = false;
+				for(var i=0;i<this.length;i++){
+
+					if(a==this[i]){
+						kaiguan=true;
+					}
+				}
+				return kaiguan? i :-1;
+			}
+			var arr=[0,1,2,3,4];
+			alert(arr.search(5));
+		练习二:扩展数字类的功能：
+			为每一个数字对象添加一个方法，该方法的参数为任意数目的整数，然后将所有参数
+			累加到一起并返回。
+			 Number.prototype.max=function(){
+		  	var num=0;
+
+		 	for(var i=0;i<arguments.length;i++){
+		 			num+=arguments[i];
+		 	}
+
+		 	return num ?num :-1;
+		  }
+		  var a = new Number ();
+
+		  alert(a.max());
+		  alert(a.max(1,2,4,8,9));
+		  */ 
+		 
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

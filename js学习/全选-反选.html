@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选-反选</title>
+	<script type="text/javascript">
+		function panduan(a){
+			var obj=document.getElementsByTagName("div");
+			var son=obj[0].getElementsByTagName('input');
+			if(a.value=="全选"){
+				for(var i=0;i<son.length;i++){
+					son[i].checked=true;	
+				}
+			}else{
+				for(var i=0;i<son.length;i++){
+					if(son[i].checked==true){
+						son[i].checked=false;
+					}else{
+						son[i].checked=true;
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<input type="checkbox"/>
+		<input type="checkbox"/>
+		<input type="checkbox"/>
+		<input type="checkbox"/>
+		<input type="checkbox"/>
+		<input type="checkbox"/>
+	</div>
+	<br>
+	<input type="button" value="全选" onclick="panduan(this)"/>
+	<input type="button" value="反选" onclick="panduan(this)"/>
+</body>
+</html>

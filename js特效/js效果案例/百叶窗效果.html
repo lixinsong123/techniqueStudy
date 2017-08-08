@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百叶窗效果案例</title>
+	<script type="text/javascript" src="js/miaov.js"></script>
+	<style type="text/css">
+		*{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		#parent{
+			border: 1px solid red;
+			width: 500px;
+			margin: 200px auto;	
+			padding:5px;
+		}
+		#parent li{
+			position: relative;
+			height: 80px;
+			overflow: hidden;
+			border-bottom: 1px dashed blue;	
+			line-height: 80px;
+		}
+		#parent li div{
+			position: absolute;
+			top: -80px;
+		}
+		#parent li div p{
+			height: 80px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oUl = document.getElementById("parent");
+			var index=0;
+			var oDiv = oUl.getElementsByTagName("div");
+			var kuaiguan=true;
+			var timer=null;
+			var timer2=null;
+			toShow();
+			oUl.onmouseover=function(){
+				//console.log("aa");
+				clearInterval(timer2);
+			}
+			oUl.onmouseout=function(){
+				//console.log("ss");
+				toShow();
+			}
+			function toShow(){
+				
+				timer2=setInterval(function(){
+					tochange();
+				},4000);
+			}
+			function tochange(){
+				//console.log(oDiv);
+				timer=setInterval(function(){
+					
+					if(index==oDiv.length){
+						index=0;
+						kuaiguan=!kuaiguan;
+						clearInterval(timer);
+					}else{
+						if(kuaiguan==false){
+							console.log("ok");
+						}
+						var a =kuaiguan?"0":"-80";
+						timeMove(oDiv[index],{"top":a},1000,"linear");
+						index++;
+					}
+					
+				},100);
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul id="parent">
+		<li>
+			<div>
+				<p>1111111111</p>
+				<p>aaaaaaaaaa</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>2222222222</p>
+				<p>bbbbbbbbbb</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>3333333333</p>
+				<p>cccccccccc</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>44444444444</p>
+				<p>ddddddddddd</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<p>555555555555</p>
+				<p>cccccccccccc</p>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>

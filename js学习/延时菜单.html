@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>延时菜单</title>
+	<style>
+		*{
+			padding:0;
+			margin: 0;
+		}
+		li,ul{
+			list-style: none;
+		}
+		ul{
+			width: 300px;
+			height: 23px;
+			margin:  0 auto;
+			border: 1px solid blue;
+			border-radius: 6px;
+			background: green;
+			color: white;
+		}
+		li{
+			float: left;;
+			width: 73px;
+			text-align: center;
+		}
+		div{
+			padding-top: 8px;
+			float: left;
+			position: absolute;
+			display: none;
+		}
+		div ul{
+			border-color: white;
+			border-radius: 3px;
+		}
+	</style>
+	<script type="text/javascript">
+		var setTime=null;
+		function show(a){
+			clearInterval(setTime);
+			
+			var obj=document.getElementsByTagName("li")[a];
+			var obj_d=document.getElementsByTagName("div");
+			var obj1= obj_d[a];
+			for(var i=0;i<obj_d.length;i++){
+				if(i==a){}
+					else{
+					obj_d[i].style.display="none";
+				}
+
+			}
+			obj.style.backgroundColor="rgba(0,0,0,0.2)";
+			setTime=setTimeout(function(){
+				obj1.style.display="block";
+			},200);
+			
+		}
+		function hide(a){
+			clearInterval(setTime);
+			var obj=document.getElementsByTagName("li")[a];
+			var obj1=document.getElementsByTagName("div")[a];
+			obj.style.backgroundColor="";
+			setTime=setTimeout(function(){
+				obj1.style.display="none";
+			},500);
+			
+		}
+	</script>
+</head>
+<body>
+	<ul>
+		<li onmouseover="show(0)" onmouseout="hide(0)">首页</li>
+		<li onmouseover="show(1)" onmouseout="hide(1)">关于我们</li>
+		<li onmouseover="show(2)" onmouseout="hide(2)">作品</li>
+		<li onmouseover="show(3)" onmouseout="hide(3)">博客</li>
+	</ul>
+	<div onmouseover="show(0)" onmouseout="hide(0)" style="left:750px;">
+		<ul>
+			<li>最新课程<li>
+			<li>学员试听<li>
+			<li>反馈<li>
+			<li>最近更新<li>
+		</ul>
+	</div>
+	<div onmouseover="show(1)" onmouseout="hide(1)"  style="left:850px;" >
+		<ul>
+			<li>最新课程<li>
+			<li>学员试听<li>
+			<li>反馈<li>
+			<li>最近更新<li>
+		</ul>
+	</div>
+	<div onmouseover="show(2)" onmouseout="hide(2)"  style="left:950px;">
+		<ul>
+			<li>最新课程<li>
+			<li>学员试听<li>
+			<li>反馈<li>
+			<li>最近更新<li>
+		</ul>
+	</div>
+	<div onmouseover="show(3)" onmouseout="hide(3)"  style="left:1050px;">
+		<ul>
+			<li>最新课程<li>
+			<li>学员试听<li>
+			<li>反馈<li>
+			<li>最近更新<li>
+		</ul>
+	</div>
+</body>
+</html>

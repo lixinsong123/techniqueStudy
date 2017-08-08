@@ -1,0 +1,104 @@
+@charset "utf-8";
+@r:50rem;
+body{margin:0;font-family:Arial,"微软雅黑";color:#666;position:relative;font-size:26px}
+h1,ul,li,p,h2,input{margin:0;padding:0; font-weight: normal;}
+input{border:none}
+li,a{ text-decoration: none; list-style: none;}
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0)}
+img{border:none;vertical-align:top;}
+.page{width:100%;height:100%;background-color:#ffffff;position:absolute;left:0;top:0;overflow:hidden;z-index:1;display:none;}
+.pageShow{display:block}
+.fl{float:left}
+.rt{float:right}
+.btn{position:absolute;bottom:17px;left:17px;width:606px;height:74px;font-size:30px;color:#5d5d5d;background:#cacaca;border-radius:5px}
+.submit{background:#3c9bbb;color:#ffffff}
+.info{font-size:26px;line-height:60px;text-align:center;width:100%;position:absolute;bottom:90px;
+-webkit-transform-origin:bottom;-webkit-transform:scale(0);-webkit-transition:0.5s;opacity:0}
+.info_active{-webkit-transform:scale(1);opacity:1}
+/*欢迎页面*/
+@-webkit-keyframes tree{
+	100%{
+		-webkit-transform:translateY(0px);
+		opacity: 1;
+	}
+}
+@keyframes tree{
+	100%{
+		-webkit-transform:translateY(0px);
+		opacity:1;
+	}
+}
+@-webkit-keyframes logo{
+	100%{
+		opacity: 1;
+	}
+}
+@-webkit-keyframes snake{
+	0%{
+		-webkit-transform:rotate(0deg);
+	}
+	20%{
+		-webkit-transform:rotate(-70deg);
+	}
+	40%{
+		-webkit-transform:rotate(50deg);
+	}
+	60%{
+		-webkit-transform:rotate(-30deg);
+	}
+	80%{
+		-webkit-transform:rotate(10deg);
+	}
+	100%{
+		-webkit-transform:rotate(0deg);
+	}
+}
+@-webkit-keyframes cloud{
+	0%{
+		-webkit-transform:translateX(0px);
+	}
+	100%{
+		-webkit-transform:translateX(-50px)
+	}
+}
+.welcome{-webkit-transition:1s}
+.tree,.logo{text-align:center;width:100%;}
+.page:nth-of-type(1){z-index:10}
+.tree{position:absolute;left:0;top:110/@r;-webkit-transform:translateY(100px);transform:translateY(100px); opacity: 0;-webkit-animation:1s tree;animation:1s tree;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards}
+.tree_link{position:relative;padding-top:50/@r;-webkit-transform:translateY(50px);-webkit-animation:1s .3s tree;-webkit-animation-fill-mode:forwards;opacity:0;}
+.snake{position:absolute;left:509px;top:12px;width:28px;height:31px;background:url(../img/shake.png) no-repeat;-webkit-animation:.3s 2s snake;-webkit-animation-fill-mode:forwards;-webkit-transform-origin:left bottom}
+.tree2{padding-top:20/@r;-webkit-transform:translateY(30px);-webkit-animation:1s .6s tree;-webkit-animation-fill-mode:forwards;opacity:0;}
+.logo{position:absolute;left:0;bottom:52/@r;-webkit-animation:1s .5s logo;-webkit-animation-fill-mode:forwards;opacity:0;}
+.cloud{position:absolute;background:url(../img/cloud.png) no-repeat;background-size:contain }
+.cloud:nth-of-type(1){width:58px;height:44px;left:432px;top:15px;-webkit-animation:3s 2s cloud infinite alternate linear;}
+.cloud:nth-of-type(2){width:91px;height:70px;left:79px;top:77px;-webkit-animation:3s 2.5s cloud infinite alternate linear;}
+.cloud:nth-of-type(3){width:54px;height:41px;left:402px;top:142px;-webkit-animation:3s 2.8s cloud infinite alternate linear;}
+.page:nth-of-type(2){z-index:9}
+.page:nth-of-type(3){z-index:8}
+.page:nth-of-type(4){z-index:7}
+.page:nth-of-type(5){z-index:6}
+/*首页*/
+.page:nth-of-type(6){z-index:5}
+.tabBar{overflow:hidden;position:relative;}
+.bar_list{overflow:hidden;width:500%;-webkit-transition:2s}
+.bar_list>li img{width:640px;height:340px}
+.bar_list>li{float:left}
+.barMask{position:absolute;bottom:0;width:100%;height:102px;background:-webkit-linear-gradient(bottom,rgba(0,0,0,0.7) 0,rgba(0,0,0,0.6) 10%,rgba(0,0,0,0))}
+.barMask>p{color:#fff;font-size:29px;text-indent:26px;line-height:120px;}
+.nav_controller{position:absolute;bottom:21px;right:44px}
+.nav_controller>a{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:rgba(225,225,225,0.7)}
+.nav_controller>a.active{background:#fff}
+.score{line-height:60px;padding:17px 0 22px 26px;border-bottom:1px solid #e5e5e5}
+.score h2{font-size:28px; font-weight: normal;}
+.score li{height:60px;position:relative}
+.score nav{position:absolute;top:12px;left:187px}
+.score nav a{float:left;background:url(../img/star.png) no-repeat -38px 0;width:38px;height:36px;margin-right:39px;-webkit-transition:0.5s}
+.score nav .active{background-position:0 0}
+
+.tags{padding:21px 0 0 26px}
+.tags h2{line-height:54px;font-size:28px}
+.tags label{float:left;line-height:50px;margin:10px 14px 10px 3px}
+.tags label input{display:none}
+.tags label span{float:left;border:1px solid #cdd6e1;padding:0 24px;border-radius:26px}
+.tags input:checked+span{border-color:#3c9bbb;background:#3c9bbb;color:#ffffff}
+/*.tags input:checked+span{background:red} 找到选中后面的元素*/

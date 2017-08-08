@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>渐变</title>
+	<style type="text/css">
+		.exercise{
+			width: 200px;
+			height: 200px;
+			background: -webkit-radial-gradient(center,rgba(225,225,225,0.2),rgba(225,225,225,0.8)),url(images/scenery_16.jpg) no-repeat;;
+			/*兼容IE的渐变*/
+			filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FF0000',endColorStr='#F9F900',gradientType='0');
+			border-radius: 50%;
+			transition:2s;
+		}
+		.exercise:hover{
+			background-position: 300px 300px,0 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="exercise">
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全屏滚动</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		html{
+			height: 100%
+		}
+		body{
+			height: 100%;
+		}
+	 	#div1{
+	 		width: 100%;
+	 		height: 100%;
+	 		position: relative;
+	 		overflow: hidden;
+	 	}
+	 	ol{
+	 		position: fixed;
+	 		margin-left: 30px;
+	 		margin-top: 30px;
+	 		width: 100px;
+	 		height: 100px;
+	 		top: 0;
+	 	}
+	 	ol li{
+	 		border: 2px solid black;
+	 		margin-bottom: 10px;
+	 		cursor: pointer;
+	 		color: white;
+	 		text-align: center;
+	 		line-height: 95px;
+	 	}
+	 	ul{
+	 		position: relative;
+	 		width: 100%;
+	 		height: 100%;
+	 		top: 0;
+	 	}
+	 	ul>li{
+	 		
+	 		position: relative;
+	 		height: 100%;
+	 		width: 100%;
+	 	}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+			 var bg_color=['blue','red','pink','green','yellow'];
+			 var ul      = document.getElementById("ul");
+			 var lis     = ul.getElementsByTagName("li");
+			 var ol      =document.getElementById("ol");
+			 var olis    =ol.getElementsByTagName("li");
+			 var arr     =[]; 
+			 for(var i=0;i<lis.length;i++){
+			 	lis[i].style.background = bg_color[i];
+			 	olis[i].style.background=bg_color[i];
+			 	arr.push(lis[i].offsetTop);
+			 }
+			 
+			 //点击滚动
+			 var lindex=0;
+			 for(var i=0;i<olis.length;i++){
+			 	olis[i].index=i;
+			 	olis[i].onclick=function(){
+			 		var This = this;
+			 		doMove ( ul, 'top', 5, -arr[this.index]);
+			 		lindex=This.index;
+			 		//ul.style.top=-arr[this.index]+'px';
+			 	}
+			 }
+			 //滚轮移动
+			 var ceshi=false;
+			 document.onmousewheel=function(event){
+			 	if(ceshi){
+			 		return;
+			 	}
+			 	ceshi=true;
+			 	var event = event||window.event;
+			 	//alert(event.wheelDelta); 上 120 下-120
+			 	wheeldelta=event.wheelDelta>0?true:false;
+			 	if(wheeldelta){
+			 		var a =lindex-1;
+			 		if(a<0){
+			 		   lindex=1;
+			 		}
+			 		doMove ( ul, 'top', 5, -arr[lindex-1],function(){
+			 			ceshi=false;
+			 		});
+			 		lindex=lindex-1;
+			 	}else{
+			 		var b =lindex+1;
+			 		if(b>4){
+			 		   lindex=3;
+			 		}
+			 		doMove ( ul, 'top', 5, -arr[lindex+1],function(){
+			 			ceshi=false;
+			 		});
+			 		lindex=lindex+1;
+			 		
+			 	}
+			 }
+
+	}
+	function doMove ( obj, attr, dir, target, endFn ) {
+	var target=target;
+	dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
+	
+	clearInterval( obj.timer );
+	
+	obj.timer = setInterval(function () {
+		
+		var speed = parseInt(getStyle( obj, attr )) + dir;			// 步长
+		
+		if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+			speed = target;
+		}
+		
+		obj.style[attr] = speed + 'px';
+		
+		if ( speed == target) {
+			clearInterval( obj.timer );
+			
+			/*
+			if ( endFn ) {
+				endFn();
+			}
+			*/
+			endFn && endFn();
+			
+		}
+		
+	}, 1);
+}
+//获取样式的值
+function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul id="ul">
+			<li>第一屏</li>
+			<li>第二屏</li>
+			<li>第三屏</li>
+			<li>第四屏</li>
+			<li>第五屏</li>
+		</ul>
+		
+	</div>
+	<ol id="ol">
+			<li>第一屏</li>
+			<li>第二屏</li>
+			<li>第三屏</li>
+			<li>第四屏</li>
+			<li>第五屏</li>
+	</ol>
+</body>
+</html>

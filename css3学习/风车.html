@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>风车</title>
+	<style type="text/css">
+		.box{
+			width: 900px;
+			height: 700px;
+			margin: 170px auto;
+			transition:5s;
+		}
+		.box:hover{
+
+			transform: rotate(720deg);
+		}
+		.box div{
+			margin: 0 20px 20px 0;
+			border: 1px solid green;
+			width: 400px;
+			height: 300px;
+			float: left;
+			box-sizing:border-box;
+
+		}
+		.box div:nth-child(1){
+			background: url(images/FZ_2.jpg) no-repeat;
+			border-radius:0 95%;
+		}
+		.box div:nth-child(2){
+			background: url(images/FZ_2.jpg) no-repeat;
+			border-radius:95% 0;
+		}
+		.box div:nth-child(3){
+			background: url(images/FZ_3.jpg) no-repeat;
+				border-radius:95% 0;
+		}
+		.box div:nth-child(4){
+			background: url(images/FZ_4.jpg) no-repeat;
+			border-radius:0 95%;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</body>
+</html>

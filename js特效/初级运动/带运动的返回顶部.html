@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>带运动的返回顶部</title>
+	<style type="text/css">
+		#top{
+			width: 50px;
+			height: 50px;
+			background: pink;
+			position: absolute;
+			right: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			//console.log(document.documentElement.clientHeight);
+			var div  = document.getElementById("top");
+			var iTimer = null;
+			setTop();
+
+			window.onscroll = function(){
+				setTop();
+			}
+			
+			div.onclick=function(){
+				clearInterval(iTimer);
+				var iCur = iSpeed=0;
+				iTimer = setInterval(function(){
+					iCur = document.documentElement.scrollTop||document.body.scrollTop;
+					iSpeed= Math.floor((0-iCur)/8);
+					if(iCur==0){
+						clearInterval(iTimer);
+					}else{
+					document.documentElement.scrollTop=document.body.scrollTop=iCur+iSpeed;
+					}
+				},30);
+			}
+			function setTop(){
+				var scrollTops =document.documentElement.scrollTop||document.body.scrollTop;
+	div.style.top =scrollTops+document.documentElement.clientHeight-div.offsetHeight+"px"; 
+			}
+		}
+	</script>
+</head>
+<body style="height:2000px">
+	<div id="top">
+	</div>
+</body>
+</html>

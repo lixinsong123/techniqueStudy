@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义指令</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl">
+		<!-- 扩展属性 烤串时使用 -->
+		<dir ts-hello></dir>
+		<!-- 扩展标签 -->
+		<ts-hello></ts-hello>
+		<div class="ts-hello"></div>
+	</div>
+	<script>
+		var md = angular.module("myApp",['ng']);
+		md.controller("myCtrl",function($scope){
+
+		});
+		//自定义指令 驼峰式命名
+		md.directive("tsHello",function(){
+			return {
+				template : '<h1> Hello Directive </h1>',
+				restrict:'ECA'
+			}
+		});
+	</script>
+</body>
+</html>

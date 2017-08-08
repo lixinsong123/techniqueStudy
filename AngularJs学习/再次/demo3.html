@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body ng-app="myApp">
+	<!-- 调用控制器 -->
+	<div ng-controller="myCtr">
+		{{name}}
+		<p ng-bind="name"></p>
+	<input ng-click="show($event)" type="button" value="click" /></input>
+	</div>
+	<script>
+		//声明一个模块
+		var md=angular.module('myApp',['ng']);
+		//声明一个控制器
+			md.controller('myCtr',function($scope){
+				console.log("in myCtr");
+				$scope.name='Web1609';
+				$scope.show=function(ev){
+					console.log(ev);
+					console.log("show is called");
+				}
+			});
+	</script>
+</body>
+</html>

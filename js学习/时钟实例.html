@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟实例</title>
+	<script type="text/javascript">
+	//系统时间
+		window.onload=function(){
+			var date=null;
+			var setTime=setInterval(function(){
+				date=new Date();
+				var iHours=getNum(date.getHours());//12
+				var iMinutes=getNum(date.getMinutes());//10
+				var iSeconds=getNum(date.getSeconds());//08
+				var str=iHours+":"+iMinutes+":"+iSeconds;
+				//var div=document.getElementsByTagName("div")[0];
+				//div.innerHTML=str;
+				var img1=document.getElementsByTagName("img");
+				for(var i=0;i<str.length;i++){
+					if(str.charAt(i)!=':'){
+						img1[i].src="images/"+str.charAt(i)+".jpg";
+					}
+				}
+				/*
+				img1[0].src="images/"+iHours.charAt(0)+".jpg";
+				img1[1].src="images/"+iHours.charAt(1)+".jpg";
+
+				img1[3].src="images/"+iMinutes.charAt(0)+".jpg";
+				img1[4].src="images/"+iMinutes.charAt(1)+".jpg";
+
+				img1[6].src="images/"+iSeconds.charAt(0)+".jpg";
+				img1[7].src="images/"+iSeconds.charAt(1)+".jpg";
+				*/
+			},1000);
+		}
+		function getNum(n){
+			return n<10?"0"+n:""+n
+		}
+	</script>
+</head>
+<body>
+	<div style="font-size:70px;">
+		<img src="images/0.jpg"/>
+		<img src="images/0.jpg"/>
+		<img src="images/colon.JPG"/>
+		<img src="images/0.jpg"/>
+		<img src="images/0.jpg"/>
+		<img src="images/colon.JPG"/>
+		<img src="images/0.jpg"/>
+		<img src="images/0.jpg"/>
+	</div>
+</body>
+</html>

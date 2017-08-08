@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app='myApp' >
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJs3-------->拖拽指令</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+	var myApp = angular.module('myApp', [])
+		  myApp.directive('myDrag', function() {
+		    return {
+		        restrict: 'A',
+	
+				link :function(scope,element,attr){
+					attr.myDrag=angular.equals(attr.myDrag,'true');
+					if(attr.myDrag){
+						var disX=0;
+						var disY=0;
+						element[0].onmousedown=function(ev){
+							var This =this;
+							disX = ev.clientX - this.offsetLeft;
+							disY = ev.clientY - this.offsetTop;
+						 var line=document.createElement("div");
+						 line.style.width=this.clientWidth+'px';
+						 line.style.height=this.clientHeight+'px';
+						 line.style.position='absolute';
+						 line.style.left =this.offsetLeft+'px';
+						 line.style.top=this.offsetTop+'px';
+						 line.style.border='1px gray dotted';
+						 document.body.appendChild(line);
+							document.onmousemove = function(ev){
+								
+								
+								line.style.left=ev.clientX - disX + "px";
+								line.style.top =ev.clientY - disY + "px";
+							};
+							document.onmouseup = function(){
+								This.style.left=line.style.left;
+								This.style.top =line.style.top ;
+								document.body.removeChild(line);
+								document.onmousemove=null;
+								document.onmouseup=null;
+							};
+							return false;
+					}
+				}
+		    }
+		}
+	});
+		  myApp.controller('one',['$scope',function($scope){
+	
+		  }]);
+
+	</script>
+	<style type="text/css">
+		#div{
+			width: 200px;
+			height: 200px;
+			background: pink;
+			position: absolute;
+		}
+	</style>
+</head>
+<body ng-controller='one'>
+	<div id="div" my-drag='true'></div>
+</body>
+</html>

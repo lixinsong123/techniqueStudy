@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Directive</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+</head>
+<body>
+	<ts-directive ts-name="Hello Directive"></ts-directive>
+	<script>
+		let md =angular.module("myApp",['ng']);
+		md.directive('tsDirective',function(){
+			return {
+				template:"{{tsName}}",
+				scope:{
+					tsName:'@'
+				}
+			}
+		});
+	</script>
+</body>
+</html>
